@@ -41,7 +41,7 @@ class Vehicle(models.Model):
     
     def __unicode__(self):
         return str(self)
-    
+
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
