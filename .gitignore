@@ -1,0 +1,11 @@
+ Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.Python
+bin/
+include/
+lib/
+
+pip-selfcheck.json
