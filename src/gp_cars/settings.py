@@ -26,7 +26,7 @@ SECRET_KEY = '4*cr2x1kjp+tn2(drq_n@p&g9xi)d%l^qva_@dbl%-t6wxzy%h'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'gp_cars.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(BASE_DIR), 'static', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,10 +102,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(BASE_DIR), 'static', 'templates'),
-)
 
 if DEBUG:
     MEDIA_URL = '/media/'

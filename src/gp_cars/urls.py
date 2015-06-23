@@ -17,8 +17,10 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from vehicles.views import home_page
 
 urlpatterns = [
+    url(r'^$', home_page, name='home'),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
