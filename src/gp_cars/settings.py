@@ -26,7 +26,7 @@ SECRET_KEY = '4*cr2x1kjp+tn2(drq_n@p&g9xi)d%l^qva_@dbl%-t6wxzy%h'
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
