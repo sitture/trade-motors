@@ -1,25 +1,23 @@
 from django.db import models
 
 class Category(models.Model):
+    category_parent = models.ForeignKey('self', blank=True, null=True, related_name='category_children')
     category_name = models.CharField('Name', max_length=50, blank=False, null=False)
-    category_image = models.ImageField('Image', upload_to='category_images')
+    category_image = models.ImageField('Image', upload_to='category_images', blank=True)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __unicode__(self):
-        return str(self.category_name)
+        display_text = str(self.category_name)
+        if self.category_parent:
+            display_text = '{0} > {1}'.format(self.category_parent, self.category_name)
+        return display_text
     
-
-class CategoryType(models.Model):
-    category = models.ForeignKey(Category)
-    category_type = models.CharField('Type', max_length=50, blank=False, null=False)
-    
-    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
-    def __unicode__(self):
-        return str(self.category_type)
+    class Meta:
+        verbose_name_plural = 'Categories'
+        verbose_name = 'Category'
+        ordering = ('category_name',)
     
 
 class VehicleMake(models.Model):
@@ -34,7 +32,6 @@ class VehicleMake(models.Model):
 
 class Vehicle(models.Model):
     v_category = models.ForeignKey(Category)
-    v_category_type = models.ForeignKey(CategoryType)
     v_make = models.ForeignKey(VehicleMake)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)

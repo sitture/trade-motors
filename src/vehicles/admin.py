@@ -8,18 +8,17 @@ class VehicleCategoryAdmin(admin.ModelAdmin):
         model = Category
 
 
-# register the category type model
-class VehicleCategoryTypeAdmin(admin.ModelAdmin):
-    class Meta:
-        model = CategoryType
-
-
 # register the vehicle model
 class VehicleAdmin(admin.ModelAdmin):
     class Meta:
         model = Vehicle
 
 
+class VehicleMakeAdmin(admin.ModelAdmin):
+    class Meta:
+        model = VehicleMake
+
+
 admin.site.register(Category, VehicleCategoryAdmin)
-admin.site.register(CategoryType, VehicleCategoryTypeAdmin)
 admin.site.register(Vehicle, VehicleAdmin)
+admin.site.register(VehicleMake, VehicleMakeAdmin)
