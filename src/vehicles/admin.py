@@ -4,6 +4,8 @@ from .models import *
 
 # register the vehicle categories model
 class VehicleCategoryAdmin(admin.ModelAdmin):
+    list_display = ['__unicode__', 'category_display_order']
+    
     class Meta:
         model = Category
 
