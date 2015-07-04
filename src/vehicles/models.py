@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     category_parent = models.ForeignKey('self', blank=True, null=True, related_name='category_children')
@@ -18,7 +19,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
         verbose_name = 'Category'
-        ordering = ('category_display_order', 'category_name',)
+        ordering = ['category_display_order', 'category_name']
     
 
 class VehicleMake(models.Model):
@@ -29,25 +30,38 @@ class VehicleMake(models.Model):
     
     def __unicode__(self):
         return str(self.v_make)
+    
+    class Meta:
+        verbose_name_plural = 'Makes'
+        verbose_name = 'Make'
 
 
 class Vehicle(models.Model):
-    v_category = models.ForeignKey(Category)
-    v_make = models.ForeignKey(VehicleMake)
+    category = models.ForeignKey(Category)
+    make = models.ForeignKey(VehicleMake)
+    model = models.CharField('Model', max_length=100)
+    year = models.IntegerField("Year (E.g. 1990)", blank=True, null=True)
+    desc = RichTextField("Description")
+    slug = models.SlugField()
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     
     def __unicode__(self):
-        return str(self)
-
+        display_text = '{0} {1} {2}'.format(self.make, self.model, self.year)
+        return display_text
+    
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
-    v_image = models.ImageField('Image', upload_to='vehicle_images')
+    image = models.ImageField('Image', upload_to='vehicle_images')
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     
     def __unicode__(self):
         return '%s\'s Image' % self.vehicle
+    
+    class Meta:
+        verbose_name_plural = 'Images'
+        verbose_name = 'Image'

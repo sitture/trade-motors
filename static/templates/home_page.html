@@ -1,1 +1,16 @@
 {% extends "base.html" %}
+
+{% block content %}
+
+{% for category in categories %}
+    {% if not category.category_parent %}
+        <p>{{ category.category_name }}</p>
+        {% for sub_category in sub_categories %}
+            {% ifequal sub_category.category_parent category %}
+                <p>{{ sub_category.category_name }}</p>
+            {%  endifequal %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

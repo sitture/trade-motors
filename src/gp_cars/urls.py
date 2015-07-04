@@ -22,6 +22,8 @@ from vehicles.views import home_page
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^admin/', include(admin.site.urls)),
+    # ckEditor urls
+    url(r'^ckeditor/', include('ckeditor.urls')),
 ]
 
 if settings.DEBUG:
