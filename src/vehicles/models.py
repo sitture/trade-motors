@@ -69,3 +69,4 @@ class VehicleImage(models.Model):
     class Meta:
         verbose_name_plural = 'Images'
         verbose_name = 'Image'
+        ordering = ['vehicle', '-timestamp']

@@ -26,6 +26,8 @@ class VehicleMakeAdmin(admin.ModelAdmin):
 
 
 class VehicleImageAdmin(admin.ModelAdmin):
+    list_display = ['__unicode__', 'image', 'main_image']
+    list_filter = ['vehicle']
     class Meta:
         model = VehicleImage
 
