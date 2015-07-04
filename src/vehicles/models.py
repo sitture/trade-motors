@@ -60,7 +60,7 @@ class VehicleImage(models.Model):
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     
     def __unicode__(self):
-        return '%s\'s Image' % self.vehicle
+        return "{0}'s Image".format(self.vehicle)
     
     class Meta:
         verbose_name_plural = 'Images'
