@@ -13,6 +13,7 @@ class VehicleCategoryAdmin(admin.ModelAdmin):
 # register the vehicle model
 class VehicleAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'category']
+    list_filter = ('category', 'make')
     prepopulated_fields = {'slug' : ('make', 'model', 'year',)}
     
     class Meta:
