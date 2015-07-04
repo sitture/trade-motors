@@ -58,6 +58,7 @@ class Vehicle(models.Model):
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
     image = models.ImageField('Image', upload_to='vehicle_images')
+    main_image = models.BooleanField('Main Image?', default=False)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
