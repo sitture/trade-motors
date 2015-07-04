@@ -51,6 +51,9 @@ class Vehicle(models.Model):
         display_text = '{0} {1} {2}'.format(self.make, self.model, self.year)
         return display_text
     
+    class Meta:
+        ordering = ['-timestamp']
+
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
