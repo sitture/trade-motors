@@ -1,6 +1,6 @@
 from django.test import TestCase
 # import the models to test
-from vehicles.models import Category
+from vehicles.models import Category, VehicleMake
 
 class CategoryModelTest(TestCase):
     
@@ -40,6 +40,29 @@ class CategoryModelTest(TestCase):
         self.assertEquals(
             str(Category._meta.verbose_name_plural),
             'Categories'
+        )
+
+
+class VehicleMakeModelTest(TestCase):
+    
+    def test_str_representation(self):
+        make_name = 'Toyota'
+        vehicle_make = VehicleMake(v_make=make_name)
+        self.assertEquals(
+            str(vehicle_make),
+            make_name
+        )
+    
+    def test_verbose_name(self):
+        self.assertEquals(
+            str(VehicleMake._meta.verbose_name),
+            'Make'
+        )
+        
+    def test_verbose_name_plural(self):
+        self.assertEquals(
+            str(VehicleMake._meta.verbose_name_plural),
+            'Makes'
         )
     
     
