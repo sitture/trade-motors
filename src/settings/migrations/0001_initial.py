@@ -33,6 +33,8 @@ class Migration(migrations.Migration):
             name='Social',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('service', models.CharField(max_length=50, verbose_name=b'Service', choices=[(b'facebook', b'Facebook'), (b'google-plus', b'Google+'), (b'twitter', b'Twitter'), (b'linkedin', b'LinkedIn'), (b'instagram', b'Instagram')])),
+                ('url', models.URLField(verbose_name=b'Page Link')),
             ],
         ),
     ]

@@ -2,12 +2,28 @@ from django.db import models
 
 # Create your models here.
 class SliderImage(models.Model):
-    pass
+    pass    
+    #banner = models.ImageField(blank=False, null=False, upload_to='slider') # cannot be null
+    #caption = models.TextField('Caption (Optional)', blank=True, null=True)
 
 
 class Social(models.Model):
-    pass
+    
+    SERVICE_CHOICES  = (
+        ('facebook', 'Facebook'),
+        ('google-plus', 'Google+'),
+        ('twitter', 'Twitter'),
+        ('linkedin', 'LinkedIn'),
+        ('instagram', 'Instagram')
+    )
+    
+    service = models.CharField('Service', max_length=50, blank=False,
+        choices=SERVICE_CHOICES
+    )
+    url = models.URLField('Page Link', null=False, blank=False)
 
+    def __str__(self):
+        return str(self.service)
 
 class ContactDetail(models.Model):
     

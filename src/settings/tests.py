@@ -1,6 +1,6 @@
 from django.test import TestCase
 # import the models to test
-from settings.models import ContactDetail
+from settings.models import ContactDetail, Social
 
 
 class ContactDetailModelTest(TestCase):
@@ -24,4 +24,15 @@ class ContactDetailModelTest(TestCase):
         self.assertEquals(
             str(detail),
             expected_result
+        )
+
+
+class SocialModelTest(TestCase):
+    
+    def test_str_representation(self):
+        test_url = "http://facebook.com/sitture"
+        service = Social(service='Facebook', url=test_url)
+        self.assertEquals(
+            str(service),
+            'Facebook'
         )
