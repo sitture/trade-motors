@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 class Category(models.Model):
     category_parent = models.ForeignKey('self', blank=True, null=True, related_name='category_children')
     category_name = models.CharField('Name', max_length=50, blank=False, null=False)
-    category_image = models.ImageField('Image', upload_to='category_images', blank=True)
+    category_image = models.ImageField('Image', upload_to='categories', blank=True)
     category_display_order = models.IntegerField('Display Order', default=999)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -57,7 +57,7 @@ class Vehicle(models.Model):
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
-    image = models.ImageField('Image', upload_to='vehicle_images')
+    image = models.ImageField('Image', upload_to='vehicles')
     main_image = models.BooleanField('Main Image?', default=False)
     
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
