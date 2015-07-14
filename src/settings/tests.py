@@ -4,7 +4,7 @@ from settings.models import ContactDetail, Social
 
 
 class ContactDetailModelTest(TestCase):
-    
+
     def test_str_with_no_fullname(self):
         email_address = 'test@sitture.com'
         detail = ContactDetail(email=email_address)
@@ -12,7 +12,7 @@ class ContactDetailModelTest(TestCase):
             str(detail),
             detail.email
         )
-        
+
     def test_str_with_fullname(self):
         email_address = 'test@sitture.com'
         fullname = 'Sitture'
@@ -28,7 +28,7 @@ class ContactDetailModelTest(TestCase):
 
 
 class SocialModelTest(TestCase):
-    
+
     def test_str_representation(self):
         test_url = "http://facebook.com/sitture"
         service = Social(service='Facebook', url=test_url)
