@@ -30,5 +30,3 @@ def get_all_categories(categories, sub_categories):
 		formatted_categories.append(tmp)
 
 	return formatted_categories
-
-
