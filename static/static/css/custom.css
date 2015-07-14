@@ -1,0 +1,272 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+    background: #fff; /*url("../imsg/bg.png") repeat scroll 0px 0px*/
+}
+
+/*------------------------------------------------------------------
+[1. Global]
+*/
+
+.thumbnail:hover {
+	border: 1px solid #FB0;
+}
+
+.thumbnail a > img, .thumbnail:hover {
+	border: 1px solid #FB0;
+}
+
+.slash {
+    padding-right: 0.25em;
+    color: #FB0;
+}
+
+
+/* -----------------------------------------------------------------------
+ CONTAINER SETTINGS
+*/
+
+.container h2 {
+	color: #fb0;
+}
+
+/*************************
+******* Header CSS ******
+**************************/
+.header_top {
+	background: none repeat scroll 0 0 #FB0;
+}
+
+.contactinfo ul li:first-child {
+    margin-left: -15px;
+}
+
+.contactinfo ul li a {
+  font-size: 11px;
+  font-weight: 100px;
+  color: #fff;
+}
+
+.contactinfo ul li a:hover {
+	background:inherit;
+}
+
+.social-icons ul li a {
+  border: 0 none;
+  border-radius: 0;
+  color: #fff;
+  padding:0px;
+}
+
+.social-icons ul li {
+	display:inline-block;
+}
+
+.social-icons ul li a i {
+  padding: 11px 15px;
+   transition: all 0.9s ease 0s;
+  -moz-transition: all 0.9s ease 0s;
+  -webkit-transition: all 0.9s ease 0s;
+  -o-transition: all 0.9s ease 0s;
+}
+
+.social-icons ul li a i:hover {
+  color: #fff;
+   transition: all 0.9s ease 0s;
+  -moz-transition: all 0.9s ease 0s;
+  -webkit-transition: all 0.9s ease 0s;
+  -o-transition: all 0.9s ease 0s;
+}
+
+.fa-facebook:hover {
+  background: #0083C9;
+}
+
+.fa-twitter:hover {
+	background:#5BBCEC;
+}
+
+.fa-linkedin:hover {
+	background:#FF4518;
+}
+
+.fa-dribbble:hover {
+	background:#90C9DC;
+}
+
+.fa-google-plus:hover {
+	background:#CE3C2D;
+}
+
+/* HEADER */
+
+/* Navbar
+======================================================================= */
+
+.navbar {
+	/*min-height:zpx !important;*/
+	padding: 15px 0px;
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+
+.navbar > .container .navbar-brand {
+    margin-left: 5px;
+}
+
+.navbar-brand {
+    padding: 0px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+.navbar-brand img {
+	height: 100%;
+	width: auto;
+	vertical-align: middle;
+	max-width: 100%
+}
+
+a {
+    color: #000;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: #fb0;
+}
+
+.navbar-default .navbar-toggle:hover {
+	border-color: #fff;
+}
+
+.navbar-toggle {
+	background-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fb0;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #FFE082;
+    color: #000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: #ffe082;
+    color: #000;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #000;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #000;
+}
+
+.navbar-default .navbar-nav > .active > a {
+    background-color: transparent;
+    color: #000;
+}
+
+.navbar-default .navbar-nav > .active > a:hover {
+    color: #000;
+}
+
+ul.navbar-nav > li > a:hover {
+	background-color: #ffe082 !important;
+}
+
+.navbar-toggle {
+    background: #fff !important;
+}
+
+.navbar-brand span {
+    color:#000 !important;
+}
+
+/* SLIDER
+==================================================================*/
+
+#slider-container {
+	position: relative;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*#slider-container .container {
+    width: 880px;
+}*/
+
+.container .category-container {
+  background-color: #ffe082;
+}
+
+
+/* FOOTER
+==================================================================*/
+
+#footer {
+    clear: both;
+    padding: 20px 50px;
+    margin-top: 20px;
+    color: #BBB;
+    background: #222 none repeat scroll 0% 0%;
+    border-top: 1px solid #111;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset;
+}
+
+#footer #footer-logo {
+    color: #777;
+    overflow: hidden;
+    height: 50px;
+    line-height: 600px;
+    background: transparent url("../img/logo_inverse.png") no-repeat scroll 0px 0px;
+}
+
+#footer .social-icons-container a {
+  color: #777;
+}
+
+.social-icons-container {
+    padding: 0px;
+}
+
+.social-icons-container li {
+  display: inline-block;
+  margin: 2px;
+}
+
+
+#footer .social-icons-container .social-icon-facebook a:hover {
+  color: #3b5998;
+}
+
+#footer .social-icons-container .social-icon-twitter a:hover {
+  color: #5BBCEC;
+}
+
+#footer .social-icons-container .social-icon-google-plus a:hover {
+  color: #CE3C2D;
+}
+
+#copyright {
+    clear: both;
+    padding: 20px 50px 15px;
+    color: #777;
+    font-size: 11px;
+    text-transform: uppercase;
+    background: #000 none repeat scroll 0% 0%;
+    border-top: 1px solid #000;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15) inset;
+}
+
+#copyright a {
+    color: #777;
+}
