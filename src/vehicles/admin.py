@@ -2,10 +2,10 @@ from django.contrib import admin
 from vehicles.models import Category, Vehicle, VehicleMake, VehicleImage
 # Register your models here.
 
-# register the vehicle categories model
+
 class VehicleCategoryAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'category_display_order']
-    
+
     class Meta:
         model = Category
 
@@ -14,13 +14,14 @@ class VehicleCategoryAdmin(admin.ModelAdmin):
 class VehicleAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'category']
     list_filter = ('category', 'make', 'year')
-    prepopulated_fields = {'slug' : ('make', 'model', 'year',)}
-    
+    prepopulated_fields = {'slug': ('make', 'model', 'transmission', 'year')}
+
     class Meta:
         model = Vehicle
 
 
 class VehicleMakeAdmin(admin.ModelAdmin):
+
     class Meta:
         model = VehicleMake
 
@@ -28,6 +29,7 @@ class VehicleMakeAdmin(admin.ModelAdmin):
 class VehicleImageAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'image', 'main_image']
     list_filter = ['vehicle']
+
     class Meta:
         model = VehicleImage
 

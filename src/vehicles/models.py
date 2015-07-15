@@ -46,6 +46,21 @@ class Vehicle(models.Model):
     make = models.ForeignKey(VehicleMake)
     model = models.CharField('Model', max_length=100)
     year = models.IntegerField("Year (E.g. 1990)", blank=True, null=True)
+    FUEL_CHOICES = (
+        ('petrol', 'Petrol'),
+        ('diesel', 'Diesel')
+    )
+    fuel_type = models.CharField(
+        'Fuel Type', max_length=50, null=True, blank=True, choices=FUEL_CHOICES)
+    TRANSMISSION_CHOICES = (
+        ('automatic', 'Automatic'),
+        ('manual', 'Manual')
+    )
+    transmission = models.CharField(
+        'Transmission', max_length=50, null=True, blank=True, choices=TRANSMISSION_CHOICES)
+    colour = models.CharField('Colour', max_length=50, blank=True, null=True)
+    mileage = models.IntegerField(
+        'Mileage', null=True, blank=True)
     desc = RichTextField("Description")
     slug = models.SlugField()
 
