@@ -125,9 +125,11 @@ class CategoryDetailViewTest(TestCase):
             desc='Test Vehicle Three'
         )
 
+        self.makes_in_category = [self.test_make_one, self.test_make_two]
+
     def test_can_get_makes_in_category(self):
         actual_makes_in_category = get_makes_in_category(self.category)
-        expected_makes_in_category = sorted([self.test_make_one, self.test_make_two])
+        expected_makes_in_category = sorted(self.makes_in_category, key=lambda x:x.v_make)
         # verify both lists are equal
         self.assertEquals(
             expected_makes_in_category,
@@ -136,8 +138,9 @@ class CategoryDetailViewTest(TestCase):
 
     def test_makes_in_category_list_is_sorted(self):
         actual_makes_in_category = get_makes_in_category(self.category)
-        unordered_makes_in_category = [self.test_make_one, self.test_make_two]
+        expected_makes_in_category = sorted(self.makes_in_category, key=lambda x:x.v_make, reverse=True)
+        # verify both lists are not equal
         self.assertNotEquals(
-            unordered_makes_in_category,
+            expected_makes_in_category,
             actual_makes_in_category
         )

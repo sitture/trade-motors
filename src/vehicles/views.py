@@ -11,6 +11,8 @@ def home_page(request):
         						request, processors=[global_context_processor]))
 
 
+
+
 def get_makes_in_category(category):
 
     makes_in_category = []
@@ -21,5 +23,6 @@ def get_makes_in_category(category):
 
     # remove duplicate makes from the list
     makes_in_category = list(set(makes_in_category))
+    makes_in_category = sorted(makes_in_category, key=lambda x:x.v_make)
 
-    return sorted(makes_in_category)
+    return makes_in_category
