@@ -1,7 +1,8 @@
 from django.test import TestCase
 # import the models to test
-from vehicles.models import Category, VehicleMake
+from vehicles.models import Category, Vehicle, VehicleMake
 from vehicles import context_processor
+from vehicles.views import get_makes_in_category
 
 
 class CategoryModelTest(TestCase):
@@ -88,4 +89,55 @@ class ContextProcessorTest(TestCase):
 
         self.assertEquals(
             expected_result, actual_result
+        )
+
+class CategoryDetailViewTest(TestCase):
+
+    def setUp(self):
+        # add the test makes
+        self.test_make_one = VehicleMake.objects.create(
+            v_make = 'Toyota'
+        )
+        self.test_make_two = VehicleMake.objects.create(
+            v_make='Alfa Romeo'
+        )
+        # create a test category
+        self.category = Category.objects.create(
+            category_name='Main Category'
+        )
+        # add test vehicles
+        Vehicle.objects.create(
+            category=self.category,
+            make=self.test_make_one,
+            model='Test',
+            desc='Test Vehicle One'
+        )
+        Vehicle.objects.create(
+            category=self.category,
+            make=self.test_make_one,
+            model='Test',
+            desc='Test Vehicle Two'
+        )
+        Vehicle.objects.create(
+            category=self.category,
+            make=self.test_make_two,
+            model='Test',
+            desc='Test Vehicle Three'
+        )
+
+    def test_can_get_makes_in_category(self):
+        actual_makes_in_category = get_makes_in_category(self.category)
+        expected_makes_in_category = sorted([self.test_make_one, self.test_make_two])
+        # verify both lists are equal
+        self.assertEquals(
+            expected_makes_in_category,
+            actual_makes_in_category
+        )
+
+    def test_makes_in_category_list_is_sorted(self):
+        actual_makes_in_category = get_makes_in_category(self.category)
+        unordered_makes_in_category = [self.test_make_one, self.test_make_two]
+        self.assertNotEquals(
+            unordered_makes_in_category,
+            actual_makes_in_category
         )
