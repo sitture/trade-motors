@@ -73,15 +73,15 @@
                             {% for category in all_categories %}
 						    	{% if category.1|length > 0 %}
 					    			<li class="dropdown">
-		                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ category.0.category_name }} <i class="fa fa-chevron-circle-down"></i></a>
+		                                <a href="{% url 'category' category.0.slug %}" class="dropdown-toggle" data-toggle="dropdown">{{ category.0.category_name }} <i class="fa fa-chevron-circle-down"></i></a>
 		                                <ul class="dropdown-menu">
 		                                	{% for sub_category in category.1 %}
-		                                		<li><a href="#">{{ sub_category.category_name }}</a></li>
+		                                		<li><a href="{% url 'category' sub_category.slug %}">{{ sub_category.category_name }}</a></li>
 		                                	{% endfor %}
 							            </ul>
 		                            </li>
 		                        {% else %}
-		                        	<li><a href="#">{{ category.0.category_name }}</a></li>
+		                        	<li><a href="{% url 'category' category.0.slug %}">{{ category.0.category_name }}</a></li>
 						    	{% endif %}
 							{% endfor %}
 							<!--end Categories-->

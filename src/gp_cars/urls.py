@@ -17,12 +17,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-from vehicles.views import home_page
+from vehicles.views import home_page, category_page
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
-    url(r'^about-us$', home_page, name='about'),
-    url(r'^contact-us$', home_page, name='contact'),
+    url(r'^about-us/$', home_page, name='about'),
+    url(r'^contact-us/$', home_page, name='contact'),
+    url(r'^category/(?P<category_slug>[-a-zA-Z0-9]+)/?', category_page, name='category'),
     url(r'^admin/', include(admin.site.urls)),
     # ckEditor urls
     url(r'^ckeditor/', include('ckeditor.urls')),
