@@ -14,7 +14,7 @@ def home_page(request):
 def category_page(request, slug):
 	# get category by slug
 	category = Category.objects.filter(slug=slug)
-	# get all the vehicles by the category slug
+	# get all the vehicles by the category
 	vehicles_in_category = list(Vehicle.objects.filter(category=category))
 
 	return render_to_response("home_page.html", locals(),

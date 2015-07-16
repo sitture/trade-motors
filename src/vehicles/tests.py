@@ -91,12 +91,13 @@ class ContextProcessorTest(TestCase):
             expected_result, actual_result
         )
 
+
 class CategoryDetailViewTest(TestCase):
 
     def setUp(self):
         # add the test makes
         self.test_make_one = VehicleMake.objects.create(
-            v_make = 'Toyota'
+            v_make='Toyota'
         )
         self.test_make_two = VehicleMake.objects.create(
             v_make='Alfa Romeo'
@@ -129,7 +130,8 @@ class CategoryDetailViewTest(TestCase):
 
     def test_can_get_makes_in_category(self):
         actual_makes_in_category = get_makes_in_category(self.category)
-        expected_makes_in_category = sorted(self.makes_in_category, key=lambda x:x.v_make)
+        expected_makes_in_category = sorted(
+            self.makes_in_category, key=lambda x: x.v_make)
         # verify both lists are equal
         self.assertEquals(
             expected_makes_in_category,
@@ -138,7 +140,8 @@ class CategoryDetailViewTest(TestCase):
 
     def test_makes_in_category_list_is_sorted(self):
         actual_makes_in_category = get_makes_in_category(self.category)
-        expected_makes_in_category = sorted(self.makes_in_category, key=lambda x:x.v_make, reverse=True)
+        expected_makes_in_category = sorted(
+            self.makes_in_category, key=lambda x: x.v_make, reverse=True)
         # verify both lists are not equal
         self.assertNotEquals(
             expected_makes_in_category,
