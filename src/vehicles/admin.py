@@ -5,6 +5,7 @@ from vehicles.models import Category, Vehicle, VehicleMake, VehicleImage
 
 class VehicleCategoryAdmin(admin.ModelAdmin):
     list_display = ['__unicode__', 'category_display_order']
+    prepopulated_fields = {'slug': ('category_name',)}
 
     class Meta:
         model = Category
