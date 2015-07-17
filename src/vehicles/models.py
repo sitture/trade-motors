@@ -2,6 +2,29 @@ from django.db import models
 from ckeditor.fields import RichTextField
 
 
+class CategoryQuerySet(models.QuerySet):
+    
+    def main_categories(self):
+        return self.filter(category_parent=None)
+    
+    def sub_categories(self):
+        return self.exclude(category_parent=None)
+    
+    def sub_categories_by_category(self, category):
+        return self.filter(category_parent=category)
+    
+    def combined(self):
+        tree = []
+        for category in self.main_categories():
+            # get sub_categories
+            sub_categories = self.sub_categories_by_category(category)
+            # add category and sub_categories into a tmp list
+            tmp = [category, list(sub_categories)]
+            # add the tmp list to main categories tree list
+            tree.append(tmp)
+        return tree
+
+
 class Category(models.Model):
     category_parent = models.ForeignKey(
         'self', blank=True, null=True, related_name='category_children')
@@ -14,6 +37,8 @@ class Category(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    objects = CategoryQuerySet.as_manager()
 
     def __unicode__(self):
         display_text = str(self.category_name)

@@ -5,6 +5,55 @@ from vehicles import context_processor
 from vehicles.views import get_makes_in_category
 
 
+class CategoryQuerySetTest(TestCase):
+    
+    def setUp(self):
+        self.main_category = Category.objects.create(
+            category_name='Main Category',
+            slug='main'
+        )
+        self.sub_category = Category.objects.create(
+            category_parent=self.main_category,
+            category_name='Sub Category',
+            slug='sub'
+        )
+        
+        self.expected_main_categories = [self.main_category]
+        self.expected_sub_categories = [self.sub_category]
+        tmp = [self.main_category, self.expected_sub_categories]
+        self.expected_combined_categories = [tmp]
+    
+    def test_can_get_main_categories(self):
+        actual_main_categories = Category.objects.main_categories()
+        self.assertEquals(
+            self.expected_main_categories,
+            list(actual_main_categories)
+        )
+        
+    def test_can_get_sub_categories(self):
+        actual_sub_categories = Category.objects.sub_categories()
+        self.assertEquals(
+            self.expected_sub_categories,
+            list(actual_sub_categories)
+        )
+        
+    def test_can_get_sub_categories_by_category(self):
+        actual_sub_categories = Category.objects.sub_categories_by_category(self.main_category)
+        self.assertEquals(
+            self.expected_sub_categories,
+            list(actual_sub_categories)
+        )
+    
+    def test_can_get_combined_categories(self):
+        actual_combined_categories = Category.objects.combined()
+        print self.expected_combined_categories
+        print actual_combined_categories
+        self.assertEquals(
+            self.expected_combined_categories,
+            actual_combined_categories
+        )
+
+
 class CategoryModelTest(TestCase):
 
     def test_str_with_category_parent(self):
@@ -74,11 +123,13 @@ class ContextProcessorTest(TestCase):
     def test_get_all_categories_in_a_list(self):
         # setup data for test
         main_category = Category.objects.create(
-            category_name='Main Category'
+            category_name='Main Category',
+            slug='main-category'
         )
         sub_category = Category.objects.create(
             category_parent=main_category,
-            category_name='Sub Category'
+            category_name='Sub Category',
+            slug='sub-category'
         )
         expected_result = [[main_category, [sub_category]]]
         # get the actual data
