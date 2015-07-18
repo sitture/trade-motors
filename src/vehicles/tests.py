@@ -24,28 +24,28 @@ class CategoryQuerySetTest(TestCase):
         self.expected_combined_categories = [tmp]
     
     def test_can_get_main_categories(self):
-        actual_main_categories = Category.objects.main_categories()
+        actual_main_categories = Category.objects.get_main_categories()
         self.assertEquals(
             self.expected_main_categories,
             list(actual_main_categories)
         )
         
     def test_can_get_sub_categories(self):
-        actual_sub_categories = Category.objects.sub_categories()
+        actual_sub_categories = Category.objects.get_sub_categories()
         self.assertEquals(
             self.expected_sub_categories,
             list(actual_sub_categories)
         )
         
     def test_can_get_sub_categories_by_category(self):
-        actual_sub_categories = Category.objects.sub_categories_by_category(self.main_category)
+        actual_sub_categories = Category.objects.get_sub_categories_by_category(self.main_category)
         self.assertEquals(
             self.expected_sub_categories,
             list(actual_sub_categories)
         )
     
     def test_can_get_combined_categories(self):
-        actual_combined_categories = Category.objects.combined()
+        actual_combined_categories = Category.objects.get_categories_with_sub_categories()
         self.assertEquals(
             self.expected_combined_categories,
             actual_combined_categories

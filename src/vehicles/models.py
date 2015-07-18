@@ -4,20 +4,20 @@ from ckeditor.fields import RichTextField
 
 class CategoryQuerySet(models.QuerySet):
     
-    def main_categories(self):
+    def get_main_categories(self):
         return self.filter(category_parent=None)
     
-    def sub_categories(self):
+    def get_sub_categories(self):
         return self.exclude(category_parent=None)
     
-    def sub_categories_by_category(self, category):
+    def get_sub_categories_by_category(self, category):
         return self.filter(category_parent=category)
     
-    def combined(self):
+    def get_categories_with_sub_categories(self):
         tree = []
-        for category in self.main_categories():
+        for category in self.get_main_categories():
             # get sub_categories
-            sub_categories = self.sub_categories_by_category(category)
+            sub_categories = self.get_sub_categories_by_category(category)
             # add category and sub_categories into a tmp list
             tmp = [category, list(sub_categories)]
             # add the tmp list to main categories tree list
