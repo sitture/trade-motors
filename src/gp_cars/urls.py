@@ -21,8 +21,8 @@ from vehicles.views import home_page, category_page
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
-    url(r'^about-us/$', home_page, name='about'),
-    url(r'^contact-us/$', home_page, name='contact'),
+    url(r'^about-us$', home_page, name='about'),
+    url(r'^contact-us$', home_page, name='contact'),
     url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/?', category_page, name='category'),
     url(r'^admin/', include(admin.site.urls)),
     # ckEditor urls
