@@ -46,8 +46,6 @@ class CategoryQuerySetTest(TestCase):
     
     def test_can_get_combined_categories(self):
         actual_combined_categories = Category.objects.combined()
-        print self.expected_combined_categories
-        print actual_combined_categories
         self.assertEquals(
             self.expected_combined_categories,
             actual_combined_categories
