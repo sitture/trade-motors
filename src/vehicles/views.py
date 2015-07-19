@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, RequestContext
 # import the custom context processor
 from vehicles.context_processor import global_context_processor
 
-from vehicles.models import Vehicle, Category
+from vehicles.models import Vehicle, VehicleMake, Category
 
 
 def home_page(request):
@@ -12,18 +12,20 @@ def home_page(request):
 
 def category_page(request, slug):
     
-    # check if make parameter is passed into the url
-    vehicle_make = request.GET.get('make', None)
+    # check if make slug parameter is passed into the url
+    vehicle_make_slug = request.GET.get('make', None)
     # get category by slug
     category = Category.objects.get_category_by_slug(slug)
     # get all the vehicles by the category and make (if provided)
     vehicles_list = None
-    if vehicle_make is not None:
+    if vehicle_make_slug is not None:
+        # get make by slug
+        make = VehicleMake.objects.get_make_by_slug(vehicle_make_slug)
         vehicles_list = Vehicle.objects.get_vehicles_by_category_and_make(
-            category, vehicle_make)
+            category, make)
     else:
         vehicles_list = Vehicle.objects.get_vehicles_by_category(category)
-    
+        
     return render_to_response("home_page.html", locals(),
         context_instance=RequestContext(request, processors=[global_context_processor]))
 
