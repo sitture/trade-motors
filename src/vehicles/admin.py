@@ -22,6 +22,7 @@ class VehicleAdmin(admin.ModelAdmin):
 
 
 class VehicleMakeAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('v_make',)}
 
     class Meta:
         model = VehicleMake

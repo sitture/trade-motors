@@ -57,6 +57,13 @@ class CategoryQuerySetTest(TestCase):
             self.main_category,
             actual_category
         )
+    
+    def test_can_not_get_category_by_slug(self):
+        actual_category = Category.objects.get_category_by_slug('test')
+        self.assertEquals(
+            None,
+            actual_category
+        )
 
 
 class CategoryModelTest(TestCase):
@@ -100,11 +107,35 @@ class CategoryModelTest(TestCase):
         )
 
 
+class VehicleMakeQuerySetTest(TestCase):
+    
+    def setUp(self):
+        self.slug='toyota'
+        self.make = VehicleMake.objects.create(
+            v_make='Toyota',
+            slug=self.slug
+        )
+    
+    def test_can_get_make_by_slug(self):
+        actual_make = VehicleMake.objects.get_make_by_slug(self.slug)
+        self.assertEquals(
+            self.make,
+            actual_make
+        )
+    
+    def test_can_not_get_make_by_slug(self):
+        actual_make = VehicleMake.objects.get_make_by_slug('test')
+        self.assertEquals(
+            None,
+            actual_make
+        )
+
+
 class VehicleMakeModelTest(TestCase):
 
     def test_str_representation(self):
         make_name = 'Toyota'
-        vehicle_make = VehicleMake(v_make=make_name)
+        vehicle_make = VehicleMake(v_make=make_name, slug=make_name.lower())
         self.assertEquals(
             str(vehicle_make),
             make_name
@@ -128,10 +159,12 @@ class VehicleQuerySetTest(TestCase):
     def setUp(self):
         # add the test makes
         self.test_make_one = VehicleMake.objects.create(
-            v_make='Toyota'
+            v_make='Toyota',
+            slug='toyota-test'
         )
         self.test_make_two = VehicleMake.objects.create(
-            v_make='Alfa Romeo'
+            v_make='Alfa Romeo',
+            slug='alfa-test'
         )
         # create a test category
         self.category = Category.objects.create(
@@ -199,14 +232,17 @@ class CategoryDetailViewTest(TestCase):
     def setUp(self):
         # add the test makes
         self.test_make_one = VehicleMake.objects.create(
-            v_make='Toyota'
+            v_make='Toyota',
+            slug='toyota-test'
         )
         self.test_make_two = VehicleMake.objects.create(
-            v_make='Alfa Romeo'
+            v_make='Alfa Romeo',
+            slug='alfa-test'
         )
         # create a test category
         self.category = Category.objects.create(
-            category_name='Main Category'
+            category_name='Main Category',
+            slug='test-main-category'
         )
         # add test vehicles
         Vehicle.objects.create(

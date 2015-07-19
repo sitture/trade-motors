@@ -25,7 +25,13 @@ class CategoryQuerySet(models.QuerySet):
         return tree
     
     def get_category_by_slug(self, slug):
-        return self.get(slug=slug)
+        category = None
+        try:
+            category = self.get(slug=slug)
+        except Category.DoesNotExist:
+            return category
+        
+        return category
 
 
 class Category(models.Model):
@@ -56,11 +62,26 @@ class Category(models.Model):
         ordering = ['category_display_order', 'category_name']
 
 
+class VehicleMakeQuerySet(models.QuerySet):
+    
+    def get_make_by_slug(self, slug):
+        make = None
+        try:
+            make = self.get(slug=slug)
+        except VehicleMake.DoesNotExist:
+            return make
+        
+        return make
+
+
 class VehicleMake(models.Model):
     v_make = models.CharField('Make', max_length=50, blank=False, null=False)
-
+    slug = models.SlugField(unique=True)
+    
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    objects = VehicleMakeQuerySet.as_manager()
 
     def __unicode__(self):
         return str(self.v_make)
