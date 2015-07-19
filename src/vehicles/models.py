@@ -23,6 +23,9 @@ class CategoryQuerySet(models.QuerySet):
             # add the tmp list to main categories tree list
             tree.append(tmp)
         return tree
+    
+    def get_category_by_slug(self, slug):
+        return self.get(slug=slug)
 
 
 class Category(models.Model):
@@ -67,6 +70,15 @@ class VehicleMake(models.Model):
         verbose_name = 'Make'
 
 
+class VehicleQuerySet(models.QuerySet):
+    
+    def get_vehicles_by_category(self, category):
+        return self.filter(category=category)
+    
+    def get_vehicles_by_category_and_make(self, category, make):
+        return self.filter(category=category, make=make)
+
+
 class Vehicle(models.Model):
     category = models.ForeignKey(Category)
     make = models.ForeignKey(VehicleMake)
@@ -92,6 +104,8 @@ class Vehicle(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    objects = VehicleQuerySet.as_manager()
 
     def __unicode__(self):
         display_text = '{0} {1} {2}'.format(self.make, self.model, self.year)

@@ -50,6 +50,13 @@ class CategoryQuerySetTest(TestCase):
             self.expected_combined_categories,
             actual_combined_categories
         )
+    
+    def test_can_get_category_by_slug(self):
+        actual_category = Category.objects.get_category_by_slug('main')
+        self.assertEquals(
+            self.main_category,
+            actual_category
+        )
 
 
 class CategoryModelTest(TestCase):
@@ -113,6 +120,52 @@ class VehicleMakeModelTest(TestCase):
         self.assertEquals(
             str(VehicleMake._meta.verbose_name_plural),
             'Makes'
+        )
+
+
+class VehicleQuerySetTest(TestCase):
+    
+    def setUp(self):
+        # add the test makes
+        self.test_make_one = VehicleMake.objects.create(
+            v_make='Toyota'
+        )
+        self.test_make_two = VehicleMake.objects.create(
+            v_make='Alfa Romeo'
+        )
+        # create a test category
+        self.category = Category.objects.create(
+            category_name='Main Category'
+        )
+        # add test vehicles
+        self.vehicle = Vehicle.objects.create(
+            category=self.category,
+            make=self.test_make_one,
+            model='Test',
+            desc='Test Vehicle One'
+        )
+    
+    def test_can_get_vehicles_by_category(self):
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category(self.category)
+        self.assertEquals(
+            [self.vehicle],
+            list(actual_vehicles)
+        )
+    
+    def test_can_get_vehicles_by_category_and_make(self):
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
+            self.category, self.test_make_one)
+        self.assertEquals(
+            [self.vehicle],
+            list(actual_vehicles)
+        )
+    
+    def test_can_not_get_vehicles_by_category_and_make(self):
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
+            self.category, self.test_make_two)
+        self.assertEquals(
+            None,
+            None
         )
 
 

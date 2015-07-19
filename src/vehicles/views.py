@@ -7,25 +7,32 @@ from vehicles.models import Vehicle, Category
 
 def home_page(request):
     return render_to_response("home_page.html", locals(),
-                              context_instance=RequestContext(
-        						request, processors=[global_context_processor]))
+        context_instance=RequestContext(request, processors=[global_context_processor]))
 
 
 def category_page(request, slug):
-	# get category by slug
-	category = Category.objects.filter(slug=slug)
-	# get all the vehicles by the category
-	vehicles_in_category = list(Vehicle.objects.filter(category=category))
+    
+    # check if make parameter is passed into the url
+    vehicle_make = request.GET.get('make', None)
+    # get category by slug
+    category = Category.objects.get_category_by_slug(slug)
+    # get all the vehicles by the category and make (if provided)
+    vehicles_list = None
+    if vehicle_make is not None:
+        vehicles_list = Vehicle.objects.get_vehicles_by_category_and_make(
+            category, vehicle_make)
+    else:
+        vehicles_list = Vehicle.objects.get_vehicles_by_category(category)
+    
+    return render_to_response("home_page.html", locals(),
+        context_instance=RequestContext(request, processors=[global_context_processor]))
 
-	return render_to_response("home_page.html", locals(),
-                              context_instance=RequestContext(
-        						request, processors=[global_context_processor]))
 
 def get_makes_in_category(category):
 
     makes_in_category = []
     # get all the vehicle objects by category
-    vehicles_in_category = Vehicle.objects.filter(category=category)
+    vehicles_in_category = Vehicle.objects.get_vehicles_by_category(category=category)
     for vehicle in vehicles_in_category:
         makes_in_category.append(vehicle.make)
 
