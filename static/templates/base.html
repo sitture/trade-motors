@@ -104,11 +104,11 @@
             <h1 id="footer-logo">
               Global Trade Motors
             </h1>
+			{% if social_providers %}
             <h3>
                 <span class="slash">// </span>
                  find us on
             </h3>
-            {% if social_providers %}
 	            <ul class="social-icons-container" target="_blank">
 	            	{% for provider in social_providers %}           
 	            		<li class="social-icon-{{ provider.service }}">
