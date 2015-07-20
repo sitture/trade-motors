@@ -1,5 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill, SmartResize
 
 
 class CategoryQuerySet(models.QuerySet):
@@ -140,6 +142,13 @@ class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
     image = models.ImageField('Image', upload_to='vehicles')
     main_image = models.BooleanField('Main Image?', default=False)
+    
+    thumbnail = ImageSpecField(
+        source='image',
+        processors=[SmartResize(270, 140)],
+        format='JPEG',
+        options={'quality': 70}
+    )
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
