@@ -146,6 +146,9 @@ class VehicleImageQuerySet(models.QuerySet):
         main_image_list = self.filter(main_image=True).order_by('-timestamp')
         return main_image_list[0] if main_image_list else None
 
+    def get_images_by_vehicle(self, vehicle):
+        return self.exclude(main_image=True).order_by('-timestamp')
+
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
