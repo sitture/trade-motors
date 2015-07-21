@@ -138,6 +138,15 @@ class Vehicle(models.Model):
         ordering = ['-timestamp']
 
 
+class VehicleImageQuerySet(models.QuerySet):
+    
+    def get_main_image_by_vehicle(self, vehicle):
+        # get all the images with flag main_image
+        # return the latest main_image
+        main_image_list = self.filter(main_image=True).order_by('-timestamp')
+        return main_image_list[0] if main_image_list else None
+
+
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
     image = models.ImageField('Image', upload_to='vehicles')
@@ -152,6 +161,8 @@ class VehicleImage(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    objects = VehicleImageQuerySet.as_manager()
 
     def __unicode__(self):
         return "{0}'s Image".format(self.vehicle)

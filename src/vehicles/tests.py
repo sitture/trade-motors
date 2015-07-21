@@ -1,6 +1,6 @@
 from django.test import TestCase
 # import the models to test
-from vehicles.models import Category, Vehicle, VehicleMake
+from vehicles.models import Category, Vehicle, VehicleMake, VehicleImage
 from vehicles import context_processor
 from vehicles.views import get_makes_in_category
 
@@ -290,4 +290,33 @@ class CategoryDetailViewTest(TestCase):
         self.assertNotEquals(
             expected_makes_in_category,
             actual_makes_in_category
+        )
+
+
+class VehicleImageQuerySetTest(TestCase):
+    
+    def setUp(self):
+        # add the test makes
+        self.test_make_one = VehicleMake.objects.create(
+            v_make='Toyota',
+            slug='toyota-test'
+        )
+        # create a test category
+        self.category = Category.objects.create(
+            category_name='Main Category',
+            slug='test-main-category'
+        )
+        # add test vehicles
+        self.vehicle = Vehicle.objects.create(
+            category=self.category,
+            make=self.test_make_one,
+            model='Test',
+            desc='Test Vehicle One'
+        )
+    
+    def test_can_not_get_main_image_by_vehicle(self):
+        actual_image = VehicleImage.objects.get_main_image_by_vehicle(self.vehicle)
+        self.assertEquals(
+            None,
+            actual_image
         )
