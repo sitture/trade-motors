@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import imagekit.models.fields
+import ckeditor.fields
 
 
 class Migration(migrations.Migration):
@@ -27,6 +29,8 @@ class Migration(migrations.Migration):
             name='SliderImage',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('banner', imagekit.models.fields.ProcessedImageField(upload_to=b'slider')),
+                ('caption', ckeditor.fields.RichTextField(null=True, verbose_name=b'Caption (Optional)', blank=True)),
             ],
         ),
         migrations.CreateModel(

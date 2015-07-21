@@ -1,10 +1,21 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
-# Create your models here.
+
 class SliderImage(models.Model):
-    pass
-    # banner = models.ImageField(blank=False, null=False, upload_to='slider') # cannot be null
-    #caption = models.TextField('Caption (Optional)', blank=True, null=True)
+    banner = ProcessedImageField(
+        blank=False, null=False,
+        upload_to='slider',
+        processors=[ResizeToFill(1170, 375)],
+        format='JPEG',
+        options={'quality': 100}
+    )  # cannot be null
+    caption = RichTextField('Caption (Optional)', blank=True, null=True)
+
+    def __str__(self):
+        return str(self.banner)
 
 
 class Social(models.Model):
@@ -26,7 +37,6 @@ class Social(models.Model):
 
 
 class ContactDetail(models.Model):
-
     full_name = models.CharField(
         'FullName (Optional)', max_length=150, blank=True, null=True)
     address = models.CharField('Address', blank=True, max_length=500)

@@ -70,6 +70,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('v_make', models.CharField(max_length=50, verbose_name=b'Make')),
+                ('slug', models.SlugField(unique=True)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
             ],
