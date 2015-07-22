@@ -142,8 +142,8 @@ class VehicleImageQuerySet(models.QuerySet):
     
     def get_main_image_by_vehicle(self, vehicle):
         # get all the images with flag main_image
-        # return the latest main_image
         main_image_list = self.filter(main_image=True).order_by('-timestamp')
+        # return only the latest main_image
         return main_image_list[0] if main_image_list else None
 
     def get_images_by_vehicle(self, vehicle):
