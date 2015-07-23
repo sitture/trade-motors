@@ -5,16 +5,16 @@ from imagekit.processors import ResizeToFill, SmartResize
 
 
 class CategoryQuerySet(models.QuerySet):
-    
+
     def get_main_categories(self):
         return self.filter(category_parent=None)
-    
+
     def get_sub_categories(self):
         return self.exclude(category_parent=None)
-    
+
     def get_sub_categories_by_category(self, category):
         return self.filter(category_parent=category)
-    
+
     def get_categories_with_sub_categories(self):
         tree = []
         for category in self.get_main_categories():
@@ -25,14 +25,14 @@ class CategoryQuerySet(models.QuerySet):
             # add the tmp list to main categories tree list
             tree.append(tmp)
         return tree
-    
+
     def get_category_by_slug(self, slug):
         category = None
         try:
             category = self.get(slug=slug)
         except Category.DoesNotExist:
             return category
-        
+
         return category
 
 
@@ -48,7 +48,7 @@ class Category(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
+
     objects = CategoryQuerySet.as_manager()
 
     def __unicode__(self):
@@ -65,24 +65,24 @@ class Category(models.Model):
 
 
 class VehicleMakeQuerySet(models.QuerySet):
-    
+
     def get_make_by_slug(self, slug):
         make = None
         try:
             make = self.get(slug=slug)
         except VehicleMake.DoesNotExist:
             return make
-        
+
         return make
 
 
 class VehicleMake(models.Model):
     v_make = models.CharField('Make', max_length=50, blank=False, null=False)
     slug = models.SlugField(unique=True)
-    
+
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
+
     objects = VehicleMakeQuerySet.as_manager()
 
     def __unicode__(self):
@@ -94,10 +94,10 @@ class VehicleMake(models.Model):
 
 
 class VehicleQuerySet(models.QuerySet):
-    
+
     def get_vehicles_by_category(self, category):
         return self.filter(category=category)
-    
+
     def get_vehicles_by_category_and_make(self, category, make):
         return self.filter(category=category, make=make)
 
@@ -112,13 +112,15 @@ class Vehicle(models.Model):
         ('diesel', 'Diesel')
     )
     fuel_type = models.CharField(
-        'Fuel Type', max_length=50, null=True, blank=True, choices=FUEL_CHOICES)
+        'Fuel Type', max_length=50, null=True, blank=True,
+        choices=FUEL_CHOICES)
     TRANSMISSION_CHOICES = (
         ('automatic', 'Automatic'),
         ('manual', 'Manual')
     )
     transmission = models.CharField(
-        'Transmission', max_length=50, null=True, blank=True, choices=TRANSMISSION_CHOICES)
+        'Transmission', max_length=50, null=True, blank=True,
+        choices=TRANSMISSION_CHOICES)
     colour = models.CharField('Colour', max_length=50, blank=True, null=True)
     mileage = models.IntegerField(
         'Mileage', null=True, blank=True)
@@ -127,7 +129,7 @@ class Vehicle(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
+
     objects = VehicleQuerySet.as_manager()
 
     def __unicode__(self):
@@ -139,7 +141,7 @@ class Vehicle(models.Model):
 
 
 class VehicleImageQuerySet(models.QuerySet):
-    
+
     def get_main_image_by_vehicle(self, vehicle):
         # get all the images with flag main_image
         main_image_list = self.filter(main_image=True).order_by('-timestamp')
@@ -154,7 +156,7 @@ class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle)
     image = models.ImageField('Image', upload_to='vehicles')
     main_image = models.BooleanField('Main Image?', default=False)
-    
+
     thumbnail = ImageSpecField(
         source='image',
         processors=[SmartResize(270, 140)],
@@ -164,7 +166,7 @@ class VehicleImage(models.Model):
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
+
     objects = VehicleImageQuerySet.as_manager()
 
     def __unicode__(self):
