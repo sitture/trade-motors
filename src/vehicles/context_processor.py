@@ -8,14 +8,8 @@ from vehicles.models import Category
 def global_context_processor(request):
     # get all the social service providers
     social_providers = list(Social.objects.all())
-    # get all of the categories
-    category_objects = Category.objects
-    # filter categories without parents
-    categories = list(category_objects.filter(category_parent=None))
-    # categories with parent categories
-    sub_categories = list(category_objects.exclude(category_parent=None))
-
-    all_categories = get_all_categories(categories, sub_categories)
+    # get all parent categories with sub categories
+    all_categories = Category.objects.get_categories_with_sub_categories()
 
     return locals()
 
