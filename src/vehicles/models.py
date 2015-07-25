@@ -94,15 +94,27 @@ class VehicleMake(models.Model):
 
 
 class VehicleQuerySet(models.QuerySet):
-
+    
+    @classmethod
+    def process_category(self, category):
+        categories = []
+        # check if a given category is a parent category
+        if category and category.category_parent is None:
+            # get sub_categories
+            categories = list(Category.objects.get_sub_categories_by_category(category))
+        categories.append(category)
+        return categories    
+    
     def get_vehicles_by_category(self, category):
-        return self.filter(category=category)
+        # process category into a list
+        categories = self.process_category(category)
+        return self.filter(category__in=categories).order_by('-timestamp')
     
     def get_vehicles_by_make(self, make):
-        return self.filter(make=make)
+        return self.filter(make=make).order_by('-timestamp')
 
     def get_vehicles_by_category_and_make(self, category, make):
-        return self.filter(category=category, make=make)
+        return self.filter(category=category, make=make).order_by('-timestamp')
 
 
 class Vehicle(models.Model):

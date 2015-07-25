@@ -166,59 +166,95 @@ class VehicleQuerySetTest(TestCase):
             v_make='Alfa Romeo',
             slug='alfa-test'
         )
+        self.test_make_three = VehicleMake.objects.create(
+            v_make='Test Make',
+            slug='vaux'
+        )
         # create a test category
-        self.category = Category.objects.create(
-            category_name='Main Category'
+        self.main_category = Category.objects.create(
+            category_name='Main Category',
+            slug='main'
+        )
+        
+        self.sub_category = Category.objects.create(
+            category_parent=self.main_category,
+            category_name='Sub Category',
+            slug='sub'
         )
         # add test vehicles
-        self.vehicle = Vehicle.objects.create(
-            category=self.category,
+        self.vehicle_main_category = Vehicle.objects.create(
+            category=self.main_category,
             make=self.test_make_one,
             model='Test',
             desc='Test Vehicle One'
         )
+        self.vehicle_sub_category = Vehicle.objects.create(
+            category=self.sub_category,
+            make=self.test_make_two,
+            model='Test',
+            desc='Test Vehicle Two'
+        )
     
-    def test_can_get_vehicles_by_category(self):
-        actual_vehicles = Vehicle.objects.get_vehicles_by_category(self.category)
+    def test_can_get_vehicles_by_sub_category(self):
+        # test can get vehicle by vehicle's category
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category(self.sub_category)
         self.assertEquals(
-            [self.vehicle],
+            [self.vehicle_sub_category],
             list(actual_vehicles)
         )
     
-    def test_can_not_get_vehicles_by_category(self):
+    def test_can_not_get_vehicles_by_sub_category(self):
+        # test can not get vehicle when category is null
         actual_vehicles = Vehicle.objects.get_vehicles_by_category(None)
         self.assertEquals(
             [], list(actual_vehicles)
         )
     
-    def test_can_get_vehicles_by_category_and_make(self):
-        actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
-            self.category, self.test_make_one)
+    def test_can_get_vehicles_by_main_category(self):
+        # vehicle list should include from main and sub categories
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category(
+            self.main_category
+        )
+        
+        for a in list(actual_vehicles):
+            print a.timestamp
         self.assertEquals(
-            [self.vehicle],
+            [self.vehicle_sub_category, self.vehicle_main_category],
             list(actual_vehicles)
         )
     
-    def test_can_not_get_vehicles_by_category_and_make(self):
+    def test_can_get_vehicles_by_sub_category_and_make(self):
+        # test can get vehicle by correct category and make
         actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
-            self.category, self.test_make_two)
+            self.sub_category, self.test_make_two)
+        self.assertEquals(
+            [self.vehicle_sub_category],
+            list(actual_vehicles)
+        )
+    
+    def test_can_not_get_vehicles_by_sub_category_and_make(self):
+        # test can get vehicle by correct category but incorrect make
+        actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
+            self.sub_category, self.test_make_one)
         self.assertEquals(
             None,
             None
         )
     
     def test_can_get_vehicles_by_make(self):
+        # can get vehicle by correct make
         actual_vehicles = Vehicle.objects.get_vehicles_by_make(
-            self.test_make_one
+            self.test_make_two
         )
         self.assertEquals(
-            [self.vehicle],
+            [self.vehicle_sub_category],
             list(actual_vehicles)
         )
     
     def test_can_not_get_vehicles_by_make(self):
+        # can not get vehicle by incorrect make
         actual_vehicles = Vehicle.objects.get_vehicles_by_make(
-            self.test_make_two
+            self.test_make_three
         )
         self.assertEquals(
             None,
