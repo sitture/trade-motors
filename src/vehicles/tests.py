@@ -206,6 +206,24 @@ class VehicleQuerySetTest(TestCase):
             None,
             None
         )
+    
+    def test_can_get_vehicles_by_make(self):
+        actual_vehicles = Vehicle.objects.get_vehicles_by_make(
+            self.test_make_one
+        )
+        self.assertEquals(
+            [self.vehicle],
+            list(actual_vehicles)
+        )
+    
+    def test_can_not_get_vehicles_by_make(self):
+        actual_vehicles = Vehicle.objects.get_vehicles_by_make(
+            self.test_make_two
+        )
+        self.assertEquals(
+            None,
+            None
+        )
 
 
 class ContextProcessorTest(TestCase):

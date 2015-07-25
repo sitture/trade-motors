@@ -97,6 +97,9 @@ class VehicleQuerySet(models.QuerySet):
 
     def get_vehicles_by_category(self, category):
         return self.filter(category=category)
+    
+    def get_vehicles_by_make(self, make):
+        return self.filter(make=make)
 
     def get_vehicles_by_category_and_make(self, category, make):
         return self.filter(category=category, make=make)
