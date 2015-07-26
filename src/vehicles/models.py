@@ -175,7 +175,7 @@ class VehicleImage(models.Model):
 
     thumbnail = ImageSpecField(
         source='image',
-        processors=[SmartResize(270, 140)],
+        processors=[SmartResize(270, 160)],
         format='JPEG',
         options={'quality': 70}
     )
