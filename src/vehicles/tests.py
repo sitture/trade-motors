@@ -10,12 +10,14 @@ class CategoryQuerySetTest(TestCase):
     def setUp(self):
         self.main_category = Category.objects.create(
             category_name='Main Category',
-            slug='main'
+            slug='main',
+            show_on_home_page=False
         )
         self.sub_category = Category.objects.create(
             category_parent=self.main_category,
             category_name='Sub Category',
-            slug='sub'
+            slug='sub',
+            show_on_home_page=True
         )
         
         self.expected_main_categories = [self.main_category]
@@ -63,6 +65,13 @@ class CategoryQuerySetTest(TestCase):
         self.assertEquals(
             None,
             actual_category
+        )
+    
+    def test_can_get_home_page_categories(self):
+        actual_categories = Category.objects.get_home_page_categories()
+        self.assertEquals(
+            [self.sub_category],
+            list(actual_categories)
         )
 
 

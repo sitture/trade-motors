@@ -34,6 +34,9 @@ class CategoryQuerySet(models.QuerySet):
             return category
 
         return category
+    
+    def get_home_page_categories(self):
+        return self.filter(show_on_home_page=True)
 
 
 class Category(models.Model):
