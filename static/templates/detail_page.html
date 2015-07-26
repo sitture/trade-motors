@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load url_tags %}
+
+{% block pagetitle %}
+	{{ vehicle }}
+{% endblock %}
+
+{% block content %}
+{% with vehicle.images.get_main_image.image as image %}
+{% with vehicle.images.get_additional_images as images %}
+    <div id="content">
+		<div class="page-title">
+			<div class="container">
+                <h3>{{ vehicle }}</h3>
+                <ul class="breadcrumb">
+                    <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                    {% if vehicle.category.category_parent %}
+                        <li>
+                            <a href="{% url 'category' vehicle.category.category_parent.slug %}">
+                                {{ vehicle.category.category_parent.category_name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                    	<a href="{% url 'category' vehicle.category.slug %}">
+                    		{{ vehicle.category.category_name }}
+                    	</a>
+                    </li>
+                    <li class="active">{{ vehicle }}</li>
+                </ul><!--end breadcrumb -->
+            </div>
+		</div><!--end page-title -->
+<!-- start main container -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div id="carousel-vehicle-images" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-vehicle-images" data-slide-to="0" class="active"></li>
+                            {% for image in images %}
+                            <li data-target="#carousel-vehicle-images" data-slide-to="{{ forloop.counter }}"></li>
+                            {% endfor %}
+                        </ol>
+			            <div class="carousel-inner" role="listbox">
+			                <div class="item active">
+			                	<div style="background:url({{ image.url }}) center center; 
+          							background-size:cover;" class="slider-size"></div>
+			                </div>
+		                	{% for image in images %}
+		                	<div class="item">
+		                		<div style="background:url({{ image.image.url }}) center center; 
+          							background-size:cover;" class="slider-size"></div>
+			                </div>
+			                {% endfor %}
+						</div>
+						<!-- Controls -->
+						<a class="left carousel-control" href="#carousel-vehicle-images" role="button" data-slide="prev">
+						  	<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						  	<span class="sr-only">Previous</span>
+						</a>
+						<a class="right carousel-control" href="#carousel-vehicle-images" role="button" data-slide="next">
+						  	<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						  	<span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-6">
+					
+				</div>
+			</div>
+		</div>
+	</div><!--end content -->
+{% endwith %}
+{% endwith %}
+{% endblock %}
