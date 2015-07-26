@@ -44,6 +44,7 @@ class Category(models.Model):
     category_image = models.ImageField(
         'Image', upload_to='categories', blank=True)
     category_display_order = models.IntegerField('Display Order', default=999)
+    show_on_home_page = models.BooleanField('Show on Homepage?', default=False)
     slug = models.SlugField(unique=True)
 
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
