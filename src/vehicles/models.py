@@ -114,7 +114,8 @@ class VehicleQuerySet(models.QuerySet):
         return self.filter(make=make).order_by('-timestamp')
 
     def get_vehicles_by_category_and_make(self, category, make):
-        return self.filter(category=category, make=make).order_by('-timestamp')
+        categories = self.process_category(category)
+        return self.filter(category__in=categories, make=make).order_by('-timestamp')
 
 
 class Vehicle(models.Model):
@@ -163,7 +164,7 @@ class VehicleImageQuerySet(models.QuerySet):
         # return only the latest main_image
         return main_image_list[0] if main_image_list else None
 
-    def get_additional_images(self, vehicle):
+    def get_additional_images(self):
         return self.exclude(main_image=True).order_by('-timestamp')
 
 
