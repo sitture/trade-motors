@@ -17,16 +17,19 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
-from vehicles.views import home_page, category_page
+from django.views.generic import TemplateView
+from vehicles.views import home_page, category_page, vehicle_detail_page
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
     url(r'^contact-us$', home_page, name='contact'),
-    url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/?', category_page, name='category'),
+    url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/$', category_page, name='category'),
+    url(r'^category/(?P<category_slug>[-a-zA-Z0-9]+)/detail/(?P<vehicle_id>\d+)/(?P<vehicle_slug>[-a-zA-Z0-9]+)$', vehicle_detail_page, name='vehicle'),
     url(r'^admin/', include(admin.site.urls)),
     # ckEditor urls
     url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
 ]
 
 if settings.DEBUG:

@@ -4,13 +4,24 @@ from vehicles.context_processor import global_context_processor
 
 from vehicles.models import Vehicle, VehicleMake, Category
 from settings.models import SliderImage
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 
 def home_page(request):
     
     # get list of slider objects
     sliders = SliderImage.objects.all()
+    
+    # get top 4 categories to show on homepage
+    top_4_categories = Category.objects.get_home_page_categories()
+    if top_4_categories:
+        top_4_categories = top_4_categories[:4]
+    
+    # get 4 recently added vehicles
+    top_4_vehicles = Vehicle.objects.all().order_by(
+        '-timestamp').prefetch_related('images')
+    if top_4_vehicles:
+        top_4_vehicles = top_4_vehicles[:4]
     
     return render_to_response("home_page.html", locals(),
         context_instance=RequestContext(request, processors=[global_context_processor]))
@@ -23,14 +34,25 @@ def category_page(request, slug):
     # get category by slug
     category = Category.objects.get_category_by_slug(slug)
     # get all the vehicles by the category and make (if provided)
-    vehicles_list = None
-    if vehicle_make_slug is not None:
+    if vehicle_make_slug:
         # get make by slug
         make = VehicleMake.objects.get_make_by_slug(vehicle_make_slug)
-        vehicles_list = Vehicle.objects.get_vehicles_by_category_and_make(
-            category, make)
+        if category:
+            vehicles_list = Vehicle.objects.get_vehicles_by_category_and_make(
+                category, make
+            ).prefetch_related('images')
+        else:
+            vehicles_list = Vehicle.objects.get_vehicles_by_make(
+                make
+            ).prefetch_related('images')
     else:
-        vehicles_list = Vehicle.objects.get_vehicles_by_category(category)
+        # if category is not found then get all of the vehicles
+        if category:
+            vehicles_list = Vehicle.objects.get_vehicles_by_category(
+                category
+            ).prefetch_related('images')
+        else:
+            vehicles_list = Vehicle.objects.all().prefetch_related('images')
     
     # paginate vehicle list for 10 items per page
     paginator = Paginator(vehicles_list, 10)
@@ -42,8 +64,21 @@ def category_page(request, slug):
         vehicles = paginator.page(page)
     except (InvalidPage, EmptyPage):
         vehicles = paginator.page(paginator.num_pages)
-        
-    return render_to_response("home_page.html", locals(),
+    
+    makes = get_makes_in_category(category)
+    
+    return render_to_response("categories_page.html", locals(),
+        context_instance=RequestContext(request, processors=[global_context_processor]))
+
+
+def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
+    
+    # get vehicle details by vehicle_id
+    vehicle = Vehicle.objects.get(id=vehicle_id)
+    
+    related_vehicles = Vehicle.objects.get_vehicles_by_category(vehicle.category)
+    
+    return render_to_response("detail_page.html", locals(),
         context_instance=RequestContext(request, processors=[global_context_processor]))
 
 
