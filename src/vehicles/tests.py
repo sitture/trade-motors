@@ -215,9 +215,6 @@ class VehicleQuerySetTest(TestCase):
         actual_vehicles = Vehicle.objects.get_vehicles_by_category(
             self.main_category
         )
-        
-        for a in list(actual_vehicles):
-            print a.timestamp
         self.assertEquals(
             [self.vehicle_sub_category, self.vehicle_main_category],
             list(actual_vehicles)
@@ -344,47 +341,4 @@ class CategoryDetailViewTest(TestCase):
         self.assertNotEquals(
             expected_makes_in_category,
             actual_makes_in_category
-        )
-
-
-class VehicleImageQuerySetTest(TestCase):
-    
-    def setUp(self):
-        # add the test makes
-        self.test_make_one = VehicleMake.objects.create(
-            v_make='Toyota',
-            slug='toyota-test'
-        )
-        # create a test category
-        self.category = Category.objects.create(
-            category_name='Main Category',
-            slug='test-main-category'
-        )
-        # add test vehicles
-        self.vehicle_with_no_images = Vehicle.objects.create(
-            category=self.category,
-            make=self.test_make_one,
-            model='Test',
-            desc='Test Vehicle One'
-        )
-    
-    def test_can_not_get_main_image_by_vehicle(self):
-        actual_image = VehicleImage.objects.get_main_image_by_vehicle(self.vehicle_with_no_images)
-        self.assertEquals(
-            None,
-            actual_image
-        )
-
-    def test_can_not_get_images_by_vehicle_with_valid_vehicle(self):
-        actual_images = VehicleImage.objects.get_images_by_vehicle(self.vehicle_with_no_images)
-        self.assertEquals(
-            None,
-            None
-        )
-
-    def test_can_not_get_images_by_vehicle_with_invalid_vehicle(self):
-        actual_images = VehicleImage.objects.get_images_by_vehicle(None)
-        self.assertEquals(
-            None,
-            None
         )
