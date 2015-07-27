@@ -38,6 +38,7 @@ if not settings.DEBUG:
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'django.contrib.humanize',
         'ckeditor',
         'imagekit',
         'vehicles',
