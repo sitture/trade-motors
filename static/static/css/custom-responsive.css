@@ -10,4 +10,8 @@
 	.thumbnail {
 		display: inline-block;
 	}
+
+	.slider-size {
+	  height: 200px;
+	}
 }
