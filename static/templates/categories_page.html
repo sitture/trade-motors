@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 centered">
                                         <a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
-                                            <img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" />
+                                            <img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
                                         </a>
                                     </div>
                                     <div class="col-sm-8">

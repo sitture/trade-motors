@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-{% with vehicle.images.get_main_image.image as image %}
+{% with vehicle.images.get_main_image as image %}
 {% with vehicle.images.get_additional_images as images %}
     <div id="content">
 		<div class="page-title">
@@ -128,7 +128,7 @@
                         </ol>
 			            <div class="carousel-inner" role="listbox">
 			                <div class="item active">
-			                	<div style="background:url({{ image.url }}) center center; 
+			                	<div style="background:url({{ image.image.url }}) center center; 
           							background-size:cover;" class="slider-size img-responsive"></div>
 			                </div>
 		                	{% for image in images %}
@@ -149,6 +149,14 @@
 						  	<span class="sr-only">Next</span>
 						</a>
 						{% endif %}
+						<div class="row">
+							<div class="col-sm-6">
+								<a href="{{ image.image.url }}" class="thumbnail photos">
+                                    <img class="img-responsive" src="{{ image.thumbnail.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+								</a>
+							</div>
+						
+						</div>
 					</div>
 				</div>
 			</div>

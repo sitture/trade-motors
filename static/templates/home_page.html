@@ -69,7 +69,7 @@
 				<div class="work-item">
 					<h3>{{ category.category_name }}</h3>
 					<a href="{% url 'category' category.slug %}" class="thumbnail">
-						<img src="{{ category.category_image }}" alt="{{ category.category_name }}" />
+						<img src="{{ category.category_image }}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
 					</a> <!-- /img -->
 					<p><a href="{% url 'category' category.slug %}" class="btn btn-primary">View Category »</a></p>			
 				</div>
@@ -92,7 +92,7 @@
 				<div class="work-item">
 					<h3>{{ vehicle }}</h3>
 					<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
-						<img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" />
+						<img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					</a> <!-- /img -->		
 				</div>
 			</div> <!-- /grid-3 -->
