@@ -36,18 +36,34 @@ class Social(models.Model):
         return str(self.service)
 
 
+class ContactDetailQuerySet(models.QuerySet):
+    
+    def get_latest_contact_details(self):
+        contact_details = self.all().order_by('-timestamp')
+        return contact_details[0] if contact_details else None
+
+
 class ContactDetail(models.Model):
-    full_name = models.CharField(
-        'FullName (Optional)', max_length=150, blank=True, null=True)
-    address = models.CharField('Address', blank=True, max_length=500)
-    postcode = models.CharField('Postcode', blank=True, max_length=150)
-    city = models.CharField('City', blank=True, max_length=150)
-    country = models.CharField('Country', blank=True, max_length=150)
-    phone = models.CharField(blank=True, max_length=150)
-    email = models.CharField('Email', blank=False, null=False, max_length=300)
+    
+    full_name = models.CharField(blank=True, null=True, max_length=100)
+    address = models.CharField(blank=False, null=False, max_length=300)
+    city = models.CharField(blank=False, null=False, max_length=100)
+    postcode = models.CharField(blank=False, null=False, max_length=20)
+    county = models.CharField(blank=True, null=True, max_length=50)
+    country = models.CharField(blank=True, null=True, max_length=50)
+    phone = models.CharField(blank=False, null=False, max_length=50)
+    email = models.EmailField(blank=False, null=False)
+    
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    
+    objects = ContactDetailQuerySet.as_manager()
 
     def __str__(self):
         display_text = self.email
         if self.full_name is not None:
             display_text = '{0} ({1})'.format(self.full_name, self.email)
         return display_text
+    
+    class Meta:
+        ordering = ['-timestamp']
