@@ -32,7 +32,13 @@
               <div class="col-sm-6 col-xs-6">
                 <div class="contactinfo">
                 <ul class="nav nav-pills">
-                  <li><a href="#"><i class="fa fa-envelope"></i> info@globaltrademotors.com</a></li>
+                  <li><a href="">
+                    {% if contact_details %}
+                    <i class="fa fa-envelope"></i> {{ contact_details.email }}
+                    {% else %}
+                    <i class="fa fa-envelope"></i> info@globaltrademotors.com
+                    {% endif %}
+                    </a></li>
                 </ul>
               </div>
               </div>
@@ -62,7 +68,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="{% url 'home' %}">
-                          <img src="{% static 'img/logo.png' %}" alt="Global Trade Motors">
+                          <img class="img-responsive" src="{% static 'img/logo.png' %}" alt="Global Trade Motors" title="Global Trade Motors">
                         </a>
                     </div>
             
