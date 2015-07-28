@@ -41,8 +41,10 @@
                         <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
                     <a href="{% url 'category' vehicle.category.slug %}{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
                         <i class="fa fa-tag"></i> {{ vehicle.make.v_make }}</a>
-                    <h4>Description</h4>
-                    <p>{{ vehicle.desc|safe }}</p>
+                    <h4>Description:</h4>
+                    <div class="well well-sm">
+                    {{ vehicle.desc|safe }}
+                    </div>
                     <hr />
                     <div class="row">
 	                    <table class="table table-striped">
@@ -118,6 +120,17 @@
 	                    	{% endif %}
 	                    </table>
 	                </div>
+	                {% if contact_details %}
+	                <h4>For more information, contact us on the below:</h4>
+					<div class="well">
+						{% if contact_details.phone %}
+						<p><i class="fa fa-phone"></i> {{ contact_details.phone }}</p>
+						{% endif %}
+						{% if contact_details.email %}
+						<p><i class="fa fa-envelope-o"></i> {{ contact_details.email|urlize }}</p>
+						{% endif %}
+					</div>
+					{% endif %}
 				</div><!--end left column -->
 				<div class="col-md-6">
 					<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
