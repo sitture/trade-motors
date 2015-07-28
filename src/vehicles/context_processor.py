@@ -1,5 +1,5 @@
 # Context processors
-from settings.models import Social
+from settings.models import Social, ContactDetail
 from vehicles.models import Category
 
 # to allow these variables to available in all views.
@@ -10,7 +10,9 @@ def global_context_processor(request):
     social_providers = list(Social.objects.all())
     # get all parent categories with sub categories
     all_categories = Category.objects.get_categories_with_sub_categories()
-
+    # get latest contact details
+    contact_details = ContactDetail.objects.get_latest_contact_details()
+    
     return locals()
 
 
