@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block pagetitle %}Contact us{% endblock %}
+
+{% block content %}
+	<div id="content">
+		<div class="page-title">
+			<div class="container">
+                <h3>Contact us</h3>
+                <ul class="breadcrumb">
+                    <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
+                </ul><!--end breadcrumb -->
+            </div>
+		</div><!--end page-title -->
+	</div>
+	<div class="container">
+		<div class="row">
+			<h3>Contact Details:</h3>
+			<hr />
+			{% if contact_details %}
+				<div class="col-sm-6">
+					<div class="well well-lg">
+						<address>
+							<h3>Global Trade Motors</h3>
+							<p class="lead">{{ contact_details.address }}<br>
+							{{ contact_details.city }}{% if contact_details.county %}, {{ contact_details.county }}{% endif %}<br>
+							{{ contact_details.postcode|upper }}
+							{% if contact_details.country %}<br>{{ contact_details.country|upper }}{% endif %}
+							</p>
+							{% if contact_details.phone %}
+							<p class="lead"><i class="fa fa-phone"></i> {{ contact_details.phone }}</p>
+							{% endif %}
+							{% if contact_details.email %}
+							<p class="lead"><i class="fa fa-envelope-o"></i> {{ contact_details.email|urlize }}</p>
+							{% endif %}
+						</address>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

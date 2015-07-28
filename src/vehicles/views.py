@@ -92,6 +92,14 @@ def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
     )
 
 
+def contact_page(request):
+    return render_to_response("contact_page.html", locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
+    )
+
+
 def get_makes_in_category(category):
 
     makes_in_category = []
