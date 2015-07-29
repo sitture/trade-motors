@@ -50,6 +50,13 @@ class Category(models.Model):
     show_on_home_page = models.BooleanField('Show on Homepage?', default=False)
     slug = models.SlugField(unique=True)
 
+    thumbnail = ImageSpecField(
+        source='category_image',
+        processors=[SmartResize(270, 160)],
+        format='JPEG',
+        options={'quality': 80}
+    )
+
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 

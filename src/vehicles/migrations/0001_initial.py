@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
                 ('category_name', models.CharField(max_length=50, verbose_name=b'Name')),
                 ('category_image', models.ImageField(upload_to=b'categories', verbose_name=b'Image', blank=True)),
                 ('category_display_order', models.IntegerField(default=999, verbose_name=b'Display Order')),
+                ('show_on_home_page', models.BooleanField(default=False, verbose_name=b'Show on Homepage?')),
                 ('slug', models.SlugField(unique=True)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
@@ -57,7 +58,7 @@ class Migration(migrations.Migration):
                 ('main_image', models.BooleanField(default=False, verbose_name=b'Main Image?')),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('vehicle', models.ForeignKey(to='vehicles.Vehicle')),
+                ('vehicle', models.ForeignKey(related_name='images', to='vehicles.Vehicle')),
             ],
             options={
                 'ordering': ['vehicle', '-timestamp'],
