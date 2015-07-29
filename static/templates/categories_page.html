@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load url_tags %}
+{% load humanize %}
 
 {% block pagetitle %}
     {% if category %}
@@ -61,7 +62,18 @@
                                         </a>
                                     </div>
                                     <div class="col-sm-8">
-                                        <h4><a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}">{{ vehicle }}</a></h4> 
+                                        {% if vehicle.price %}
+                                        <div class="row">
+                                            <div class="col-xs-7 col-sm-9">
+                                            <h4><a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}">{{ vehicle }}</a></h4>
+                                            </div>
+                                            <div class="col-xs-5 col-sm-3">
+                                                <h4 class="pull-right"><strong>£{{ vehicle.price|intcomma }}</strong></h4>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                            <h4><a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}">{{ vehicle }}</a></h4>
+                                        {% endif %}
                                         <!-- LABELS -->
                                         <a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
                                             <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>

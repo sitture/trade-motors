@@ -133,22 +133,28 @@ class Vehicle(models.Model):
     category = models.ForeignKey(Category)
     make = models.ForeignKey(VehicleMake)
     model = models.CharField('Model', max_length=100)
-    year = models.IntegerField("Year (E.g. 1990)", blank=True, null=True)
+    year = models.IntegerField("Year (E.g. 1990)", 
+        blank=True, null=True)
+    price = models.IntegerField('Price (Optional)',
+        blank=True, null=True)
     FUEL_CHOICES = (
         ('petrol', 'Petrol'),
         ('diesel', 'Diesel')
     )
     fuel_type = models.CharField(
-        'Fuel Type', max_length=50, null=True, blank=True,
+        'Fuel Type', max_length=50, 
+        null=True, blank=True,
         choices=FUEL_CHOICES)
     TRANSMISSION_CHOICES = (
         ('automatic', 'Automatic'),
         ('manual', 'Manual')
     )
     transmission = models.CharField(
-        'Transmission', max_length=50, null=True, blank=True,
+        'Transmission', max_length=50, 
+        null=True, blank=True,
         choices=TRANSMISSION_CHOICES)
-    colour = models.CharField('Colour', max_length=50, blank=True, null=True)
+    colour = models.CharField('Colour', max_length=50, 
+        blank=True, null=True)
     mileage = models.IntegerField(
         'Mileage', null=True, blank=True)
     desc = RichTextField("Description")
@@ -160,7 +166,8 @@ class Vehicle(models.Model):
     objects = VehicleQuerySet.as_manager()
 
     def __unicode__(self):
-        display_text = '{0} {1} {2}'.format(self.make, self.model, self.year)
+        display_text = '{0} {1} {2}'.format(
+            self.make, self.model, self.year)
         return display_text
 
     class Meta:
