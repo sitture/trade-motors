@@ -29,6 +29,17 @@ if not settings.DEBUG:
     
     ALLOWED_HOSTS = ['www.globaltrademotors.com', 'globaltrademotors.com', 'trademotors.webfactional.com']
     
+    # admins
+    ADMINS = (
+        ('Admin', 'info@globaltradingmotors.com'),
+        ('Haroon', 'haroon@sitture.com'),
+    )
+
+    EMAIL_HOST = 'smtp.webfaction.com'
+    EMAIL_HOST_USER = 'trademotors'
+    EMAIL_HOST_PASSWORD = 'sitture2'
+    SERVER_EMAIL = 'info@globaltrademotors.com'
+
     # Application definition
     
     INSTALLED_APPS = (
