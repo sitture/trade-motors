@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block pagetitle %}Home{% endblock %}
 
@@ -69,7 +70,11 @@
 				<div class="work-item">
 					<h3>{{ category.category_name }}</h3>
 					<a href="{% url 'category' category.slug %}" class="thumbnail">
-						<img src="{{ category.category_image }}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
+						{% if category.category_image %}
+						<img src="{{ category.thumbnail.url }}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
+						{% else %}
+						<img src="{% static 'img/thumbnail.jpg' %}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
+						{% endif %}
 					</a> <!-- /img -->
 					<p><a href="{% url 'category' category.slug %}" class="btn btn-primary">View Category »</a></p>			
 				</div>
@@ -92,7 +97,11 @@
 				<div class="work-item">
 					<h3>{{ vehicle }}</h3>
 					<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
+						{% if thumb %}
 						<img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+						{% else %}
+						<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+						{% endif %}
 					</a> <!-- /img -->		
 				</div>
 			</div> <!-- /grid-3 -->

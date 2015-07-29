@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load url_tags %}
 {% load humanize %}
 
@@ -133,23 +134,30 @@
 					{% endif %}
 				</div><!--end left column -->
 				<div class="col-md-6">
+					<hr />
+					{% if image.image %}
 					<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
 						<img class="img-responsive img-rounded" src="{{ image.image.url }}" alt="{{ vehicle }}" title="{{ vehicle }}">
 					</a>
-					<hr />
-					<div class="row">
-					{% for image in images %}
-						<div class="col-sm-4">
-							<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
-                            	<img class="img-rounded img-responsive" src="{{ image.thumbnail.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
-                            </a>
-						</div>
-					{% if forloop.counter|divisibleby:"3" and not forloop.last %}
-					</div>
-					<div class="row">
+					{% else %}
+						<img class="img-responsive img-rounded" src="{% static 'img/gtm-image.png' %}" alt="{{ vehicle }}" title="{{ vehicle }}">
 					{% endif %}
-					{% endfor %}
-					</div>
+					<hr />
+					{% if images %}
+						<div class="row">
+						{% for image in images %}
+							<div class="col-sm-4">
+								<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
+	                            	<img class="img-rounded img-responsive" src="{{ image.thumbnail.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+	                            </a>
+							</div>
+						{% if forloop.counter|divisibleby:"3" and not forloop.last %}
+						</div>
+						<div class="row">
+						{% endif %}
+						{% endfor %}
+						</div>
+					{% endif %}
 				</div><!--end right column -->
 			</div><!--end container row -->
 		</div><!--end container -->
