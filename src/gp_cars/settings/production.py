@@ -24,7 +24,7 @@ if not settings.DEBUG:
     SECRET_KEY = '4*cr2x1kjp+tn2(drq_n@p&g9xi)d%l^qva_@dbl%-t6wxzy%h'
     
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
+    DEBUG = False
     TEMPLATE_DEBUG = DEBUG
     
     ALLOWED_HOSTS = []
