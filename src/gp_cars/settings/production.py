@@ -24,10 +24,10 @@ if not settings.DEBUG:
     SECRET_KEY = '4*cr2x1kjp+tn2(drq_n@p&g9xi)d%l^qva_@dbl%-t6wxzy%h'
     
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = False
+    DEBUG = settings.DEBUG
     TEMPLATE_DEBUG = DEBUG
     
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['www.globaltrademotors.com', 'globaltrademotors.com', 'trademotors.webfactional.com']
     
     # Application definition
     
@@ -61,7 +61,7 @@ if not settings.DEBUG:
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [os.path.join(os.path.dirname(BASE_DIR), 'static', 'templates')],
+            'DIRS': ['/home/trademotors/webapps/trademotors_static/static/templates/'],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -81,8 +81,10 @@ if not settings.DEBUG:
     
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'trademotors',
+	    'USER': 'trademotors',
+	    'PASSWORD': 'sitture2',
         }
     }
     
@@ -103,14 +105,13 @@ if not settings.DEBUG:
     # https://docs.djangoproject.com/en/1.8/howto/static-files/
     
     STATIC_URL = '/static/'
-    
-    if DEBUG:
-        MEDIA_URL = '/media/'
-        STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'static-only')
-        MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
-        STATICFILES_DIRS = (
-            os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
-        )
+    STATIC_ROOT = '/home/trademotors/webapps/trademotors_static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = '/home/trademotors/webapps/trademotors_media/'
+    STATICFILES_DIRS = (
+        #'/home/trademotors/webapps/trademotors_static/static/static/',
+        os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
+    )
     
     # ckEditor settings
     CKEDITOR_UPLOAD_PATH = "uploads/"
