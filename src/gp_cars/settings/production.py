@@ -24,7 +24,7 @@ if not settings.DEBUG:
     SECRET_KEY = '4*cr2x1kjp+tn2(drq_n@p&g9xi)d%l^qva_@dbl%-t6wxzy%h'
     
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = settings.DEBUG
+    DEBUG = False
     TEMPLATE_DEBUG = DEBUG
     
     ALLOWED_HOSTS = ['www.globaltrademotors.com', 'globaltrademotors.com', 'trademotors.webfactional.com']
@@ -61,7 +61,7 @@ if not settings.DEBUG:
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': ['/home/trademotors/webapps/trademotors_static/static/templates/'],
+            'DIRS': ['/home/trademotors/webapps/trademotors_static/'],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -110,6 +110,7 @@ if not settings.DEBUG:
     MEDIA_ROOT = '/home/trademotors/webapps/trademotors_media/'
     STATICFILES_DIRS = (
         #'/home/trademotors/webapps/trademotors_static/static/static/',
+        os.path.join(os.path.dirname(BASE_DIR), 'static', 'templates'),
         os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
     )
     
