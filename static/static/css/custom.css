@@ -304,3 +304,7 @@ ul.navbar-nav > li > a:hover {
 #copyright a {
     color: #777;
 }
+
+.col-padding {
+  padding: 2px;
+}
