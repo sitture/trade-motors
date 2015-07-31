@@ -237,6 +237,11 @@ ul.navbar-nav > li > a:hover {
   margin:0 auto;
 }
 
+.pull-bottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
 
 /* FOOTER
 ==================================================================*/
