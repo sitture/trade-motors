@@ -66,7 +66,7 @@
 		</div> <!-- /row -->
 		<div class="row category-container">
 		  {% for category in top_4_categories %}
-			<div class="col-sm-3 pull-bottom">
+			<div class="col-sm-3">
 				<h3>{{ category.category_name }}</h3>
 				<a href="{% url 'category' category.slug %}" class="thumbnail">
 					{% if category.category_image %}
@@ -93,7 +93,7 @@
 		<div class="row">
 		  {% for vehicle in top_4_vehicles %}
 		  {% with vehicle.images.get_main_image.thumbnail as thumb %}
-			<div class="col-sm-3 pull-bottom">
+			<div class="col-sm-3">
 				<h3>{{ vehicle }}</h3>
 				<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
 					{% if thumb %}
