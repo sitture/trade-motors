@@ -1,10 +1,11 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from vehicles.models import Category, VehicleMake, Vehicle
+from vehicles.context_processor import ContactDetail, Social
 
 
 class ProjectTests(TestCase):
-    
+
     def setUp(self):
         self.main_category = Category.objects.create(
             category_name='Main Category',
@@ -23,7 +24,7 @@ class ProjectTests(TestCase):
             make=self.test_make_one,
             model='Test',
             desc='Test Vehicle One',
-            slug = 'test-vehicle-slug'
+            slug='test-vehicle-slug'
         )
         self.vehicle_url = reverse(
             'vehicle', args=[
@@ -34,29 +35,62 @@ class ProjectTests(TestCase):
         )
 
     def test_homepage(self):
-        response = self.client.get('/')
+        response = self.client.get(reverse('home'))
         self.assertEqual(
             response.status_code, 200
         )
+        response.status_code == 200
+
+    def test_basepage_contains_all_categories_list(self):
+        response = self.client.get(reverse('home'))
+        expected_categories = \
+            Category.objects.get_categories_with_sub_categories()
+        actual_categories = response.context[-1]['all_categories']
+        self.assertEquals(
+            actual_categories,
+            expected_categories
+        )
+
+    def test_basepage_contains_contact_details(self):
+        response = self.client.get(reverse('home'))
+        expected_contact_details = \
+            ContactDetail.objects.get_latest_contact_details()
+        actual_contact_details = \
+            response.context[-1]['contact_details']
+        self.assertEquals(
+            actual_contact_details,
+            expected_contact_details
+        )
+
+    def test_basepage_contains_social_providers(self):
+        response = self.client.get(reverse('home'))
+        expected_social_providers = \
+            list(Social.objects.all())
+        actual_social_providers = \
+            response.context[-1]['social_providers']
+        self.assertEquals(
+            actual_social_providers,
+            expected_social_providers
+        )
 
     def test_about_us_page(self):
-        response = self.client.get('/about-us')
+        response = self.client.get(reverse('about'))
         self.assertEqual(
             response.status_code, 200
         )
 
     def test_contact_us_page(self):
-        response = self.client.get('/contact-us')
+        response = self.client.get(reverse('contact'))
         self.assertEqual(
             response.status_code, 200
         )
-    
+
     def test_robots_txt_page(self):
         response = self.client.get('/robots.txt')
         self.assertEquals(
             response.status_code, 200
         )
-    
+
     def test_category_page(self):
         self.assertEquals(
             '/category/main/', self.category_url
@@ -65,7 +99,7 @@ class ProjectTests(TestCase):
         self.assertEquals(
             200, response.status_code
         )
-    
+
     def test_vehicle_page(self):
         self.assertEquals(
             '/category/main/detail/1/test-vehicle-slug',
