@@ -1,5 +1,5 @@
-from django.shortcuts import render, render_to_response, RequestContext, \
-    get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, \
+    RequestContext
 # import the custom context processor
 from vehicles.context_processor import global_context_processor
 
@@ -9,30 +9,30 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 
 def home_page(request):
-    
+
     # get list of slider objects
     sliders = SliderImage.objects.all()
-    
+
     # get top 4 categories to show on homepage
     top_4_categories = Category.objects.get_home_page_categories()
     if top_4_categories:
         top_4_categories = top_4_categories[:4]
-    
+
     # get 4 recently added vehicles
     top_4_vehicles = Vehicle.objects.all().order_by(
         '-timestamp').prefetch_related('images')
     if top_4_vehicles:
         top_4_vehicles = top_4_vehicles[:4]
-    
+
     return render_to_response("home_page.html", locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
+                              context_instance=RequestContext(
+        request, processors=[global_context_processor]
+    )
     )
 
 
 def category_page(request, slug):
-    
+
     # check if make slug parameter is passed into the url
     vehicle_make_slug = request.GET.get('make', None)
     # get category by slug
@@ -57,46 +57,49 @@ def category_page(request, slug):
             ).prefetch_related('images')
         else:
             vehicles_list = Vehicle.objects.all().prefetch_related('images')
-    
+
     # paginate vehicle list for 10 items per page
     paginator = Paginator(vehicles_list, 10)
-    
-    try: page = int(request.GET.get("page", '1'))
-    except ValueError: page = 1
-    
+
+    try:
+        page = int(request.GET.get("page", '1'))
+    except ValueError:
+        page = 1
+
     try:
         vehicles = paginator.page(page)
     except (InvalidPage, EmptyPage):
         vehicles = paginator.page(paginator.num_pages)
-    
+
     makes = get_makes_in_category(category)
-    
+
     return render_to_response("categories_page.html", locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
+                              context_instance=RequestContext(
+        request, processors=[global_context_processor]
+    )
     )
 
 
 def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
-    
+
     # get vehicle details by vehicle_id
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
 
-    related_vehicles = Vehicle.objects.get_vehicles_by_category(vehicle.category)
-    
+    related_vehicles = Vehicle.objects.get_vehicles_by_category(
+        vehicle.category)
+
     return render_to_response("detail_page.html", locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
+                              context_instance=RequestContext(
+        request, processors=[global_context_processor]
+    )
     )
 
 
 def contact_page(request):
     return render_to_response("contact_page.html", locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
+                              context_instance=RequestContext(
+        request, processors=[global_context_processor]
+    )
     )
 
 
@@ -104,12 +107,13 @@ def get_makes_in_category(category):
 
     makes_in_category = []
     # get all the vehicle objects by category
-    vehicles_in_category = Vehicle.objects.get_vehicles_by_category(category=category)
+    vehicles_in_category = Vehicle.objects.get_vehicles_by_category(
+        category=category)
     for vehicle in vehicles_in_category:
         makes_in_category.append(vehicle.make)
 
     # remove duplicate makes from the list
     makes_in_category = list(set(makes_in_category))
-    makes_in_category = sorted(makes_in_category, key=lambda x:x.v_make)
+    makes_in_category = sorted(makes_in_category, key=lambda x: x.v_make)
 
     return makes_in_category

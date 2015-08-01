@@ -1,7 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill, SmartResize
+from imagekit.processors import SmartResize
 
 
 class CategoryQuerySet(models.QuerySet):
@@ -34,7 +34,7 @@ class CategoryQuerySet(models.QuerySet):
             return category
 
         return category
-    
+
     def get_home_page_categories(self):
         return self.filter(show_on_home_page=True)
 
@@ -105,44 +105,48 @@ class VehicleMake(models.Model):
 
 
 class VehicleQuerySet(models.QuerySet):
-    
+
     @classmethod
     def process_category(self, category):
         categories = []
         # check if a given category is a parent category
         if category and category.category_parent is None:
             # get sub_categories
-            categories = list(Category.objects.get_sub_categories_by_category(category))
+            categories = list(
+                Category.objects.get_sub_categories_by_category(category))
         categories.append(category)
-        return categories    
-    
+        return categories
+
     def get_vehicles_by_category(self, category):
         # process category into a list
         categories = self.process_category(category)
         return self.filter(category__in=categories).order_by('-timestamp')
-    
+
     def get_vehicles_by_make(self, make):
         return self.filter(make=make).order_by('-timestamp')
 
     def get_vehicles_by_category_and_make(self, category, make):
         categories = self.process_category(category)
-        return self.filter(category__in=categories, make=make).order_by('-timestamp')
+        return self.filter(
+            category__in=categories,
+            make=make
+        ).order_by('-timestamp')
 
 
 class Vehicle(models.Model):
     category = models.ForeignKey(Category)
     make = models.ForeignKey(VehicleMake)
     model = models.CharField('Model', max_length=100)
-    year = models.IntegerField("Year (E.g. 1990)", 
-        blank=True, null=True)
+    year = models.IntegerField("Year (E.g. 1990)",
+                               blank=True, null=True)
     price = models.IntegerField('Price (Optional)',
-        blank=True, null=True)
+                                blank=True, null=True)
     FUEL_CHOICES = (
         ('petrol', 'Petrol'),
         ('diesel', 'Diesel')
     )
     fuel_type = models.CharField(
-        'Fuel Type', max_length=50, 
+        'Fuel Type', max_length=50,
         null=True, blank=True,
         choices=FUEL_CHOICES)
     TRANSMISSION_CHOICES = (
@@ -150,11 +154,11 @@ class Vehicle(models.Model):
         ('manual', 'Manual')
     )
     transmission = models.CharField(
-        'Transmission', max_length=50, 
+        'Transmission', max_length=50,
         null=True, blank=True,
         choices=TRANSMISSION_CHOICES)
-    colour = models.CharField('Colour', max_length=50, 
-        blank=True, null=True)
+    colour = models.CharField('Colour', max_length=50,
+                              blank=True, null=True)
     mileage = models.IntegerField(
         'Mileage', null=True, blank=True)
     desc = RichTextField("Description")

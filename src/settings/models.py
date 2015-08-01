@@ -37,14 +37,14 @@ class Social(models.Model):
 
 
 class ContactDetailQuerySet(models.QuerySet):
-    
+
     def get_latest_contact_details(self):
         contact_details = self.all().order_by('-timestamp')
         return contact_details[0] if contact_details else None
 
 
 class ContactDetail(models.Model):
-    
+
     full_name = models.CharField(blank=True, null=True, max_length=100)
     address = models.CharField(blank=False, null=False, max_length=300)
     city = models.CharField(blank=False, null=False, max_length=100)
@@ -53,10 +53,10 @@ class ContactDetail(models.Model):
     country = models.CharField(blank=True, null=True, max_length=50)
     phone = models.CharField(blank=False, null=False, max_length=50)
     email = models.EmailField(blank=False, null=False)
-    
+
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    
+
     objects = ContactDetailQuerySet.as_manager()
 
     def __str__(self):
@@ -64,6 +64,6 @@ class ContactDetail(models.Model):
         if self.full_name is not None:
             display_text = '{0} ({1})'.format(self.full_name, self.email)
         return display_text
-    
+
     class Meta:
         ordering = ['-timestamp']

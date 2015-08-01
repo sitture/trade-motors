@@ -1,6 +1,6 @@
 from django.test import TestCase
 # import the models to test
-from vehicles.models import Category, Vehicle, VehicleMake, VehicleImage
+from vehicles.models import Category, Vehicle, VehicleMake
 from vehicles import context_processor
 from vehicles.views import get_makes_in_category
 
@@ -177,7 +177,7 @@ class VehicleQuerySetTest(TestCase):
             v_make='Alfa Romeo',
             slug='alfa-test'
         )
-        self.test_make_three = VehicleMake.objects.create(
+        self.test_unassigned_make_three = VehicleMake.objects.create(
             v_make='Test Make',
             slug='vaux'
         )
@@ -242,12 +242,13 @@ class VehicleQuerySetTest(TestCase):
         )
 
     def test_can_not_get_vehicles_by_sub_category_and_make(self):
-        # test can get vehicle by correct category but incorrect make
+        # test can not get vehicle by correct category but incorrect make
         actual_vehicles = Vehicle.objects.get_vehicles_by_category_and_make(
             self.sub_category, self.test_make_one)
+        expected_empty_list_of_vehicles = []
         self.assertEquals(
-            None,
-            None
+            expected_empty_list_of_vehicles,
+            list(actual_vehicles)
         )
 
     def test_can_get_vehicles_by_make(self):
@@ -263,11 +264,11 @@ class VehicleQuerySetTest(TestCase):
     def test_can_not_get_vehicles_by_make(self):
         # can not get vehicle by incorrect make
         actual_vehicles = Vehicle.objects.get_vehicles_by_make(
-            self.test_make_three
+            self.test_unassigned_make_three
         )
         self.assertEquals(
-            None,
-            None
+            [],
+            list(actual_vehicles)
         )
 
 

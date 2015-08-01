@@ -12,7 +12,7 @@ def global_context_processor(request):
     all_categories = Category.objects.get_categories_with_sub_categories()
     # get latest contact details
     contact_details = ContactDetail.objects.get_latest_contact_details()
-    
+
     return locals()
 
 

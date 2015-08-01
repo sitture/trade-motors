@@ -4,7 +4,7 @@ from settings.models import ContactDetail, Social
 
 
 class ContactDetailQuerySetTest(TestCase):
-    
+
     def setUp(self):
         # create a test contact detail object
         self.details = ContactDetail.objects.create(
@@ -15,7 +15,7 @@ class ContactDetailQuerySetTest(TestCase):
             phone=21231313131,
             email='test@email.com'
         )
-    
+
     def test_can_get_the_latest_contact_details_object(self):
         actual_details = ContactDetail.objects.get_latest_contact_details()
         self.assertEquals(
