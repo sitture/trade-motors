@@ -94,7 +94,6 @@
 		  {% for vehicle in top_4_vehicles %}
 		  {% with vehicle.images.get_main_image.thumbnail as thumb %}
 			<div class="col-sm-3">
-				<h3>{{ vehicle }}</h3>
 				<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
 					{% if thumb %}
 					<img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
@@ -102,6 +101,7 @@
 					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					{% endif %}
 				</a> <!-- /img -->
+				<h3>{{ vehicle }}</h3>
 			</div> <!-- /grid-3 -->
 		  {% endwith %}
 		  {% endfor %}
