@@ -59,7 +59,7 @@ def category_page(request, slug):
             vehicles_list = Vehicle.objects.all().prefetch_related('images')
 
     # paginate vehicle list for 10 items per page
-    paginator = Paginator(vehicles_list, 10)
+    paginator = Paginator(vehicles_list, 16)
 
     try:
         page = int(request.GET.get("page", '1'))
