@@ -57,32 +57,6 @@
   <div id="content">
 	<div class="container">
 		<hr />
-		<!-- Categories -->
-		{% if top_4_categories %}
-		<div class="row">
-			<div class="col-md-12">
-				<h2><i class="fa fa-align-justify"></i> Categories</h2>
-			</div>
-		</div> <!-- /row -->
-		<div class="row category-container">
-		  {% for category in top_4_categories %}
-			<div class="col-sm-3">
-				<h3>{{ category.category_name }}</h3>
-				<a href="{% url 'category' category.slug %}" class="thumbnail">
-					{% if category.category_image %}
-					<img src="{{ category.thumbnail.url }}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
-					{% else %}
-					<img src="{% static 'img/thumbnail.jpg' %}" alt="{{ category.category_name }}" title="{{ category.category_name }}" />
-					{% endif %}
-				</a> <!-- /img -->
-				<p>
-					<a href="{% url 'category' category.slug %}" class="btn btn-primary">View Category »</a>
-				</p>
-			</div> <!-- /grid-3 -->
-		  {% endfor %}
-		</div> <!-- /row -->
-		{% endif %}
-		<hr />
 		<!-- Recently added vehicles -->
 		{% if top_4_vehicles %}
 		<div class="row">
