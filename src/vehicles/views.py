@@ -10,19 +10,22 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 def home_page(request):
 
+    MAX_VEHICLES_TO_SHOW = 16
+    MAX_CATEGORIES_TO_SHOW = 4
+
     # get list of slider objects
     sliders = SliderImage.objects.all()
 
-    # get top 4 categories to show on homepage
-    top_4_categories = Category.objects.get_home_page_categories()
-    if top_4_categories:
-        top_4_categories = top_4_categories[:4]
+    # get categories to show on homepage
+    top_categories = Category.objects.get_home_page_categories()
+    if top_categories:
+        top_categories = top_categories[:MAX_CATEGORIES_TO_SHOW]
 
-    # get 4 recently added vehicles
-    top_4_vehicles = Vehicle.objects.all().order_by(
+    # get recently added vehicles
+    top_vehicles = Vehicle.objects.all().order_by(
         '-timestamp').prefetch_related('images')
-    if top_4_vehicles:
-        top_4_vehicles = top_4_vehicles[:4]
+    if top_vehicles:
+        top_vehicles = top_vehicles[:MAX_VEHICLES_TO_SHOW]
 
     return render_to_response("home_page.html", locals(),
                               context_instance=RequestContext(

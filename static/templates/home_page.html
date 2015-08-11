@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load url_tags %}
 
 {% block pagetitle %}Home{% endblock %}
 
@@ -58,14 +59,14 @@
 	<div class="container">
 		<hr />
 		<!-- Recently added vehicles -->
-		{% if top_4_vehicles %}
+		{% if top_vehicles %}
 		<div class="row">
 			<div class="col-md-12">
 				<h2><i class="fa fa-align-justify"></i> Recently Added!</h2>
 			</div>
 		</div> <!-- /row -->
 		<div class="row">
-		  {% for vehicle in top_4_vehicles %}
+		  {% for vehicle in top_vehicles %}
 		  {% with vehicle.images.get_main_image.thumbnail as thumb %}
 			<div class="col-sm-3">
 				<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
@@ -75,8 +76,17 @@
 					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					{% endif %}
 				</a> <!-- /img -->
+				<a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
+                    <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
+                <a href="{% url 'category' vehicle.category.slug %}{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
+                    <i class="fa fa-tag"></i> {{ vehicle.make.v_make }}
+                </a>
 				<h3>{{ vehicle }}</h3>
 			</div> <!-- /grid-3 -->
+		{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+		</div>
+		<div class="row">
+		{% endif %}
 		  {% endwith %}
 		  {% endfor %}
 		</div> <!-- /row -->
