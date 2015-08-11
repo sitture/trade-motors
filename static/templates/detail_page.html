@@ -132,7 +132,6 @@
 	                    	{% endif %}
 	                    </table>
 	                </div>
-	                {% if contact_details %}
 	                <h4>For more information, contact us on the below:</h4>
 					<div class="well">
 						{% if contact_details.phone %}
@@ -140,9 +139,10 @@
 						{% endif %}
 						{% if contact_details.email %}
 						<p><i class="fa fa-envelope-o"></i> {{ contact_details.email|urlize }}</p>
+						{% else %}
+						<p><i class="fa fa-envelope-o"></i> {{ "info@globaltrademotors.com"|urlize }}</p>
 						{% endif %}
 					</div>
-					{% endif %}
 				</div><!--end left column -->
 				<div class="col-md-6">
 					<hr />
