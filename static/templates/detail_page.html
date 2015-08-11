@@ -57,6 +57,14 @@
                     <div class="well well-sm">
                     {{ vehicle.desc|safe }}
                     </div>
+                    <div>
+                    	<!-- Twitter -->
+						<a href="http://twitter.com/home?status={{ vehicle }} {{ request.build_absolute_uri|urlencode }}" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+						 <!-- Facebook -->
+						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+						<!-- Google+ -->
+						<a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
+                    </div>
                     <hr />
                     <div class="row">
 	                    <table class="table table-striped">
