@@ -93,7 +93,9 @@
 						    	{% endif %}
 							{% endfor %}
 							<!--end Categories-->
-                            <li><a href="{% url 'contact' %}"><i class="fa fa-envelope"></i> Contact</a></li>                        
+                          {% if contact_details %}
+                            <li><a href="{% url 'contact' %}"><i class="fa fa-envelope"></i> Contact</a></li>
+                          {% endif %}
                         </ul>
                     </div>
                 </div><!--/.container-->
