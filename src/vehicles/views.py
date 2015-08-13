@@ -34,6 +34,14 @@ def home_page(request):
     )
 
 
+def exports_page(request):
+    return render_to_response("exports_page.html", locals(),
+                              context_instance=RequestContext(
+        request, processors=[global_context_processor]
+    )
+    )
+
+
 def category_page(request, slug):
 
     # check if make slug parameter is passed into the url

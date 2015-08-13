@@ -19,11 +19,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 from vehicles.views import home_page, category_page, \
-    vehicle_detail_page, contact_page
+    vehicle_detail_page, contact_page, exports_page
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
+    url(r'^exports$', exports_page, name='exports'),
     url(r'^contact-us$', contact_page, name='contact'),
     url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/$',
         category_page, name='category'),
