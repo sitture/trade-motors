@@ -79,6 +79,12 @@ class ProjectTests(TestCase):
             response.status_code, 200
         )
 
+    def test_exports_page(self):
+        response = self.client.get(reverse('exports'))
+        self.assertEqual(
+            response.status_code, 200
+        )
+
     def test_contact_us_page(self):
         response = self.client.get(reverse('contact'))
         self.assertEqual(

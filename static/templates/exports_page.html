@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block pagetitle %}
+	Exporting Vehicles
+{% endblock %}
+
+{% block content %}
+	<div id="content">
+		<div class="page-title">
+			<div class="container">
+                <h3>Exporting Vehicles</h3>
+                <ul class="breadcrumb">
+                    <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active">Exporting Vehicles</li>
+                </ul><!--end breadcrumb -->
+            </div>
+		</div><!--end page-title -->
+<!-- start main container -->
+		<div class="container">
+			<div class="row">
+				<h1>Worldwide Shipping</h3><hr />
+				<div class="col-sm-6">
+					<p class="lead text-justified">
+						Global Trade Motors exports vehicles and trucks worldwide. We ship to the following countries: Angola, Bahamas, Bangladesh, Barbados, Bermuda, Botswana, Brazil, Cayman Islands, Chile,  Cyprus, Fiji, Gibraltar, Guyana, Jamaica, Kenya, Malawi, Madagascar, Malaysia, Maldives, Malta, Mauritius, Mozambique, Namibia, Nigeria, Pakistan, Panama, Russia, Saint Lucia, South Africa, Sri Lanka, Suriname, Tanzania, Trinidad and Tobago, Uganda, Zambia, Zimbabwe and all other European countries.
+					</p>
+				</div>
+				<div class="col-sm-6">
+					<img class="img-responsive img-rounded" src="{% static 'img/exports/worldwide.jpg' %}" />
+				</div>
+			</div>
+			<div class="row">
+				<h3>Inspections And Viewings</h3><hr />
+				<div class="col-sm-12">
+					<ul class="lead">
+						<li>All inspections, viewings and test drives are welcome.</li>
+						<li>Jevic and intertek inspections can also be arranged before shipping.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<h3>Shipping Rates</h3><hr />
+				<div class="col-sm-4">
+					<img class="img-responsive img-rounded" src="{% static 'img/exports/shipping.jpg' %}" />
+				</div>
+				<div class="col-sm-8">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>
+									Location
+								</th>
+								<th class="text-right">
+									Price (GBP)
+								</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>MAPUTO</td>
+							<td class="text-right">980.00</td>
+						</tr>
+						<tr>
+							<td>LUANDA</td>
+							<td class="text-right">980.00</td>
+						</tr>
+						<tr>
+							<td>MOMBASA</td>
+							<td class="text-right">1100.00</td>
+						</tr>
+						<tr>
+							<td>DURBAN</td>
+							<td class="text-right">900.00</td>
+						</tr>
+						<tr>
+							<td>DAR-ES SALAAM</td>
+							<td class="text-right">950.00</td>
+						</tr>
+						<tr>
+							<td>WALVIS BAY</td>
+							<td class="text-right">900.00</td>
+						</tr>
+					</table>
+					<p class="lead text-danger">
+						if any other location, please contact us at <a href="mailto:#">info@globaltrademotors.com</a>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<h3>Need a new Fleet?</h3><hr />
+				<div class="col-sm-7">
+					<ul class="lead">
+						<li>
+							We can Supply fleets of vehicles to meet your fleet renewal or growth requirements.
+						</li>
+						<li>
+							We can offer the complete service and arrange for vehicles to be painted and sign written with your company livery.
+						</li>
+					</ul>
+				</div>
+				<div class="col-sm-5">
+					<img class="img-responsive img-rounded" src="{% static 'img/exports/fleet.jpg' %}" />
+				</div>
+			</div>
+			<div class="row">
+				<h3>Payments</h3><hr />
+				<div class="col-sm-5">
+					<img class="img-responsive img-rounded" src="{% static 'img/exports/payment.jpg' %}" />
+				</div>
+				<div class="col-sm-7">
+					<br />
+					<ul class="lead">
+						<li>
+							We  accept payment for vehicles in UK sterling, US Dollars or EURO currencies, paid into our dedicated currency accounts. We also accept LC (Letter of Credit) agreement.
+						</li>
+						<li>
+							Vehicles will be shipped after reception and clearance of payment.
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- end main container -->
+	</div>
+{% endblock %}
