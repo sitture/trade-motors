@@ -76,15 +76,6 @@
 					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					{% endif %}
 				</a> <!-- /img -->
-				<div class="row">
-					<div class="col-sm-12">
-						<a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
-		                    <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
-		                <a href="{% url 'category' vehicle.category.slug %}{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
-		                    <i class="fa fa-tag"></i> {{ vehicle.make.v_make }}
-		                </a>
-		            </div>
-                </div>
 				<h3>{{ vehicle }}</h3>
 			</div> <!-- /grid-3 -->
 		{% if forloop.counter|divisibleby:"4" and not forloop.last %}
