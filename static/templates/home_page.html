@@ -61,11 +61,9 @@
 	<div class="container">
 		<!-- Recently added vehicles -->
 		{% if top_vehicles %}
-		<div class="row">
-			<div class="col-md-12">
-				<h2><i class="fa fa-align-justify"></i> Recently Added!</h2>
-			</div>
-		</div> <!-- /row -->
+		{% if not slider %}
+		<br />
+		{% endif %}
 		<div class="row">
 		  {% for vehicle in top_vehicles %}
 		  {% with vehicle.images.get_main_image.thumbnail as thumb %}
