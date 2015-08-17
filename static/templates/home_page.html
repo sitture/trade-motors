@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load url_tags %}
+{% load humanize %}
 
 {% block pagetitle %}Home{% endblock %}
 
@@ -76,7 +77,11 @@
 					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					{% endif %}
 				</a> <!-- /img -->
-				<h3>{{ vehicle }}</h3>
+				<h4>{{ vehicle }}
+				{% if vehicle.price %}
+					- <strong>£{{ vehicle.price|intcomma }}</strong>
+				{% endif %}
+				</h4>
 			</div> <!-- /grid-3 -->
 		{% if forloop.counter|divisibleby:"4" and not forloop.last %}
 		</div>
