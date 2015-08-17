@@ -48,7 +48,6 @@
 					{% else %}
 						<h3>{{ vehicle }}</h3>
 					{% endif %}
-					<small class="text-danger"><i class="fa fa-clock-o"></i> {{ vehicle.timestamp|naturalday:'F d, Y' }} </small>
 					<a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
                         <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
                     <a href="{% url 'category' vehicle.category.slug %}{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
