@@ -41,6 +41,12 @@ urlpatterns = [
         ),
 ]
 
+SITE_HEADER_TITLE = 'Global Trade Motors'
+
+# change the header title on admin
+admin.site.site_header = SITE_HEADER_TITLE
+admin.site.site_title = SITE_HEADER_TITLE
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
