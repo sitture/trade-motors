@@ -20,6 +20,8 @@ from django.conf import settings
 from django.views.generic import TemplateView
 from vehicles.views import home_page, category_page, \
     vehicle_detail_page, contact_page, exports_page
+# The ugettext_lazy function is used to mark the language names for translation
+from django.utils.translation import ugettext_lazy as _
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
@@ -44,8 +46,9 @@ urlpatterns = [
 SITE_HEADER_TITLE = 'Global Trade Motors'
 
 # change the header title on admin
-admin.site.site_header = SITE_HEADER_TITLE
-admin.site.site_title = SITE_HEADER_TITLE
+admin.site.site_header = _(SITE_HEADER_TITLE)
+admin.site.site_title = _(SITE_HEADER_TITLE)
+admin.site.index_title = _(SITE_HEADER_TITLE)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
