@@ -48,7 +48,6 @@ SITE_HEADER_TITLE = 'Global Trade Motors'
 # change the header title on admin
 admin.site.site_header = _(SITE_HEADER_TITLE)
 admin.site.site_title = _(SITE_HEADER_TITLE)
-admin.site.index_title = _(SITE_HEADER_TITLE)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
