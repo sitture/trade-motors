@@ -1,5 +1,6 @@
 before_script:
     - apt-get update -qy
+    - apt-get install python-imaging
     - apt-get install -y python-setuptools
     - easy_install pip
     - pip install --upgrade pip virtualenv virtualenvwrapper
