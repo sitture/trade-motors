@@ -4,5 +4,5 @@ before_script:
     - pip install -r requirements.txt
     - cd src/
 
-script:
-    - python manage.py test
+django:
+- script: "python manage.py test"
