@@ -6,6 +6,7 @@ django-registration==1.0
 pilkit==1.1.12
 Pillow==2.8.2
 requests==2.7.0
+selenium==2.47.1
 six==1.9.0
 South==1.0.2
 stripe==1.22.3
