@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -26,6 +27,12 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
+
+# admins
+ADMINS = (
+    ('Admin', 'info@globaltradingmotors.com'),
+    ('Haroon', 'haroon@sitture.com'),
+)
 
 # Application definition
 
@@ -59,7 +66,9 @@ ROOT_URLCONF = 'gp_cars.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(BASE_DIR), 'static', 'templates')],
+        'DIRS': [os.path.join(
+            os.path.dirname(BASE_DIR), 'static', 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,14 +110,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-
-if DEBUG:
-    MEDIA_URL = '/media/'
-    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'static-only')
-    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')
-    STATICFILES_DIRS = (
-        os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
-    )
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(
+    os.path.dirname(BASE_DIR), 'static', 'static-only')
+MEDIA_ROOT = os.path.join(
+    os.path.dirname(BASE_DIR), 'static', 'media')
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(BASE_DIR), 'static', 'static'),
+)
 
 # ckEditor settings
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -120,7 +129,9 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter',
+                'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
             ['RemoveFormat', 'Source']
         ]
