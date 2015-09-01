@@ -1,14 +1,14 @@
 /* MailChimp Form Embed Code - Classic - 08/17/2011 */
 #mc_embed_signup form {display:block; position:relative; text-align:left;}
 #mc_embed_signup h2 {font-weight:bold; padding:0; margin:15px 0; font-size:1.4em;}
-#mc_embed_signup input {border:1px solid #999; -webkit-appearance:none;}
+#mc_embed_signup input {border:1px solid #fb0; border-radius:4px; -webkit-appearance:none;}
 #mc_embed_signup input[type=checkbox]{-webkit-appearance:checkbox;}
 #mc_embed_signup input[type=radio]{-webkit-appearance:radio;}
 #mc_embed_signup input:focus {border-color:#333;}
 #mc_embed_signup .button {
     clear:both;
     background-color: #fff;
-    border: 0 none;
+    border: 1px solid #fb0;;
     border-radius:4px;
     color: #000;
     cursor: pointer;
@@ -19,7 +19,7 @@
     margin: 0;
     padding: 0 22px;
     text-align: center;
-    text-decoration: none;
+    font-weight: 100;
     vertical-align: top;
     white-space: nowrap;
     width: 100%;
@@ -28,7 +28,7 @@
 #mc_embed_signup .small-meta {font-size: 11px;}
 #mc_embed_signup .nowrap {white-space:nowrap;}
 
-#mc_embed_signup .mc-field-group {clear:left; position:relative; width:96%;}
+#mc_embed_signup .mc-field-group {clear:left; position:relative; width:100%;}
 #mc_embed_signup .size1of2 {clear:none; float:left; display:inline-block; width:46%; margin-right:4%;}
 * html #mc_embed_signup .size1of2 {margin-right:2%; /* Fix for IE6 double margins. */}
 #mc_embed_signup .mc-field-group label {display:block; margin-bottom:3px;}
