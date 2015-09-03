@@ -249,7 +249,6 @@ ul.navbar-nav > li > a:hover {
 #footer {
     clear: both;
     padding: 20px 50px;
-    margin-top: 20px;
     color: #BBB;
     background: #222 none repeat scroll 0% 0%;
     border-top: 1px solid #111;
@@ -288,6 +287,21 @@ ul.navbar-nav > li > a:hover {
 
 #footer .social-icons-container .social-icon-google-plus a:hover {
   color: #CE3C2D;
+}
+
+#signup-newsletter {
+	clear: both;
+	background: #FB0 none repeat scroll 0% 0%;
+	margin-top: 50px;
+	padding: 15px;
+}
+#signup-newsletter h3 {
+	margin: 0px;
+	padding: 0px;
+}
+
+#signup-newsletter #emailinput {
+	width: 100% !important;
 }
 
 #copyright {

@@ -14,4 +14,8 @@
 	.slider-size {
 	  height: 200px;
 	}
+	
+	#signup-newsletter h3 {
+		padding: 0 0 15px 0;
+	}
 }
