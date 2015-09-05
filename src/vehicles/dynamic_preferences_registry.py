@@ -1,4 +1,5 @@
-from dynamic_preferences.types import StringPreference
+from dynamic_preferences.types import StringPreference, \
+    IntegerPreference
 from dynamic_preferences import global_preferences_registry
 
 
@@ -16,3 +17,13 @@ class SiteHeader(StringPreference):
     name = 'admin_header'
     verbose_name = 'Admin Site Header'
     default = 'Global Trade Motors'
+
+
+@global_preferences_registry.register
+class NumberOfVehiclesOnHompage(IntegerPreference):
+    section = 'homepage'
+    name = 'number_of_vehicles'
+    verbose_name = 'Homepage Vehicles'
+    help_text = 'Please enter the number of vehicles to show on homepage.'
+    default = 16
+

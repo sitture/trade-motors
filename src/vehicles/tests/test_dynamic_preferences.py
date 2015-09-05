@@ -19,3 +19,9 @@ class DynamicPreferencesTests(TestCase):
             self.global_preferences['general__admin_header'],
             'Global Trade Motors'
         )
+
+    def test_number_of_vehicles_on_homepage_preference(self):
+        self.assertEquals(
+            self.global_preferences['homepage__number_of_vehicles'],
+            16
+        )
