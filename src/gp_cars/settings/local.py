@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # admins
 ADMINS = (
-    ('Admin', 'info@globaltradingmotors.com'),
+    ('Admin', 'info@globaltrademotors.com'),
     ('Haroon', 'haroon@sitture.com'),
 )
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'dynamic_preferences',
     'ckeditor',
     'imagekit',
     'vehicles',
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dynamic_preferences.processors.global_preferences',
             ],
         },
     },

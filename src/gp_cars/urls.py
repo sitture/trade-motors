@@ -1,27 +1,15 @@
-"""gp_cars URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
-"""
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 from vehicles.views import home_page, category_page, \
-    vehicle_detail_page, contact_page, exports_page
+    vehicle_detail_page, exports_page
+from contact.views import contact_page
 # The ugettext_lazy function is used to mark the language names for translation
 from django.utils.translation import ugettext_lazy as _
+from dynamic_preferences import global_preferences_registry
+
 
 urlpatterns = [
     url(r'^$', home_page, name='home'),
@@ -43,14 +31,16 @@ urlpatterns = [
         ),
 ]
 
-SITE_HEADER_TITLE = 'Global Trade Motors'
-
 # change the header title on admin
-admin.site.site_header = _(SITE_HEADER_TITLE)
-admin.site.site_title = _(SITE_HEADER_TITLE)
+# instanciate a manager for global preferences
+global_preferences = global_preferences_registry.manager()
+admin.site.site_header = _(global_preferences['general__admin_header'])
+admin.site.site_title = _(global_preferences['general__admin_title'])
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT)
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT)
