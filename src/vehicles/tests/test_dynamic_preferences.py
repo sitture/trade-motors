@@ -25,3 +25,9 @@ class DynamicPreferencesTests(TestCase):
             self.global_preferences['homepage__number_of_vehicles'],
             16
         )
+
+    def test_default_email_address_preference(self):
+        self.assertEquals(
+            self.global_preferences['general__default_email'],
+            'info@globaltrademotors.com'
+        )

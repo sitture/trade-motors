@@ -34,8 +34,8 @@
                 <div class="contactinfo">
                 <ul class="nav nav-pills">
                   <li><a href="">
-                    {% if contact_details %}
-                    <i class="fa fa-envelope"></i> {{ contact_details.email }}
+                    {% if default_email %}
+                    <i class="fa fa-envelope"></i> {{ default_email }}
                     {% else %}
                     <i class="fa fa-envelope"></i> info@globaltrademotors.com
                     {% endif %}

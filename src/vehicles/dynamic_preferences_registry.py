@@ -27,3 +27,12 @@ class NumberOfVehiclesOnHompage(IntegerPreference):
     help_text = 'Please enter the number of vehicles to show on homepage.'
     default = 16
 
+
+@global_preferences_registry.register
+class DefaultEmailAddress(StringPreference):
+    section = 'general'
+    name = 'default_email'
+    verbose_name = 'Default Email Address'
+    help_text = 'Please enter the email address to show on the top header \
+                 and other pages.'
+    default = 'info@globaltrademotors.com'

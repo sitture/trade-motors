@@ -1,11 +1,13 @@
 # Context processors
 from settings.models import Social, ContactDetail
 from vehicles.models import Category
-
-# to allow these variables to available in all views.
+from dynamic_preferences import global_preferences_registry
 
 
 def global_context_processor(request):
+    # instanciate a manager for global preferences
+    global_preferences = global_preferences_registry.manager()
+    default_email = global_preferences['general__default_email']
     # get all the social service providers
     social_providers = list(Social.objects.all())
     # get all parent categories with sub categories
