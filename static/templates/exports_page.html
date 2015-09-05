@@ -51,7 +51,7 @@
 									Location
 								</th>
 								<th class="text-right">
-									Price (GBP)
+									Price (GBP) *
 								</th>
 							</tr>
 						</thead>
@@ -80,8 +80,14 @@
 							<td class="text-right">900.00</td>
 						</tr>
 					</table>
+					<small>* The shipping prices may vary depending on location and type of vehicle.</small>
 					<p class="lead text-danger">
-						if any other location, please contact us at <a href="mailto:#">info@globaltrademotors.com</a>
+						For any other location, please contact us at 
+						{% if default_email %}
+                    		<a href="mailto:{{ default_email }}">{{ default_email }}</a>
+                    	{% else %}
+                    		<a href="mailto:info@globaltrademotors.com">info@globaltrademotors.com</a>
+                    	{% endif %}</a>
 					</p>
 				</div>
 			</div>
