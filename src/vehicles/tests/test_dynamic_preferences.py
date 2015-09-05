@@ -2,7 +2,7 @@ from django.test import TestCase
 from dynamic_preferences import global_preferences_registry
 
 
-class ProjectTests(TestCase):
+class DynamicPreferencesTests(TestCase):
 
     def setUp(self):
         # instanciate a manager for global preferences
