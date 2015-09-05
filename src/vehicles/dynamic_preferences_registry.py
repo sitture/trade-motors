@@ -1,6 +1,7 @@
 from dynamic_preferences.types import StringPreference, \
     IntegerPreference
 from dynamic_preferences import global_preferences_registry
+from django.conf import settings
 
 
 @global_preferences_registry.register
@@ -36,3 +37,5 @@ class DefaultEmailAddress(StringPreference):
     help_text = 'Please enter the email address to show on the top header \
                  and other pages.'
     default = 'info@globaltrademotors.com'
+    if settings.DEFAULT_EMAIL_ADDRESS:
+        default = settings.DEFAULT_EMAIL_ADDRESS

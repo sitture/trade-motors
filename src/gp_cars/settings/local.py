@@ -28,9 +28,11 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
+DEFAULT_EMAIL_ADDRESS = 'info@globaltrademotors.com'
+
 # admins
 ADMINS = (
-    ('Admin', 'info@globaltrademotors.com'),
+    ('Admin', DEFAULT_EMAIL_ADDRESS),
     ('Haroon', 'haroon@sitture.com'),
 )
 

@@ -1,5 +1,6 @@
 from django.test import TestCase
 from dynamic_preferences import global_preferences_registry
+from django.conf import settings
 
 
 class DynamicPreferencesTests(TestCase):
@@ -29,5 +30,5 @@ class DynamicPreferencesTests(TestCase):
     def test_default_email_address_preference(self):
         self.assertEquals(
             self.global_preferences['general__default_email'],
-            'info@globaltrademotors.com'
+            settings.DEFAULT_EMAIL_ADDRESS
         )
