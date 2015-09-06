@@ -4,7 +4,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 from vehicles.views import home_page, category_page, \
-    vehicle_detail_page, exports_page, contact_page
+    vehicle_detail_page, exports_page
+from contact.views import contact_page
 # The ugettext_lazy function is used to mark the language names for translation
 from django.utils.translation import ugettext_lazy as _
 from dynamic_preferences import global_preferences_registry
