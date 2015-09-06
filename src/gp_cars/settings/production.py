@@ -14,11 +14,6 @@ if not settings.DEBUG:
         'trademotors.webfactional.com'
     ]
 
-    EMAIL_HOST = 'smtp.webfaction.com'
-    EMAIL_HOST_USER = 'trademotors'
-    EMAIL_HOST_PASSWORD = 'sitture2'
-    SERVER_EMAIL = 'info@globaltrademotors.com'
-
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
