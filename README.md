@@ -30,9 +30,11 @@ git clone git@gitlab.com:sitture/trade-motors.git .
 pip install -r requirements.txt
 ```
 
-## Running the Django server ##
+## Running the Django server locally ##
 
 Once the above packages are installed successfully, you should then be able to run the django server.
+
+To run the application locally, open the file `src/gp_cars/settings/local.py` and set `DEBUG` to `True`.
 
 ```bash
 cd src
