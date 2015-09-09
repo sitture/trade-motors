@@ -30,7 +30,7 @@ git clone git@gitlab.com:sitture/trade-motors.git .
 pip install -r requirements.txt
 ```
 
-## Running the django ##
+## Running the Django server ##
 
 Once the above packages are installed successfully, you should then be able to run the django server.
 
@@ -39,7 +39,7 @@ cd src
 python manage.py runserver
 ```
 
-## Running the tests ##
+## Running the Tests ##
 
 From the `src` directory, run the below to execute tests.
 
