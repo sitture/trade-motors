@@ -1,5 +1,7 @@
 # Global Trade Motors #
 
+`master` [![build status](https://ci.gitlab.com/projects/6368/status.png?ref=master)](https://ci.gitlab.com/projects/6368?ref=master) `develop` [![build status](https://ci.gitlab.com/projects/6368/status.png?ref=develop)](https://ci.gitlab.com/projects/6368?ref=develop)
+
 ## Prerequisites ##
 
 + `Python 2.7`
