@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'dynamic_preferences',
+    'crispy_forms',
     'ckeditor',
     'imagekit',
     'vehicles',
@@ -146,3 +147,6 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+# crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
