@@ -5,6 +5,7 @@ from dynamic_preferences import global_preferences_registry
 # import settings so send_mail can have access to email settings
 from django.conf import settings
 from django.core.mail import send_mail
+from django.contrib import messages
 
 
 def contact_page(request):
@@ -26,7 +27,7 @@ def contact_page(request):
                     sender_email,
                     sender_phone,
                     sender_message
-                )
+            )
             # instanciate a manager for global preferences
             global_preferences = global_preferences_registry.manager()
             # get default email address from global preferences
@@ -42,6 +43,10 @@ def contact_page(request):
                 message_to_send,
                 sender_email, [send_to_email],
                 fail_silently=not settings.DEBUG
+            )
+            messages.success(
+                request,
+                "Thank you getting in touch! We'll get back to you shortly."
             )
             form = ContactForm()
 

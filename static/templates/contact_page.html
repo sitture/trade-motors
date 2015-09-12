@@ -17,8 +17,14 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<h3>Contact Details:</h3>
 			<hr />
+			{% if messages %}
+				{% for message in messages %}
+					<p{% if message.tags == "success" %} class="alert alert-{{ message.tags }}"{% endif %}>
+						{{ message }}
+					</p>
+				{% endfor %}
+			{% endif %}
 			{% if form %}
 				<div class="col-md-6">
 				<div class="well well-lg">
