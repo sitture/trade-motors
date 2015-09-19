@@ -8,6 +8,7 @@ def global_context_processor(request):
     # instanciate a manager for global preferences
     global_preferences = global_preferences_registry.manager()
     default_email = global_preferences.get('general__default_email', None)
+    live_chat = global_preferences.get('general__live_chat', False)
     # get all the social service providers
     social_providers = list(Social.objects.all())
     # get all parent categories with sub categories

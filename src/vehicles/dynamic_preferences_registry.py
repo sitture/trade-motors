@@ -1,5 +1,5 @@
 from dynamic_preferences.types import StringPreference, \
-    IntegerPreference
+    IntegerPreference, BooleanPreference
 from dynamic_preferences import global_preferences_registry
 from django.conf import settings
 
@@ -39,3 +39,12 @@ class DefaultEmailAddress(StringPreference):
     default = 'info@globaltrademotors.com'
     if settings.DEFAULT_EMAIL_ADDRESS:
         default = settings.DEFAULT_EMAIL_ADDRESS
+
+
+@global_preferences_registry.register
+class LiveChatFeature(BooleanPreference):
+    section = 'general'
+    name = 'live_chat'
+    verbose_name = 'Live Chat'
+    help_text = 'Turn Live Chat feature on/off.'
+    default = False

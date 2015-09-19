@@ -32,3 +32,11 @@ class DynamicPreferencesTests(TestCase):
             self.global_preferences['general__default_email'],
             settings.DEFAULT_EMAIL_ADDRESS
         )
+
+    def test_live_chat_preference(self):
+        print self.global_preferences['general__live_chat']
+        self.assertEquals(
+            self.global_preferences['general__live_chat'],
+            False,
+            msg='Live chat feature should be OFF by deafult.'
+        )
