@@ -48,6 +48,16 @@ def exports_page(request):
     )
 
 
+def how_to_buy(request):
+    return render_to_response(
+        "how_to_buy.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
+    )
+
+
 def category_page(request, slug):
 
     # check if make slug parameter is passed into the url
