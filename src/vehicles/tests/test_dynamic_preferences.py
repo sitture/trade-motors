@@ -37,6 +37,6 @@ class DynamicPreferencesTests(TestCase):
         print self.global_preferences['general__live_chat']
         self.assertEquals(
             self.global_preferences['general__live_chat'],
-            True,
-            msg='Live chat feature should be ON by deafult.'
+            False,
+            msg='Live chat feature should be OFF by deafult.'
         )

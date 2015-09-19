@@ -47,4 +47,4 @@ class LiveChatFeature(BooleanPreference):
     name = 'live_chat'
     verbose_name = 'Live Chat'
     help_text = 'Turn Live Chat feature on/off.'
-    default = True
+    default = False
