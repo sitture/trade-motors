@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
 from vehicles.views import home_page, category_page, \
-    vehicle_detail_page, exports_page
+    vehicle_detail_page, exports_page, how_to_buy
 from contact.views import contact_page
 # The ugettext_lazy function is used to mark the language names for translation
 from django.utils.translation import ugettext_lazy as _
@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
     url(r'^exports$', exports_page, name='exports'),
+    url(r'^how_to_buy$', how_to_buy, name='how_to_buy'),
     url(r'^contact-us$', contact_page, name='contact'),
     url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/$',
         category_page, name='category'),

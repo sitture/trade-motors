@@ -77,6 +77,7 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a></li>
                             <li><a href="{% url 'exports' %}"><i class="fa fa-truck"></i> Exports</a></li>
+                            <li><a href="{% url 'how_to_buy' %}"><i class="fa fa-question-circle"></i> How To Buy</a></li>
                             <!-- <li><a href="{% url 'about' %}"><i class="fa fa-briefcase"></i> About Us</a></li> -->
                             <!--Categories -->
                             {% for category in all_categories %}
@@ -206,5 +207,6 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/converter.js' %}"></script>
     <script src="{% static 'js/lightbox/lightbox.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
   </body>
 </html>
