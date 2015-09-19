@@ -56,14 +56,12 @@
                     <div class="well well-sm">
                     {{ vehicle.desc|safe }}
                     </div>
-                    <div>
                     	<!-- Twitter -->
-						<a href="http://twitter.com/home?status={{ vehicle }} {{ request.build_absolute_uri|urlencode }}" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+						<a href="http://twitter.com/home?status={{ vehicle }} {{ request.build_absolute_uri|urlencode }}" title="Share on Twitter" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
 						 <!-- Facebook -->
-						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" title="Share on Facebook" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
 						<!-- Google+ -->
-						<a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" title="Share on Google+" target="_blank" class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>
-                    </div>
+						<a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" title="Share on Google+" target="_blank" class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
                     <hr />
                     <div class="row">
 	                    <table class="table table-striped">
