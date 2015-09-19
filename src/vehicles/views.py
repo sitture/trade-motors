@@ -6,11 +6,13 @@ from vehicles.context_processor import global_context_processor
 from vehicles.models import Vehicle, VehicleMake, Category
 from settings.models import SliderImage
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from dynamic_preferences import global_preferences_registry
 
 
 def home_page(request):
-
-    MAX_VEHICLES_TO_SHOW = 16
+    # instanciate a manager for global preferences
+    global_preferences = global_preferences_registry.manager()
+    MAX_VEHICLES_TO_SHOW = global_preferences['homepage__number_of_vehicles']
     MAX_CATEGORIES_TO_SHOW = 4
 
     # get list of slider objects
@@ -27,18 +29,32 @@ def home_page(request):
     if top_vehicles:
         top_vehicles = top_vehicles[:MAX_VEHICLES_TO_SHOW]
 
-    return render_to_response("home_page.html", locals(),
-                              context_instance=RequestContext(
-        request, processors=[global_context_processor]
-    )
+    return render_to_response(
+        "home_page.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
     )
 
 
 def exports_page(request):
-    return render_to_response("exports_page.html", locals(),
-                              context_instance=RequestContext(
-        request, processors=[global_context_processor]
+    return render_to_response(
+        "exports_page.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
     )
+
+
+def how_to_buy(request):
+    return render_to_response(
+        "how_to_buy.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
     )
 
 
@@ -84,10 +100,12 @@ def category_page(request, slug):
 
     makes = get_makes_in_category(category)
 
-    return render_to_response("categories_page.html", locals(),
-                              context_instance=RequestContext(
-        request, processors=[global_context_processor]
-    )
+    return render_to_response(
+        "categories_page.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
     )
 
 
@@ -99,18 +117,12 @@ def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
     related_vehicles = Vehicle.objects.get_vehicles_by_category(
         vehicle.category)
 
-    return render_to_response("detail_page.html", locals(),
-                              context_instance=RequestContext(
-        request, processors=[global_context_processor]
-    )
-    )
-
-
-def contact_page(request):
-    return render_to_response("contact_page.html", locals(),
-                              context_instance=RequestContext(
-        request, processors=[global_context_processor]
-    )
+    return render_to_response(
+        "detail_page.html",
+        locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
+        )
     )
 
 

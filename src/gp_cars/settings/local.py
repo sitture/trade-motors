@@ -28,11 +28,18 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
+DEFAULT_EMAIL_ADDRESS = 'info@globaltrademotors.com'
+
 # admins
 ADMINS = (
-    ('Admin', 'info@globaltradingmotors.com'),
+    ('Admin', DEFAULT_EMAIL_ADDRESS),
     ('Haroon', 'haroon@sitture.com'),
 )
+
+EMAIL_HOST = 'smtp.webfaction.com'
+EMAIL_HOST_USER = 'trademotors'
+EMAIL_HOST_PASSWORD = 'sitture2'
+SERVER_EMAIL = 'info@globaltrademotors.com'
 
 # Application definition
 
@@ -44,6 +51,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'dynamic_preferences',
+    'crispy_forms',
     'ckeditor',
     'imagekit',
     'vehicles',
@@ -76,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dynamic_preferences.processors.global_preferences',
             ],
         },
     },
@@ -137,3 +147,6 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+# crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

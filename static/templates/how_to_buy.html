@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block pagetitle %}
+	How To Buy
+{% endblock %}
+
+{% block content %}
+	<div id="content">
+		<div class="page-title">
+			<div class="container">
+                <h3>How To Buy</h3>
+                <ul class="breadcrumb">
+                    <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active">How To Buy</li>
+                </ul><!--end breadcrumb -->
+            </div>
+		</div><!--end page-title -->
+<!-- start main container -->
+		<div class="container">
+			<h1>Procedure</h3>
+			<div class="row">
+				<ul class="timeline">
+					<li>
+						<div class="timeline-badge warning">1</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h3 class="timeline-title">Select a Vehicle from the website</h3>
+							</div>
+							<div class="timeline-body lead">
+							<p>It's quite simple. At first, select a vehicle you want. Next, get in touch by filling in the contact form or email us at <strong>
+							{% if default_email %}
+                    			<a href="mailto:{{ default_email }}">{{ default_email }}</a>
+                    		{% else %}
+                    			<a href="mailto:info@globaltrademotors.com">info@globaltrademotors.com</a>
+                    		{% endif %}</strong> to get a proforma invoice. The proforma invoice will be sent you by e-mail after confirming your inquiry.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="timeline-badge warning">2</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h3 class="timeline-title">Print the Performa Invoice and goto your bank</h3>
+							</div>
+							<div class="timeline-body lead">
+							<p>Print the proforma invoice and go to your bank to make payment by telegraphic transfer (Swift Transfer). And send us a copy of bank receipt by either e-mail, or take the copy to our local agent in Maputo.</p>
+							<p><strong>Maputo Contact Office:</strong> 84 591 10 63</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="timeline-badge warning">3</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h3 class="timeline-title">We book shipment to Maputo</h3>
+							</div>
+							<div class="timeline-body lead">
+							<p>We book a space for your vehicle on a vessel as soon as we confirm your payment. When the space is booked, we will send you a Booking confirmation e-mail stating the dates of Shipment and Arrival.</p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		</div><!-- end main container -->
+	</div>
+{% endblock %}
