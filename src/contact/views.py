@@ -38,11 +38,14 @@ def contact_page(request):
             if not send_to_email:
                 send_to_email = settings.DEFAULT_EMAIL_ADDRESS
             # email the details
+            # send_mail(subject, message, from, to, fail_silently)
+            from_email = settings.SERVER_EMAIL \
+                or 'info@globaltrademotors.com'
             send_mail(
                 email_subject,
                 message_to_send,
-                sender_email, [send_to_email],
-                fail_silently=not settings.DEBUG
+                from_email, [send_to_email],
+                fail_silently=True
             )
             messages.success(
                 request,
