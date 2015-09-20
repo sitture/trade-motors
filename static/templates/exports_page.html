@@ -82,11 +82,12 @@
 					</table>
 					<small>* The shipping prices may vary depending on location and type of vehicle.</small>
 					<p class="lead text-danger">
-						For any other location, please contact us at 
 						{% if default_email %}
+							For any other location, please contact us at 
                     		<a href="mailto:{{ default_email }}">{{ default_email }}</a>
                     	{% else %}
-                    		<a href="mailto:info@globaltrademotors.com">info@globaltrademotors.com</a>
+                    		For any other location, please contact us at 
+                    		<a href="mailto:{{ contact_details.email }}">{{ contact_details.email }}</a>
                     	{% endif %}
 					</p>
 				</div>
