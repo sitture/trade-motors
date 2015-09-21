@@ -75,7 +75,7 @@
 					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
 					{% endif %}
 				</a> <!-- /img -->
-				<h4>{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}
+				<h4>{% if vehicle.year %}{{ vehicle.year }} {% endif %}{{ vehicle.make }} {{ vehicle.model }}
 				{% if vehicle.price %}
 					<strong> £{{ vehicle.price|intcomma }}</strong>
 				{% endif %}
