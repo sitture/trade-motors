@@ -34,7 +34,6 @@ class DynamicPreferencesTests(TestCase):
         )
 
     def test_live_chat_preference(self):
-        print self.global_preferences['general__live_chat']
         self.assertEquals(
             self.global_preferences['general__live_chat'],
             False,

@@ -205,6 +205,11 @@ class VehicleQuerySetTest(TestCase):
             desc='Test Vehicle Two'
         )
 
+    def test_can_get_expected_object_string_when_no_year(self):
+        self.assertEquals(
+            str(self.vehicle_main_category),
+            'Toyota Test')
+
     def test_can_get_vehicles_by_sub_category(self):
         # test can get vehicle by vehicle's category
         actual_vehicles = Vehicle.objects.get_vehicles_by_category(
