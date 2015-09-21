@@ -15,8 +15,13 @@ class VehicleCategoryAdmin(admin.ModelAdmin):
         model = Category
 
 
+class VehicleImageInline(admin.TabularInline):
+    model = VehicleImage
+    extra = 10
+
 # register the vehicle model
 class VehicleAdmin(admin.ModelAdmin):
+    inlines = [VehicleImageInline, ]
     list_display = ['__unicode__', 'category']
     list_filter = ('category', 'make', 'year')
     prepopulated_fields = {'slug': ('make', 'model', 'transmission', 'year')}
