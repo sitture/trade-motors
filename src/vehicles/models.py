@@ -170,6 +170,9 @@ class Vehicle(models.Model):
     objects = VehicleQuerySet.as_manager()
 
     def __unicode__(self):
+        if not self.year:
+            return '{0} {1}'.format(
+                self.make, self.model)
         display_text = '{0} {1} {2}'.format(
             self.make, self.model, self.year)
         return display_text
