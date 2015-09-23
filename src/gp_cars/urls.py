@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
     url(r'^exports$', exports_page, name='exports'),
-    url(r'^how_to_buy$', how_to_buy, name='how_to_buy'),
+    url(r'^how-to-buy$', how_to_buy, name='how_to_buy'),
     url(r'^contact-us$', contact_page, name='contact'),
     url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/$',
         category_page, name='category'),
