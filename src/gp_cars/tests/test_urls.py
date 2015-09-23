@@ -74,27 +74,43 @@ class ProjectTests(TestCase):
         )
 
     def test_about_us_page(self):
-        response = self.client.get(reverse('about'))
+        url = reverse('about')
+        response = self.client.get(url)
         self.assertEqual(
             response.status_code, 200
+        )
+        self.assertEquals(
+            url, '/about-us'
         )
 
     def test_exports_page(self):
-        response = self.client.get(reverse('exports'))
+        url = reverse('exports')
+        response = self.client.get(url)
         self.assertEqual(
             response.status_code, 200
+        )
+        self.assertEquals(
+            url, '/exports'
         )
 
     def test_how_to_buy_page(self):
-        response = self.client.get(reverse('how_to_buy'))
+        url = reverse('how_to_buy')
+        response = self.client.get(url)
         self.assertEqual(
             response.status_code, 200
         )
+        self.assertEquals(
+            url, '/how-to-buy'
+        )
 
     def test_contact_us_page(self):
-        response = self.client.get(reverse('contact'))
+        url = reverse('contact')
+        response = self.client.get(url)
         self.assertEqual(
             response.status_code, 200
+        )
+        self.assertEquals(
+            url, '/contact-us'
         )
 
     def test_robots_txt_page(self):
