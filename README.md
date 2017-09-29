@@ -1,15 +1,15 @@
-# Global Trade Motors #
+# trademotors
 
-`master` [![build status](https://ci.gitlab.com/projects/6368/status.png?ref=master)](https://ci.gitlab.com/projects/6368?ref=master) `develop` [![build status](https://ci.gitlab.com/projects/6368/status.png?ref=develop)](https://ci.gitlab.com/projects/6368?ref=develop)
+A Django-based website for http://globaltrademotors.com
 
-## Prerequisites ##
+## Prerequisites
 
 + `Python 2.7`
-+ `pip` https://pypi.python.org/pypi/pip 
++ `pip` https://pypi.python.org/pypi/pip
 
-## Setting up the project ##
+## Setting up the project
 
-### Using a Virtual Environment (Recommended) ###
+### Using a Virtual Environment (Recommended)
 
 Create a virtual environment `trademotors` and activate.
 
@@ -23,7 +23,7 @@ source bin/activate
 ### Clone the repository
 
 ```bash
-git clone git@gitlab.com:sitture/trade-motors.git .
+git clone git@github.com:sitture/trademotors.git .
 ```
 
 ### Install required packages ###
