@@ -8,7 +8,7 @@ from vehicles.views import home_page, category_page, \
 from contact.views import contact_page
 # The ugettext_lazy function is used to mark the language names for translation
 from django.utils.translation import ugettext_lazy as _
-from dynamic_preferences import global_preferences_registry
+from dynamic_preferences.registries import global_preferences_registry
 
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
         name='vehicle'
         ),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^robots\.txt$',
         TemplateView.as_view(
             template_name='robots.txt',
