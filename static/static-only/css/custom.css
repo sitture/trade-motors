@@ -1,0 +1,478 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+    background: #fff; /*url("../imsg/bg.png") repeat scroll 0px 0px*/
+}
+
+/*------------------------------------------------------------------
+[1. Global]
+*/
+
+.thumbnail:hover {
+	border: 1px solid #FB0;
+}
+
+.thumbnail a > img, .thumbnail:hover {
+	border: 1px solid #FB0;
+}
+
+.slash {
+    padding-right: 0.25em;
+    color: #FB0;
+}
+
+
+/* -----------------------------------------------------------------------
+ CONTAINER SETTINGS
+*/
+
+.container h2 {
+	color: #fb0;
+}
+
+.container .h3, h3 {
+    font-weight: 100;
+}
+
+.container .h4, h4 {
+    font-weight: 200;
+}
+
+/*************************
+******* Header CSS ******
+**************************/
+.header_top {
+	background: none repeat scroll 0 0 #FB0;
+}
+
+.contactinfo ul li:first-child {
+    margin-left: -15px;
+}
+
+.contactinfo ul li a {
+  font-size: 11px;
+  font-weight: 100px;
+  color: #fff;
+}
+
+.contactinfo ul li a:hover {
+	background:inherit;
+}
+
+.social-icons ul li a {
+  border: 0 none;
+  border-radius: 0;
+  color: #fff;
+  padding:0px;
+}
+
+.social-icons ul li {
+	display:inline-block;
+}
+
+.social-icons ul li a i {
+  padding: 11px 15px;
+   transition: all 0.9s ease 0s;
+  -moz-transition: all 0.9s ease 0s;
+  -webkit-transition: all 0.9s ease 0s;
+  -o-transition: all 0.9s ease 0s;
+}
+
+.social-icons ul li a i:hover {
+  color: #fff;
+   transition: all 0.9s ease 0s;
+  -moz-transition: all 0.9s ease 0s;
+  -webkit-transition: all 0.9s ease 0s;
+  -o-transition: all 0.9s ease 0s;
+}
+
+.fa-facebook:hover {
+  background: #0083C9;
+}
+
+.fa-twitter:hover {
+	background:#5BBCEC;
+}
+
+.fa-linkedin:hover {
+	background:#FF4518;
+}
+
+.fa-dribbble:hover {
+	background:#90C9DC;
+}
+
+.fa-google-plus:hover {
+	background:#CE3C2D;
+}
+
+/* HEADER */
+
+/* Navbar
+======================================================================= */
+
+.navbar {
+	/*min-height:zpx !important;*/
+	padding: 15px 0px;
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+
+.navbar > .container .navbar-brand {
+    margin-left: 5px;
+}
+
+.navbar-brand {
+    padding: 0px;
+    margin-top: 0px;
+    height: 50px;
+}
+
+.navbar-brand img {
+	height: 100%;
+	width: auto;
+	vertical-align: middle;
+	max-width: 100%
+}
+
+a {
+    color: #000;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: #fb0;
+}
+
+.navbar-default .navbar-toggle:hover {
+	border-color: #fff;
+}
+
+.navbar-toggle {
+	background-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fb0;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #FFE082;
+    color: #000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #000;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: #ffe082;
+    color: #000;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #000;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #000;
+}
+
+.navbar-default .navbar-nav > .active > a {
+    background-color: transparent;
+    color: #000;
+}
+
+.navbar-default .navbar-nav > .active > a:hover {
+    color: #000;
+}
+
+ul.navbar-nav > li > a:hover {
+	background-color: #ffe082 !important;
+}
+
+.navbar-toggle {
+    background: #fff !important;
+}
+
+.navbar-brand span {
+    color:#000 !important;
+}
+
+/* SLIDER
+==================================================================*/
+
+#slider-container {
+	position: relative;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/*#slider-container .container {
+    width: 880px;
+}*/
+
+.container .category-container {
+  background-color: #ffe082;
+}
+
+/* PAGE HEADER
+=====================================================================*/
+.page-title {
+    padding: 30px;
+    background: #f5f5f5 none repeat scroll 0% 0%;
+}
+
+/* Detail Carousel
+===================================================================*/
+#carousel-vehicle-images {
+  margin-top: 20px;
+}
+
+.slider-size {
+  height: 450px;
+}
+.carousel {
+  width:100%; 
+  margin:0 auto;
+}
+
+.pull-bottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+
+/* FOOTER
+==================================================================*/
+
+#footer {
+    clear: both;
+    padding: 20px 50px;
+    color: #BBB;
+    background: #222 none repeat scroll 0% 0%;
+    border-top: 1px solid #111;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2) inset;
+}
+
+#footer #footer-logo {
+    color: #777;
+    overflow: hidden;
+    height: 50px;
+    line-height: 600px;
+    background: transparent url("../img/logo_inverse.png") no-repeat scroll 0px 0px;
+}
+
+#footer .social-icons-container a {
+  color: #777;
+}
+
+.social-icons-container {
+    padding: 0px;
+}
+
+.social-icons-container li {
+  display: inline-block;
+  margin: 2px;
+}
+
+
+#footer .social-icons-container .social-icon-facebook a:hover {
+  color: #3b5998;
+}
+
+#footer .social-icons-container .social-icon-twitter a:hover {
+  color: #5BBCEC;
+}
+
+#footer .social-icons-container .social-icon-google-plus a:hover {
+  color: #CE3C2D;
+}
+
+#signup-newsletter {
+	clear: both;
+	background: #FB0 none repeat scroll 0% 0%;
+	margin-top: 50px;
+	padding: 15px;
+}
+#signup-newsletter h3 {
+	margin: 0px;
+	padding: 0px;
+}
+
+#signup-newsletter #emailinput {
+	width: 100% !important;
+}
+
+#copyright {
+    clear: both;
+    padding: 20px 50px 15px;
+    color: #777;
+    font-size: 11px;
+    text-transform: uppercase;
+    background: #000 none repeat scroll 0% 0%;
+    border-top: 1px solid #000;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.15) inset;
+}
+
+#copyright a {
+    color: #777;
+}
+
+.col-padding {
+  padding: 2px;
+}
+
+/* Timeline
+===============================================================*/
+
+.timeline {
+	list-style: none;
+	padding: 20px 0 20px;
+	position: relative;
+}
+
+.timeline:before {
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	content: " ";
+	width: 3px;
+	background-color: #eeeeee;
+	left: 25px;
+	margin-right: -1.5px;
+}
+
+.timeline > li {
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+	content: " ";
+	display: table;
+}
+
+.timeline > li:after {
+	clear: both;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+	content: " ";
+	display: table;
+}
+
+.timeline > li:after {
+	clear: both;
+}
+
+.timeline > li > .timeline-panel {
+	width: calc( 100% - 75px );
+	float: right;
+	border: 1px solid #d4d4d4;
+	border-radius: 2px;
+	padding: 20px;
+	position: relative;
+	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+
+.timeline > li > .timeline-panel:before {
+	position: absolute;
+	top: 26px;
+	left: -15px;
+	display: inline-block;
+	border-top: 15px solid transparent;
+	border-right: 15px solid #ccc;
+	border-left: 0 solid #ccc;
+	border-bottom: 15px solid transparent;
+	content: " ";
+}
+
+.timeline > li > .timeline-panel:after {
+	position: absolute;
+	top: 27px;
+	left: -14px;
+	display: inline-block;
+	border-top: 14px solid transparent;
+	border-right: 14px solid #fff;
+	border-left: 0 solid #fff;
+	border-bottom: 14px solid transparent;
+	content: " ";
+}
+
+.timeline > li > .timeline-badge {
+	color: #fff;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1.4em;
+	text-align: center;
+	position: absolute;
+	top: 16px;
+	left: 0px;
+	margin-right: -25px;
+	background-color: #999999;
+	z-index: 100;
+	border-top-right-radius: 50%;
+	border-top-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+.timeline > li.timeline-inverted > .timeline-panel {
+	float: left;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel:before {
+	border-right-width: 0;
+	border-left-width: 15px;
+	right: -15px;
+	left: auto;
+}
+
+.timeline > li.timeline-inverted > .timeline-panel:after {
+	border-right-width: 0;
+	border-left-width: 14px;
+	right: -14px;
+	left: auto;
+}
+
+.timeline-badge.primary {
+	background-color: #2e6da4 !important;
+}
+
+.timeline-badge.success {
+	background-color: #3f903f !important;
+}
+
+.timeline-badge.warning {
+	background-color: #FB0 !important;
+}
+
+.timeline-badge.danger {
+	background-color: #d9534f !important;
+}
+
+.timeline-badge.info {
+	background-color: #5bc0de !important;
+}
+
+.timeline-title {
+	margin-top: 0;
+	color: inherit;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+	margin-bottom: 0;
+}
+
+.timeline-body > p + p {
+	margin-top: 5px;
+}
+
+.timeline-body .h3, h3 {
+	font-weight: 500;
+}
