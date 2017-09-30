@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=ps-jobs-on-v3)](https://travis-ci.org/travis-ci/travis-web)
 # trade-motors
 
 A Django-based website for http://globaltrademotors.com
