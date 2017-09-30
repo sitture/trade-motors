@@ -1,5 +1,7 @@
 # trade-motors
 
+[![Build Status](https://travis-ci.org/memclutter/trade-motors.svg?branch=master)](https://travis-ci.org/memclutter/trade-motors)
+
 A Django-based website for http://globaltrademotors.com
 
 ## Prerequisites
