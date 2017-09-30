@@ -9,4 +9,5 @@ WORKDIR /code
 RUN rm -rf /root/.cache
 ADD . /code/
 ENV DJANGO_SETTINGS_MODULE=gp_cars.settings.local
+RUN cd src && python manage.py test
 CMD cd src && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
