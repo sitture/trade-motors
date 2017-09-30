@@ -50,3 +50,6 @@ From the `src` directory, run the below to execute tests.
 ```bash
 python manage.py test
 ```
+## Contributing
+
+If you'd like to contribute to this repo checkout the [Contributing Guide](./CONTRIBUTING.md) which will get you up to speed with the way the project is set up.
