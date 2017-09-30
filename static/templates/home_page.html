@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load url_tags %}
+{% load humanize %}
+
+{% block pagetitle %}Home{% endblock %}
+
+{% block slider %}
+
+  {% if sliders %}
+  <div id="slider-container">
+	<div class="container">
+	  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+		  {% for slider in sliders %}
+			{% if forloop.first %}
+			  <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+			{% else %}
+			  <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"></li>
+			{% endif %}
+		  {% endfor %}
+		</ol>
+		<!-- Wrapper for slides -->
+		  <div class="carousel-inner">
+			{% for slider in sliders %}
+			  {% if forloop.first %}
+			  <div class="item active">
+			  {% else %}
+			  <div class="item">
+			  {% endif %}
+				<img src="{{ slider.banner.url }}" class="img-responsive" />
+				{% if slider.caption %}
+				  <div class="carousel-caption">
+					<h3>{{ slider.caption|safe }}</h3>
+				  </div>
+				{% endif %}
+			  </div>
+			{% endfor %}
+		  </div>
+		{% if sliders|length > 1 %}
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		  <span class="glyphicon glyphicon-chevron-left"></span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		  <span class="glyphicon glyphicon-chevron-right"></span>
+		</a>
+		{% endif %}
+	  </div> <!-- Carousel -->
+	  <hr />
+	</div> <!-- /container -->
+  </div><!-- slider/container -->
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div id="content">
+	<div class="container">
+		<!-- Recently added vehicles -->
+		{% if top_vehicles %}
+		{% if not slider %}
+		<br />
+		{% endif %}
+		<div class="row">
+		  {% for vehicle in top_vehicles %}
+		  {% with vehicle.images.get_main_image.thumbnail as thumb %}
+			<div class="col-sm-3">
+				<a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
+					{% if thumb %}
+					<img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+					{% else %}
+					<img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+					{% endif %}
+				</a> <!-- /img -->
+				<h4>{% if vehicle.year %}{{ vehicle.year }} {% endif %}{{ vehicle.make }} {{ vehicle.model }}
+				{% if vehicle.price %}
+					<strong> £{{ vehicle.price|intcomma }}</strong>
+				{% endif %}
+				</h4>
+			</div> <!-- /grid-3 -->
+		{% if forloop.counter|divisibleby:"4" and not forloop.last %}
+		</div>
+		<div class="row">
+		{% endif %}
+		  {% endwith %}
+		  {% endfor %}
+		</div> <!-- /row -->
+		{% endif %}
+	</div> <!-- /container -->
+  </div><!-- /content -->
+{% endblock %}

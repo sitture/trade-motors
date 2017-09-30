@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load url_tags %}
+{% load humanize %}
+
+{% block pagetitle %}
+    {% if category %}
+        {{ category.category_name }}
+    {% else %}
+        Category Not Found!
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+		<div class="page-title">
+			<div class="container">
+                {% if category %}
+                    <h3>{{ category.category_name }}</h3>
+                    {% if request.GET.make %}
+                        <small><strong>Filter By:</strong>
+                        {{ request.GET.make|title }}</small>
+                    {% endif %}
+                    <ul class="breadcrumb">
+                        <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                        {% if category.category_parent %}
+                            <li>
+                                <a href="{% url 'category' category.category_parent.slug %}">
+                                    {{ category.category_parent.category_name }}
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li class="active">{{category.category_name}}</li>
+                    </ul>
+                {% else %}
+                    <h3>All</h3>
+                    <ul class="breadcrumb">
+                        <li><i class="fa fa-home"> </i><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">All Categories</li>
+                    </ul>
+                {% endif %}
+                </div>
+			</div>
+			<div class="container">
+
+				<!-- Categories -->
+				
+				<div class="row">
+					<br />
+					<div class="col-md-9">
+                        {% if vehicles %}
+                            {% for vehicle in vehicles.object_list %}
+                                {% with vehicle.images.get_main_image.thumbnail as thumb %}
+                                <div class="row">
+                                    <div class="col-sm-4 centered">
+                                        <a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}" class="thumbnail">
+                                            {% if thumb %}
+                                            <img class="img-responsive" src="{{ thumb.url }}" alt="{{ vehicle }}" title="{{ vehicle }}">
+                                            {% else %}
+                                            <img class="img-responsive" src="{% static 'img/thumbnail.jpg' %}" alt="{{ vehicle }}" title="{{ vehicle }}">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        {% if vehicle.price %}
+                                        <div class="row">
+                                            <div class="col-xs-7 col-sm-9">
+                                            <h4><a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}">{{ vehicle }}</a></h4>
+                                            </div>
+                                            <div class="col-xs-5 col-sm-3">
+                                                <h4 class="pull-right"><strong>£{{ vehicle.price|intcomma }}</strong></h4>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                            <h4><a href="{% url 'vehicle' vehicle.category.slug vehicle.pk vehicle.slug %}">{{ vehicle }}</a></h4>
+                                        {% endif %}
+                                        <!-- LABELS -->
+                                        <a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
+                                            <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
+                                        <a href="{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
+                                            <i class="fa fa-tag"></i> {{ vehicle.make.v_make }}</a>
+                                        <br /><br />{{ vehicle.desc|striptags|truncatechars:200 }}
+                                    </div>
+                                    <hr />
+                                </div>
+                                {% endwith %}
+                            {% endfor %}
+							{% if vehicles.paginator.num_pages > 1 %}
+							<div class="row text-center">
+								<ul class="pagination">
+									{% if vehicles.has_previous %}
+										<li>
+											<a href="?page={{ vehicles.previous_page_number }}" aria-label="Previous">
+												<span aria-hidden="true">&laquo;</span>
+											</a>
+										</li>
+									{% endif %}
+									{% for page in vehicles.paginator.page_range %}
+										{% if vehicles.number = page %}
+											<li class="active">
+												<a href="#">{{ page }} <span class="sr-only">(current)</span></a>
+											</li>
+										{% else %}
+											<li>
+												<a href="?page={{ page }}">{{ page }}</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+									{% if vehicles.has_next %}
+										<li>
+											<a href="?page={{ vehicles.next_page_number }}" aria-label="Next">
+												<span aria-hidden="true">&raquo;</span>
+											</a>
+										</li>
+									{% endif %}
+								</ul>
+							</div>
+							{% endif %}
+                        {% else %}
+							<div class="row">
+								<h4>Sorry, no vehicles found in this category!</h4>
+							</div>
+                        {% endif %}
+					</div>
+
+					<div class="col-md-3">
+                        {% if all_categories %}
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <i class="fa fa-search"></i>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Category</a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <ul class="list-group">
+                                        {% for category in all_categories %}
+                                            {% if category.1|length > 0 %}
+                                                <li class="list-group-item">
+                                                    <i class="fa fa-caret-down"></i> 
+                                                    <a href="{% url 'category' category.0.slug %}">
+                                                        {{ category.0.category_name }}
+                                                    </a>
+                                                </li>
+                                                    <ul class="list-group-submenu">
+                                                        {% for sub_category in category.1 %}
+                                                            <li class="list-group-item">
+                                                                <i class="fa fa-caret-right"></i> 
+                                                                <a href="{% url 'category' sub_category.slug %}">
+                                                                    {{ sub_category.category_name }}
+                                                                </a>
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            {% else %}
+                                                <li class="list-group-item">
+                                                    <i class="fa fa-caret-right"></i> 
+                                                    <a href="{% url 'category' category.0.slug %}">
+                                                        {{ category.0.category_name }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% if makes and makes|length > 1 %}
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <i class="fa fa-filter"></i>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Filter by Make</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse in">
+                                        <ul class="list-group">
+                                            {% for make in makes %}
+                                                <li class="list-group-item">
+                                                    <a href="{% add_to_query_string request make=make.slug %}">
+                                                        {{ make.v_make }}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+					</div>
+
+				</div> <!-- /row -->
+				
+			</div> <!-- /container -->
+		</div><!-- /content -->
+
+{% endblock %}

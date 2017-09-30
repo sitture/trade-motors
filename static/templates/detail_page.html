@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load url_tags %}
+{% load humanize %}
+
+{% block pagetitle %}
+	{{ vehicle }}
+{% endblock %}
+
+{% block content %}
+{% with vehicle.images.get_main_image as image %}
+{% with vehicle.images.get_additional_images as images %}
+    <div id="content">
+		<div class="page-title">
+			<div class="container">
+                <h3>{{ vehicle }}</h3>
+                <ul class="breadcrumb">
+                    <li><span class="fa fa-home">&nbsp;</span><a href="{% url 'home' %}">Home</a></li>
+                    {% if vehicle.category.category_parent %}
+                        <li>
+                            <a href="{% url 'category' vehicle.category.category_parent.slug %}">
+                                {{ vehicle.category.category_parent.category_name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li>
+                    	<a href="{% url 'category' vehicle.category.slug %}">
+                    		{{ vehicle.category.category_name }}
+                    	</a>
+                    </li>
+                    <li class="active">{{ vehicle }}</li>
+                </ul><!--end breadcrumb -->
+            </div>
+		</div><!--end page-title -->
+<!-- start main container -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					{% if vehicle.price %}
+					<div class="row">
+						<div class="col-xs-7 col-sm-9">
+						<h3>{{ vehicle }}</h3>
+						</div>
+						<div class="col-xs-5 col-sm-3">
+							<h3 class="pull-right"><strong>£{{ vehicle.price|intcomma }}</strong></h3>
+						</div>
+					</div>
+					{% else %}
+						<h3>{{ vehicle }}</h3>
+					{% endif %}
+					<a href="{% url 'category' vehicle.category.slug %}" class="label label-primary">
+                        <i class="fa fa-tag"></i> {{ vehicle.category.category_name }}</a>
+                    <a href="{% url 'category' vehicle.category.slug %}{% add_to_query_string request make=vehicle.make.slug %}" class="label label-warning">
+                        <i class="fa fa-tag"></i> {{ vehicle.make.v_make }}</a>
+                    <h4>Description:</h4>
+                    <div class="well well-sm">
+                    {{ vehicle.desc|safe }}
+                    </div>
+                    	<!-- Twitter -->
+						<a href="http://twitter.com/home?status={{ vehicle }} {{ request.build_absolute_uri|urlencode }}" title="Share on Twitter" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+						 <!-- Facebook -->
+						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" title="Share on Facebook" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+						<!-- Google+ -->
+						<a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}" title="Share on Google+" target="_blank" class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
+                    <hr />
+                    <div class="row">
+	                    <table class="table table-striped">
+	                    	{% if vehicle.make %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Make:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.make }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.model %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Model:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.model }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.year %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Year:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.year }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.fuel_type %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Fuel Type:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.fuel_type|title }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.transmission %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Transmission:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.transmission|title }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.mileage %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Mileage:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.mileage|intcomma }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    	{% if vehicle.colour %}
+	                    	<tr>
+	                    		<td class="text-left">
+	                    			<strong>Colour:</strong>
+	                    		</td>
+	                    		<td class="text-right">
+	                    			{{ vehicle.colour }}
+	                    		</td>
+	                    	</tr>
+	                    	{% endif %}
+	                    </table>
+	                </div>
+	                <h4>For more information, contact us on the below:</h4>
+					<div class="well">
+						{% if contact_details.phone %}
+						<p><i class="fa fa-phone"></i> {{ contact_details.phone }}</p>
+						{% endif %}
+						{% if contact_details.email %}
+						<p><i class="fa fa-envelope-o"></i> {{ contact_details.email|urlize }}</p>
+						{% else %}
+						<p><i class="fa fa-envelope-o"></i> {{ "info@globaltrademotors.com"|urlize }}</p>
+						{% endif %}
+					</div>
+				</div><!--end left column -->
+				<div class="col-md-6">
+					<hr />
+					{% if image.image %}
+					<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
+						<img class="img-responsive img-rounded" src="{{ image.image.url }}" alt="{{ vehicle }}" title="{{ vehicle }}">
+					</a>
+					{% else %}
+						<img class="img-responsive img-rounded" src="{% static 'img/gtm-image.png' %}" alt="{{ vehicle }}" title="{{ vehicle }}">
+					{% endif %}
+					<hr />
+					{% if images %}
+						<div class="row">
+						{% for image in images %}
+							<div class="col-xs-4 col-padding">
+								<a href="{{ image.image.url }}" data-lightbox="{{ vehicle.slug }}">
+	                            	<img class="img-rounded img-responsive" src="{{ image.thumbnail.url }}" alt="{{ vehicle }}" title="{{ vehicle }}" />
+	                            </a>
+							</div>
+						{% if forloop.counter|divisibleby:"3" and not forloop.last %}
+						</div>
+						<div class="row">
+						{% endif %}
+						{% endfor %}
+						</div>
+					{% endif %}
+				</div><!--end right column -->
+			</div><!--end container row -->
+		</div><!--end container -->
+	</div><!--end content -->
+{% endwith %}
+{% endwith %}
+{% endblock %}
