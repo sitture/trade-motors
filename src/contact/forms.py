@@ -19,11 +19,12 @@ class ContactForm(forms.Form):
     phone = forms.RegexField(
         label=_("Phone: "),
         regex='^\+?1?\d{9,15}$',
-        required=True,
         error_messages={
-            'required': _('Please enter your phone number.'),
-            'invalid':_('Please enter a valid contact number. (Example: +441332409079)')
-        })
+            'required': _('Please enter your phone number.')
+            },
+        error_message=(
+            _('Please enter a valid contact number. (Example: +441332409079)')
+        ), required=True)
     query = forms.CharField(
         label=_("Question: "),
         required=True, widget=forms.Textarea,

@@ -1,8 +1,7 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render_to_response, RequestContext
 from vehicles.context_processor import global_context_processor
 from .forms import ContactForm
-from dynamic_preferences.registries import global_preferences_registry
+from dynamic_preferences import global_preferences_registry
 # import settings so send_mail can have access to email settings
 from django.conf import settings
 from django.core.mail import send_mail
@@ -55,6 +54,8 @@ def contact_page(request):
             form = ContactForm()
 
     return render_to_response(
-        "contact_page.html", locals()
+        "contact_page.html", locals(),
+        context_instance=RequestContext(
+            request, processors=[global_context_processor]
         )
-
+    )
