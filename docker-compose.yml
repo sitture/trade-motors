@@ -15,6 +15,9 @@ services:
     build: .
     environment: 
       - DJANGO_SETTINGS_MODULE=gp_cars.settings.docker
+      - MYSQL_DATABASE=trademotors
+      - MYSQL_USER=trademotors
+      - MYSQL_PASSWORD=sitture2
     ports:
       - "8000:8000"
     depends_on:
