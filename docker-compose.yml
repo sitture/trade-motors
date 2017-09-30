@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+
+  db:
+    image: mysql/mysql-server:5.7
+    env_file:
+      - ./.env
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  web:
+    build: .
+    container_name: trade-motors
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
