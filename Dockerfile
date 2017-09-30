@@ -1,13 +1,23 @@
 FROM python:2
+MAINTAINER Haroon Sheikh <haroon@sitture.com>
+
 ENV PYTHONUNBUFFERED 1
-EXPOSE 8000
+
+# Install all the dependencies
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install MySQL-python
-RUN mkdir /code
-WORKDIR /code
 RUN rm -rf /root/.cache
-ADD . /code/
+
+WORKDIR /code/src
+
+COPY . /code/
+
+# run the tests before building the container
 ENV DJANGO_SETTINGS_MODULE=gp_cars.settings.local
-RUN cd src && python manage.py test
-CMD cd src && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+RUN python manage.py test
+
+# expose the port
+EXPOSE 8000
+
+CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
