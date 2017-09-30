@@ -1,3 +1,4 @@
+https://travis-ci.org/travis-ci/travis-web.svg?branch=daily-cron
 # trade-motors
 
 A Django-based website for http://globaltrademotors.com
