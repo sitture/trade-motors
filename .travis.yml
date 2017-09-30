@@ -1,9 +1,7 @@
 sudo: required
 
-language: python
-
 services:
   - docker
 
 script:
-  - docker build -t trade-motors:$TRAVIS_BRANCH
+  - docker build -t trade-motors:$TRAVIS_BRANCH .
