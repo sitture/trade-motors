@@ -1,3 +1,8 @@
+[![Python](https://img.shields.io/badge/Python-2.7-blue.svg?style=flat-square)](/)
+[![Django](https://img.shields.io/badge/Django-1.8.2-blue.svg?style=flat-square)](/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/django_publications_bootstrap.svg?style=flat-square)](https://pypi.python.org/pypi/django-publications-bootstrap)
+
 # trade-motors
 
 A Django-based website for http://globaltrademotors.com
