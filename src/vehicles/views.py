@@ -77,7 +77,7 @@ def category_page(request, slug):
 
     # paginate vehicle list for 10 items per page
     paginator = Paginator(vehicles_list, 16)
-    print vehicles_list
+
 
     try:
         page = int(request.GET.get("page", '1'))
@@ -88,7 +88,7 @@ def category_page(request, slug):
         vehicles = paginator.page(page)
     except (InvalidPage, EmptyPage):
         vehicles = paginator.page(paginator.num_pages)
-    print vehicles
+
     makes = get_makes_in_category(category)
 
     return render(request,
