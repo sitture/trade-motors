@@ -2,6 +2,8 @@
 
 A Django-based website for http://globaltrademotors.com
 
+[![Requirements Status](https://requires.io/github/joshessman/trade-motors/requirements.svg?branch=master)](https://requires.io/github/joshessman/trade-motors/requirements/?branch=master)
+
 ## Prerequisites
 
 + `Python 2.7`
