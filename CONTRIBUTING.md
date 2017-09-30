@@ -14,6 +14,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 0. [Fork the repo!](https://github.com/sitture/trade-motors)
 0. Clone your fork of the repo: `git clone https://github.com/sitture/trade-motors.git`.
 0. Navigate to the project: `trade-motors`.
+0. Refer to the README of the repo for installation guide.
 0. Open with your favorite editor.
 0. If you've started working on an issue, leave a comment as it helps avoid duplicate work.
 0. Make your changes.
