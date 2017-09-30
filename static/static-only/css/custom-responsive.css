@@ -1,0 +1,21 @@
+/*------------------------------------------------------------------
+[1. Max Width: 767px]
+*/
+
+@media (max-width: 767px) {
+	.container {
+		width: auto !important;
+	}
+
+	.thumbnail {
+		display: inline-block;
+	}
+
+	.slider-size {
+	  height: 200px;
+	}
+	
+	#signup-newsletter h3 {
+		padding: 0 0 15px 0;
+	}
+}
