@@ -1,7 +1,7 @@
 # Context processors
 from settings.models import Social, ContactDetail
 from vehicles.models import Category
-from dynamic_preferences import global_preferences_registry
+from dynamic_preferences.registries import global_preferences_registry
 
 
 def global_context_processor(request):
