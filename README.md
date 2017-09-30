@@ -1,4 +1,4 @@
-# trademotors
+# trade-motors
 
 A Django-based website for http://globaltrademotors.com
 
