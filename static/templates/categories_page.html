@@ -96,7 +96,7 @@
 										</li>
 									{% endif %}
 									{% for page in vehicles.paginator.page_range %}
-										{% if vehicles.number = page %}
+										{% if vehicles.number == page %}
 											<li class="active">
 												<a href="#">{{ page }} <span class="sr-only">(current)</span></a>
 											</li>

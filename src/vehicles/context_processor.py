@@ -5,6 +5,7 @@ from dynamic_preferences.registries import global_preferences_registry
 
 
 def global_context_processor(request):
+
     # instanciate a manager for global preferences
     global_preferences = global_preferences_registry.manager()
     default_email = global_preferences.get('general__default_email', None)
@@ -16,7 +17,12 @@ def global_context_processor(request):
     # get latest contact details
     contact_details = ContactDetail.objects.get_latest_contact_details()
 
-    return locals()
+    z = locals()
+    z.update(request)
+    z.pop('request')
+
+    return z
+
 
 
 def get_all_categories(categories, sub_categories):

@@ -10,19 +10,19 @@ from contact.views import contact_page
 from django.utils.translation import ugettext_lazy as _
 from dynamic_preferences.registries import global_preferences_registry
 
-
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
     url(r'^exports$', exports_page, name='exports'),
     url(r'^how-to-buy$', how_to_buy, name='how_to_buy'),
     url(r'^contact-us$', contact_page, name='contact'),
-    url(r'^category/(?P<slug>[-a-zA-Z0-9]+)/$',
-        category_page, name='category'),
-    url(r'^category/(?P<category_slug>[-a-zA-Z0-9]+)/detail/(?P<vehicle_id>\d+)/(?P<vehicle_slug>[-a-zA-Z0-9]+)$',
+    url(r'^category/(?P<category_slug>[-|a-z|A-Z|0-9]+)/detail/(?P<vehicle_id>\d+)/(?P<vehicle_slug>[-|a-z|A-Z|0-9]+)/$',
         vehicle_detail_page,
         name='vehicle'
         ),
+    url(r'^category/(?P<slug>[-|a-z|A-Z|0-9]+)/$',
+        category_page, name='category'),
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^robots\.txt$',

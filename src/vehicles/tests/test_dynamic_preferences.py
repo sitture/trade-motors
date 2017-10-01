@@ -1,5 +1,5 @@
 from django.test import TestCase
-from dynamic_preferences import global_preferences_registry
+from dynamic_preferences.registries import global_preferences_registry
 from django.conf import settings
 
 

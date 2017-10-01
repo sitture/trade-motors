@@ -28,24 +28,27 @@ def home_page(request):
         '-timestamp').prefetch_related('images')
     if top_vehicles:
         top_vehicles = top_vehicles[:MAX_VEHICLES_TO_SHOW]
+    context = global_context_processor(locals())
 
     return render(request,
                   "home_page.html",
-                  locals()
+                  context
 
                   )
 
 
 def exports_page(request):
+    context = global_context_processor(locals())
     return render(request,
-                  "exports_page.html", locals()
+                  "exports_page.html", context
 
                   )
 
 
 def how_to_buy(request):
+    context = global_context_processor(locals())
     return render(request,
-                  "how_to_buy.html", locals()
+                  "how_to_buy.html", context
                   )
 
 
@@ -90,9 +93,10 @@ def category_page(request, slug):
         vehicles = paginator.page(paginator.num_pages)
 
     makes = get_makes_in_category(category)
+    context = global_context_processor(locals())
 
     return render(request,
-                  "categories_page.html",locals())
+                  "categories_page.html",context)
 
 
 
@@ -105,7 +109,7 @@ def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
 
     return render(request,
                   "detail_page.html",
-                  global_context_processor(request)
+                  global_context_processor(locals())
 
                   )
 
