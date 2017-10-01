@@ -2,12 +2,7 @@
 
 A Django-based website for http://globaltrademotors.com
 
-# Added travis-ci status badge to README
-
-![alt text](https://travis-ci.org/travis-ci/travis-web.svg?branch=daily-cron)
-<!---
-# Added a Badge with Username and Repo-name
-![alt text](https://travis-ci.org/{{sitture}}/{{trade-motors}}.png) -->
+[![Build Status](https://travis-ci.org/sitture/trade-motors.svg?branch=master)](https://travis-ci.org/sitture/trade-motors)
 
 ## Prerequisites
 
