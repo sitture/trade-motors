@@ -2,6 +2,8 @@
 
 A Django-based website for http://globaltrademotors.com
 
+[![Build Status](https://travis-ci.org/sitture/trade-motors.svg?branch=master)](https://travis-ci.org/sitture/trade-motors)
+
 ## Prerequisites
 
 + `Python 2.7`
