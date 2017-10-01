@@ -51,7 +51,7 @@ From the `src` directory, run the below to execute tests.
 python manage.py test
 ```
 
-## Docker time
+## Running with Docker
 If you are comfortable using Docker, you can build this image, run it using sqlite inner database or run it using docker compose along with a MySQL server.
 
 ### Docker image
