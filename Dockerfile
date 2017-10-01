@@ -1,4 +1,4 @@
-FROM python:2
+FROM python:2.7
 MAINTAINER Haroon Sheikh <haroon@sitture.com>
 
 ENV PYTHONUNBUFFERED 1
