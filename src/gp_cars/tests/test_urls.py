@@ -27,11 +27,11 @@ class ProjectTests(TestCase):
             slug='test-vehicle-slug'
         )
         self.vehicle_url = reverse(
-            'vehicle', args=[
-                self.main_category.slug,
-                self.vehicle.pk,
-                self.vehicle.slug
-            ]
+            'vehicle', kwargs={
+                'category_slug':self.main_category.slug,
+                'vehicle_id':self.vehicle.pk,
+                'vehicle_slug':self.vehicle.slug
+        }
         )
 
     def test_homepage(self):
@@ -130,10 +130,11 @@ class ProjectTests(TestCase):
 
     def test_vehicle_page(self):
         self.assertEquals(
-            '/category/main/detail/1/test-vehicle-slug',
+            '/category/main/detail/1/test-vehicle-slug/',
             self.vehicle_url
         )
         response = self.client.get(self.vehicle_url)
         self.assertEquals(
             200, response.status_code
         )
+

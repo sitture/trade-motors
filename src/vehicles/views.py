@@ -1,5 +1,5 @@
-from django.shortcuts import render_to_response, get_object_or_404, \
-    RequestContext
+from django.shortcuts import render, get_object_or_404
+from django.template import RequestContext
 # import the custom context processor
 from vehicles.context_processor import global_context_processor
 
@@ -28,38 +28,31 @@ def home_page(request):
         '-timestamp').prefetch_related('images')
     if top_vehicles:
         top_vehicles = top_vehicles[:MAX_VEHICLES_TO_SHOW]
+    context = global_context_processor(locals())
 
-    return render_to_response(
-        "home_page.html",
-        locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+    return render(request,
+                  "home_page.html",
+                  context
+
+                  )
 
 
 def exports_page(request):
-    return render_to_response(
-        "exports_page.html",
-        locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+    context = global_context_processor(locals())
+    return render(request,
+                  "exports_page.html", context
+
+                  )
 
 
 def how_to_buy(request):
-    return render_to_response(
-        "how_to_buy.html",
-        locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+    context = global_context_processor(locals())
+    return render(request,
+                  "how_to_buy.html", context
+                  )
 
 
 def category_page(request, slug):
-
     # check if make slug parameter is passed into the url
     vehicle_make_slug = request.GET.get('make', None)
     # get category by slug
@@ -88,6 +81,7 @@ def category_page(request, slug):
     # paginate vehicle list for 10 items per page
     paginator = Paginator(vehicles_list, 16)
 
+
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
@@ -99,35 +93,28 @@ def category_page(request, slug):
         vehicles = paginator.page(paginator.num_pages)
 
     makes = get_makes_in_category(category)
+    context = global_context_processor(locals())
 
-    return render_to_response(
-        "categories_page.html",
-        locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+    return render(request,
+                  "categories_page.html",context)
+
 
 
 def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
-
     # get vehicle details by vehicle_id
     vehicle = get_object_or_404(Vehicle, id=vehicle_id)
 
     related_vehicles = Vehicle.objects.get_vehicles_by_category(
         vehicle.category)
 
-    return render_to_response(
-        "detail_page.html",
-        locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+    return render(request,
+                  "detail_page.html",
+                  global_context_processor(locals())
+
+                  )
 
 
 def get_makes_in_category(category):
-
     makes_in_category = []
     # get all the vehicle objects by category
     vehicles_in_category = Vehicle.objects.get_vehicles_by_category(

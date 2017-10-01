@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
 {% block pagetitle %}Contact us{% endblock %}
@@ -20,7 +20,7 @@
 			<hr />
 			{% if messages %}
 				{% for message in messages %}
-					<p{% if message.tags == "success" %} class="alert alert-{{ message.tags }}"{% endif %}>
+					<p{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
 						{{ message }}
 					</p>
 				{% endfor %}

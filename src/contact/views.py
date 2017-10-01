@@ -1,4 +1,5 @@
-from django.shortcuts import render_to_response, RequestContext
+from django.shortcuts import render
+
 from vehicles.context_processor import global_context_processor
 from .forms import ContactForm
 from dynamic_preferences.registries import global_preferences_registry
@@ -23,10 +24,10 @@ def contact_page(request):
                 "Email: {1}\n"
                 "Phone: {2}\n"
                 "Enquiry:\n{3}").format(
-                    sender_name,
-                    sender_email,
-                    sender_phone,
-                    sender_message
+                sender_name,
+                sender_email,
+                sender_phone,
+                sender_message
             )
             # instanciate a manager for global preferences
             global_preferences = global_preferences_registry.manager()
@@ -40,7 +41,7 @@ def contact_page(request):
             # email the details
             # send_mail(subject, message, from, to, fail_silently)
             from_email = settings.SERVER_EMAIL \
-                or 'info@globaltrademotors.com'
+                         or 'info@globaltrademotors.com'
             send_mail(
                 email_subject,
                 message_to_send,
@@ -52,10 +53,11 @@ def contact_page(request):
                 "Thank you getting in touch! We'll get back to you shortly."
             )
             form = ContactForm()
+        else:
+            for key,error in form.errors.items():
+                messages.info(request,error.as_data()[0].message)
+    form = form.__class__
+    context = global_context_processor(locals())
 
-    return render_to_response(
-        "contact_page.html", locals(),
-        context_instance=RequestContext(
-            request, processors=[global_context_processor]
-        )
-    )
+
+    return render(request,"contact_page.html",context)
