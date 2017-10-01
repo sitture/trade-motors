@@ -1,4 +1,4 @@
-# trade-motors
+# trade-motors [![Build Status](https://travis-ci.org/sitture/trade-motors.svg?branch=master&style=flat-square)](https://travis-ci.org/sitture/trade-motors) [![Requirements Status](https://requires.io/github/sitture/trade-motors/requirements.svg?branch=master)](https://requires.io/github/sitture/trade-motors/requirements/?branch=master)
 
 [![Build Status](https://travis-ci.org/memclutter/trade-motors.svg?branch=master)](https://travis-ci.org/memclutter/trade-motors)
 
