@@ -6,7 +6,7 @@ from vehicles.context_processor import global_context_processor
 from vehicles.models import Vehicle, VehicleMake, Category
 from settings.models import SliderImage
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from dynamic_preferences import global_preferences_registry
+from dynamic_preferences.registries import global_preferences_registry
 
 
 def home_page(request):
