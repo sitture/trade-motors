@@ -69,6 +69,12 @@ Once the image is built, you can run it:
 docker run -d -p 8000:8000 trade-motors:0.1.0
 ```
 
+In addition, you can run the build tests any time after this with:
+
+```bash
+docker run trade-motors:0.1.0 python manage.py test
+```
+
 ### Docker Compose
 You can run this image using the `docker-compose.yml` file. Using it you can test this application with a MySQL Server configuration. In order to get this stack running locally:
 
