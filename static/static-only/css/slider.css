@@ -1,0 +1,55 @@
+#masthead .container {
+    width: 880px;
+}
+
+/*------------------------------------------------------------------
+Masthead
+*/
+
+#masthead {
+	position: relative;
+	height: 375px;
+	margin: 2.5em;
+}
+
+.masthead-details {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 225px;
+	height: 335px;
+	padding: 20px;
+	color: #FFF;
+	background: #333;	
+	background: rgba(0,0,0,.70);
+	text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+}
+
+.masthead-details h2 {
+	margin-bottom: .75em;
+	font-size: 28px;
+}
+
+.masthead-details p {	
+	font-size: 14px;	
+}
+
+#masthead .carousel-control {
+	top: 50%;
+	left: -72px;
+	line-height: 26px;
+	opacity: .35;
+	
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+#masthead .carousel-control:hover {
+	opacity: .80;
+}
+
+#masthead .carousel-control.right {
+	left: auto;
+	right: -72px;
+}

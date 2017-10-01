@@ -10,6 +10,7 @@ from contact.views import contact_page
 from django.utils.translation import ugettext_lazy as _
 from dynamic_preferences.registries import global_preferences_registry
 
+
 urlpatterns = [
     url(r'^$', home_page, name='home'),
     url(r'^about-us$', home_page, name='about'),
