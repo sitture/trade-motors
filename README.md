@@ -1,4 +1,4 @@
-# trade-motors
+# trade-motors [![Build Status](https://travis-ci.org/sitture/trade-motors.svg?branch=master&style=flat-square)](https://travis-ci.org/sitture/trade-motors)
 
 A Django-based website for http://globaltrademotors.com
 
