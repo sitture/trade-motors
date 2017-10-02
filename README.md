@@ -84,10 +84,6 @@ docker-compose up -d
 
 This stack uses a `.env` file containing the environment variables needed to run both web and database server.
 
-# Contributing
+## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+If you'd like to contribute to this repo checkout the [Contributing Guide](./CONTRIBUTING.md) which will get you up to speed with the way the project is set up.
