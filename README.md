@@ -23,7 +23,7 @@ source bin/activate
 ### Clone the repository
 
 ```bash
-git clone git@github.com:sitture/trademotors.git .
+git clone git@github.com:sitture/trade-motors.git
 ```
 
 ### Install required packages
