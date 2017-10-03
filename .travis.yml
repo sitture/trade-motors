@@ -3,5 +3,11 @@ sudo: required
 services:
   - docker
 
+before_script:
+  - docker-compose build
+
 script:
-  - docker build -t trade-motors:$TRAVIS_BRANCH .
+ - docker run trademotors_web python manage.py test
+
+after_script:
+  - docker-compose kill
