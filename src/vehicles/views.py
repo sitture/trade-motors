@@ -110,7 +110,6 @@ def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
     return render(request,
                   "detail_page.html",
                   global_context_processor(locals())
-
                   )
 
 

@@ -15,7 +15,6 @@ COPY . /code/
 
 # run the tests before building the container
 ENV DJANGO_SETTINGS_MODULE=gp_cars.settings.local
-RUN python manage.py test
 
 # expose the port
 EXPOSE 8000
