@@ -16,6 +16,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 0. Open with your favorite editor.
 0. If you've started working on an issue, leave a comment as it helps avoid duplicate work.
 0. Make your changes.
+0. Run the linter.
 0. Run `git commit` and add your message describing what you have changed. If you have made changes that address an issue include the text `Closes #1` (where 1 would be the issue number) to your commit message.
 0. Submit a [pull request](https://github.com/sitture/trade-motors/pulls). Once you have committed your changes locally and pushed them to your fork of the repo, a banner with a **Compare & pull request** button should appear on the main Zen Audio Player repo page to submit a pull request.
 

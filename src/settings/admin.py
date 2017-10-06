@@ -21,6 +21,7 @@ class SliderImageAdmin(admin.ModelAdmin):
     class Meta:
         model = SliderImage
 
+
 # Register your models here.
 admin.site.register(ContactDetail, ContactDetailAdmin)
 admin.site.register(Social, SocialAdmin)

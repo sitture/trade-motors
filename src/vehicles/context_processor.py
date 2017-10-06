@@ -24,7 +24,6 @@ def global_context_processor(request):
     return z
 
 
-
 def get_all_categories(categories, sub_categories):
 
     formatted_categories = []

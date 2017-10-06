@@ -1,4 +1,4 @@
-from dynamic_preferences.types import StringPreference,IntegerPreference, BooleanPreference, Section
+from dynamic_preferences.types import StringPreference, IntegerPreference, BooleanPreference, Section
 from dynamic_preferences.registries import global_preferences_registry
 from django.conf import settings
 

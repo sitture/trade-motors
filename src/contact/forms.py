@@ -22,7 +22,7 @@ class ContactForm(forms.Form):
         required=True,
         error_messages={
             'required': _('Please enter your phone number.'),
-            'invalid':_('Please enter a valid contact number. (Example: +441332409079)')
+            'invalid': _('Please enter a valid contact number. (Example: +441332409079)')
         })
     query = forms.CharField(
         label=_("Question: "),

@@ -28,10 +28,10 @@ class ProjectTests(TestCase):
         )
         self.vehicle_url = reverse(
             'vehicle', kwargs={
-                'category_slug':self.main_category.slug,
-                'vehicle_id':self.vehicle.pk,
-                'vehicle_slug':self.vehicle.slug
-        }
+                'category_slug': self.main_category.slug,
+                'vehicle_id': self.vehicle.pk,
+                'vehicle_slug': self.vehicle.slug
+            }
         )
 
     def test_homepage(self):
@@ -137,4 +137,3 @@ class ProjectTests(TestCase):
         self.assertEquals(
             200, response.status_code
         )
-

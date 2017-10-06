@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.template import RequestContext
 # import the custom context processor
 from vehicles.context_processor import global_context_processor
 
@@ -30,26 +29,17 @@ def home_page(request):
         top_vehicles = top_vehicles[:MAX_VEHICLES_TO_SHOW]
     context = global_context_processor(locals())
 
-    return render(request,
-                  "home_page.html",
-                  context
-
-                  )
+    return render(request, "home_page.html", context)
 
 
 def exports_page(request):
     context = global_context_processor(locals())
-    return render(request,
-                  "exports_page.html", context
-
-                  )
+    return render(request, "exports_page.html", context)
 
 
 def how_to_buy(request):
     context = global_context_processor(locals())
-    return render(request,
-                  "how_to_buy.html", context
-                  )
+    return render(request, "how_to_buy.html", context)
 
 
 def category_page(request, slug):
@@ -81,7 +71,6 @@ def category_page(request, slug):
     # paginate vehicle list for 10 items per page
     paginator = Paginator(vehicles_list, 16)
 
-
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
@@ -95,9 +84,7 @@ def category_page(request, slug):
     makes = get_makes_in_category(category)
     context = global_context_processor(locals())
 
-    return render(request,
-                  "categories_page.html",context)
-
+    return render(request, "categories_page.html", context)
 
 
 def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
@@ -107,10 +94,7 @@ def vehicle_detail_page(request, category_slug, vehicle_id, vehicle_slug):
     related_vehicles = Vehicle.objects.get_vehicles_by_category(
         vehicle.category)
 
-    return render(request,
-                  "detail_page.html",
-                  global_context_processor(locals())
-                  )
+    return render(request, "detail_page.html", global_context_processor(locals()))
 
 
 def get_makes_in_category(category):

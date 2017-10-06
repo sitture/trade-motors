@@ -99,8 +99,8 @@ WSGI_APPLICATION = 'gp_cars.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'db',                      
-        'PORT': '3306', 
+        'HOST': 'db',
+        'PORT': '3306',
         'NAME': os.environ['MYSQL_DATABASE'],
         'USER': os.environ['MYSQL_USER'],
         'PASSWORD': os.environ['MYSQL_PASSWORD'],
