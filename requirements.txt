@@ -14,4 +14,4 @@ requests==2.18.4
 selenium==3.6.0
 six==1.11.0
 South==1.0.2
-stripe==1.66.0
+stripe==1.67.0
