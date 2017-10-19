@@ -1,7 +1,7 @@
 Django==1.11.6
 django-appconf==1.0.2
 django-ckeditor==5.3.0
-django-crispy-forms==1.6.1
+django-crispy-forms==1.7.0
 django-dynamic-preferences==1.4
 django-imagekit==4.0.1
 django-js-asset==0.1.1
