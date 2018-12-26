@@ -1,4 +1,4 @@
-Django==1.11.7
+Django>=1.11.15
 django-appconf==1.0.2
 django-ckeditor==5.3.1
 django-crispy-forms==1.7.0
@@ -10,7 +10,7 @@ persisting-theory==0.2.1
 pilkit==2.0
 Pillow==4.3.0
 pytz==2017.3
-requests==2.18.4
+requests>=2.20.0
 selenium==3.7.0
 six==1.11.0
 South==1.0.2
