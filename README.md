@@ -45,7 +45,7 @@ cd src
 python manage.py runserver
 ```
 
-## Running the Tests
+## Running the Tests and Details
 
 From the `src` directory, run the below to execute tests.
 
