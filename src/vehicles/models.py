@@ -41,7 +41,7 @@ class CategoryQuerySet(models.QuerySet):
 
 class Category(models.Model):
     category_parent = models.ForeignKey(
-        'self', blank=True, null=True, related_name='category_children')
+        'self', blank=True, null=True, related_name='Category_children')
     category_name = models.CharField(
         'Name', max_length=50, blank=False, null=False)
     category_image = models.ImageField(
