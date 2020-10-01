@@ -4,9 +4,9 @@
 
 A Django-based website for http://globaltrademotors.com
 
-## Prerequisites
+## Prerequisites (preconditions)
 
-+ `Python 2.7`
++ `Python 2.7` or above 
 + `pip` https://pypi.python.org/pypi/pip
 
 ## Setting up the project
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ## Running the Django server locally
 
-Once the above packages are installed successfully, you should then be able to run the django server.
+Once the above packages are installed successfully, you should then be able to run the django server sucessfully.
 
 To run the application locally, open the file `src/gp_cars/settings/local.py` and set `DEBUG` to `True`.
 
@@ -65,7 +65,7 @@ docker build -t trade-motors:0.1.0 .
 
 If the image fails on the building process, check out the log, could be failing tests.
 
-Once the image is built, you can run it:
+Once the image is built, you can run it swiftly:
 
 ```bash
 docker run -d -p 8000:8000 trade-motors:0.1.0
