@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(unique=True)),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('category_parent', models.ForeignKey(related_name='category_children', blank=True, to='vehicles.Category', null=True)),
+                ('category_parent', models.ForeignKey(related_name='category_children', blank=True, to='vehicles.Category', null=True, on_delete=models.DO_NOTHING)),
             ],
             options={
                 'ordering': ['category_display_order', 'category_name'],
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField()),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(to='vehicles.Category')),
+                ('category', models.ForeignKey(to='vehicles.Category', on_delete=models.DO_NOTHING)),
             ],
             options={
                 'ordering': ['-timestamp'],
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                 ('main_image', models.BooleanField(default=False, verbose_name=b'Main Image?')),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('vehicle', models.ForeignKey(related_name='images', to='vehicles.Vehicle')),
+                ('vehicle', models.ForeignKey(related_name='images', to='vehicles.Vehicle', on_delete=models.DO_NOTHING)),
             ],
             options={
                 'ordering': ['vehicle', '-timestamp'],
@@ -83,6 +83,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='vehicle',
             name='make',
-            field=models.ForeignKey(to='vehicles.VehicleMake'),
+            field=models.ForeignKey(to='vehicles.VehicleMake', on_delete=models.DO_NOTHING),
         ),
     ]

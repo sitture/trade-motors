@@ -1,4 +1,4 @@
-# trade-motors 
+# trade-motors
 
 [![Build Status](https://travis-ci.org/sitture/trade-motors.svg?branch=master&style=flat-square)](https://travis-ci.org/sitture/trade-motors) [![Requirements Status](https://requires.io/github/sitture/trade-motors/requirements.svg?branch=master)](https://requires.io/github/sitture/trade-motors/requirements/?branch=master)
 
@@ -6,21 +6,10 @@ A Django-based website for http://globaltrademotors.com
 
 ## Prerequisites
 
-+ `Python 2.7`
++ `Python 3.8+`
 + `pip` https://pypi.python.org/pypi/pip
 
 ## Setting up the project
-
-### Using a Virtual Environment (Recommended)
-
-Create a virtual environment `trademotors` and activate.
-
-```bash
-pip install virtualenv
-virtualenv trademotors
-cd trademotors
-source bin/activate
-```
 
 ### Clone the repository
 
@@ -28,10 +17,20 @@ source bin/activate
 git clone git@github.com:sitture/trade-motors.git .
 ```
 
+### Using a Virtual Environment (Recommended)
+
+Create a virtual environment `trademotors` and activate.
+
+```bash
+python3 -m venv trademotors
+source trademotors/bin/activate
+```
+
 ### Install required packages
 
 ```bash
-pip install -r requirements.txt
+trademotors/bin/python3 -m pip install --upgrade pip
+pip3 install -r requirements.txt
 ```
 
 ## Running the Django server locally
@@ -42,7 +41,7 @@ To run the application locally, open the file `src/gp_cars/settings/local.py` an
 
 ```bash
 cd src
-python manage.py runserver
+python3 manage.py runserver
 ```
 
 ## Running the Tests
@@ -50,7 +49,7 @@ python manage.py runserver
 From the `src` directory, run the below to execute tests.
 
 ```bash
-python manage.py test
+python3 manage.py test
 ```
 
 ## Running the Linter
