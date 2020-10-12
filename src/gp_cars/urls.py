@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^category/(?P<slug>[-|a-z|A-Z|0-9]+)/$',
         category_page, name='category'),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^robots\.txt$',
         TemplateView.as_view(
