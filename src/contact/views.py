@@ -40,8 +40,7 @@ def contact_page(request):
                 send_to_email = settings.DEFAULT_EMAIL_ADDRESS
             # email the details
             # send_mail(subject, message, from, to, fail_silently)
-            from_email = settings.SERVER_EMAIL \
-                         or 'info@globaltrademotors.com'
+            from_email = settings.SERVER_EMAIL or 'info@globaltrademotors.com'
             send_mail(
                 email_subject,
                 message_to_send,
@@ -54,10 +53,9 @@ def contact_page(request):
             )
             form = ContactForm()
         else:
-            for key,error in form.errors.items():
-                messages.info(request,error.as_data()[0].message)
+            for key, error in form.errors.items():
+                messages.info(request, error.as_data()[0].message)
     form = form.__class__
     context = global_context_processor(locals())
 
-
-    return render(request,"contact_page.html",context)
+    return render(request, "contact_page.html", context)

@@ -53,6 +53,14 @@ From the `src` directory, run the below to execute tests.
 python manage.py test
 ```
 
+## Running the Linter
+
+From the top-level directory, run the below to execute linting.
+
+```bash
+flake8 --config setup.cfg
+```
+
 ## Running with Docker
 If you are comfortable using Docker, you can build this image, run it using sqlite inner database or run it using docker compose along with a MySQL server.
 

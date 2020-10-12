@@ -19,6 +19,7 @@ class VehicleImageInline(admin.TabularInline):
     model = VehicleImage
     extra = 10
 
+
 # register the vehicle model
 class VehicleAdmin(admin.ModelAdmin):
     inlines = [VehicleImageInline, ]

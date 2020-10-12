@@ -1,3 +1,4 @@
+# flake8: noqa
 from .local import *
 
 # use production if there is a file
