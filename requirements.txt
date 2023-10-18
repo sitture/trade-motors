@@ -27,5 +27,5 @@ six==1.15.0
 South==1.0.2
 sqlparse==0.4.4
 stripe==1.75.0
-urllib3==1.26.5
+urllib3==1.26.18
 whitenoise==5.2.0
